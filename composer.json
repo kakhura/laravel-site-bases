@@ -1,0 +1,32 @@
+{
+    "name": "kakhura/site-bases",
+    "description": "This package is site bases functionality",
+    "keywords": ["laravel", "sites", "bases"],
+    "type": "library",
+    "homepage": "https://github.com/kakhura/laravel-site-bases",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kakhura",
+            "email": "giokaxura@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "mcamara/laravel-localization": "^1.5",
+        "waska14/laravel-with-db-transactions": "^2.0",
+        "intervention/image": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kakhura\\LaravelSiteBases\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kakhura\\LaravelSiteBases\\SiteBasesServiceProvider"
+            ]
+        }
+    }
+}
