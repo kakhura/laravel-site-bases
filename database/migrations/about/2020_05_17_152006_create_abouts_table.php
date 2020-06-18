@@ -17,6 +17,7 @@ class CreateAboutsTable extends Migration
             Schema::create('abouts', function (Blueprint $table) {
                 $table->tinyIncrements('id');
                 $table->string('image');
+                $table->string('thumb')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();

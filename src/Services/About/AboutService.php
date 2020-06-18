@@ -15,7 +15,7 @@ class AboutService extends Service
      */
     public function create(array $data)
     {
-        $image = $this->uploadFile(Arr::get($data, 'image.0'));
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/about/');
         $about = About::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
@@ -36,7 +36,7 @@ class AboutService extends Service
      */
     public function update(array $data, About $about)
     {
-        $image = $this->uploadFile(Arr::get($data, 'image.0'), [public_path($about->image), public_path($about->thumb)], '/upload/about/', $about);
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/about/', [public_path($about->image), public_path($about->thumb)], $about);
         $about->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

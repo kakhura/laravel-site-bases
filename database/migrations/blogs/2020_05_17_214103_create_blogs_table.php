@@ -19,6 +19,7 @@ class CreateBlogsTable extends Migration
                 $table->boolean('published')->default(true);
                 $table->unsignedSmallInteger('ordering')->nullable()->index();
                 $table->string('image');
+                $table->string('thumb')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();

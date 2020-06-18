@@ -2,12 +2,17 @@
 
 namespace Kakhura\LaravelSiteBases\Http\Controllers;
 
-use App\Helpers\File\UploadHelper;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Kakhura\LaravelSiteBases\Helpers\UploadHelper;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
     public function uploadFromRedactor(Request $request)
     {
         if ($request->hasFile('file')) {

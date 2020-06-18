@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/admin/upload', 'Controller@uploadFromRedactor')->middleware(['auth']);
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'with_db_transactions']], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http\Controllers\Admin', 'middleware' => ['web', 'auth', 'with_db_transactions']], function () {
     Route::group(['prefix' => 'pages/edit', 'namespace' => 'Page'], function () {
         Route::get('/about', 'AboutController@about');
         Route::post('/about', 'AboutController@storeAbout');

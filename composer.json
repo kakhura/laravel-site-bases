@@ -32,7 +32,8 @@
     },
     "scripts": {
         "post-autoload-dump": [
-            "@php artisan ui bootstrap --auth"
+            "@php artisan ui bootstrap --auth",
+            "@php artisan vendor:publish --provider='Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider'"
         ]
     }
 }

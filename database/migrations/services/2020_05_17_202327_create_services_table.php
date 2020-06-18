@@ -19,6 +19,7 @@ class CreateServicesTable extends Migration
                 $table->boolean('published')->default(true);
                 $table->unsignedSmallInteger('ordering')->nullable()->index();
                 $table->string('image')->nullable();
+                $table->string('thumb')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();

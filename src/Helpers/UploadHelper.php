@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\File;
+namespace Kakhura\LaravelSiteBases\Helpers;
 
 use Exception;
 use Illuminate\Http\UploadedFile;
