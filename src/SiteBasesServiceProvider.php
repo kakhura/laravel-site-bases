@@ -24,10 +24,10 @@ class SiteBasesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishConfigs();
-        $this->publishViews();
-        $this->publishMigrations();
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        // $this->publishConfigs();
+        // $this->publishViews();
+        // $this->publishMigrations();
+        // $this->loadRoutesFrom(__DIR__ . '/routes.php');
     }
 
     protected function publishConfigs()
