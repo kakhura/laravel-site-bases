@@ -1,6 +1,6 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Requests;
+namespace Kakhura\LaravelSiteBases\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;

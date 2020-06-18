@@ -1,8 +1,8 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Requests\Contact;
+namespace Kakhura\LaravelSiteBases\Http\Requests\Contact;
 
-use Kakhura\LaravelSiteBases\Requests\Request as BaseRequest;
+use Kakhura\LaravelSiteBases\Http\Requests\Request as BaseRequest;
 
 class Request extends BaseRequest
 {

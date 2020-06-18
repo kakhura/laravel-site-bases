@@ -1,8 +1,8 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Requests\About;
+namespace Kakhura\LaravelSiteBases\Http\Requests\About;
 
-use Kakhura\LaravelSiteBases\Requests\Request as BaseRequest;
+use Kakhura\LaravelSiteBases\Http\Requests\Request as BaseRequest;
 
 class Request extends BaseRequest
 {
