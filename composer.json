@@ -1,5 +1,5 @@
 {
-    "name": "kakhura/site-bases",
+    "name": "kakhura/laravel-site-bases",
     "description": "This package is site bases functionality",
     "keywords": ["laravel", "sites", "bases"],
     "type": "library",
