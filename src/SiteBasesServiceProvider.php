@@ -24,10 +24,10 @@ class SiteBasesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->publishConfigs();
-        // $this->publishViews();
-        // $this->publishMigrations();
-        // $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        $this->publishConfigs();
+        $this->publishViews();
+        $this->publishMigrations();
+        $this->loadRoutesFrom(__DIR__ . '/routes.php');
     }
 
     protected function publishConfigs()
@@ -39,7 +39,7 @@ class SiteBasesServiceProvider extends ServiceProvider
 
     protected function publishViews()
     {
-        foreach (config('kakhura.sites-bases.modules_publish_mapper') as $module) {
+        foreach (config('kakhura.site-bases.modules_publish_mapper') as $module) {
             $viewPath = __DIR__ . sprintf('/../resources/views/%s', $module);
             if (File::exists($viewPath)) {
                 $this->loadViewsFrom($viewPath, 'site-bases');
@@ -52,7 +52,7 @@ class SiteBasesServiceProvider extends ServiceProvider
 
     protected function publishMigrations()
     {
-        foreach (config('kakhura.sites-bases.modules_publish_mapper') as $module) {
+        foreach (config('kakhura.site-bases.modules_publish_mapper') as $module) {
             $migrationPath = __DIR__ . sprintf('/../database/migrations/%s', $module);
             if (File::exists($migrationPath)) {
                 $this->publishes([
