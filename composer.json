@@ -28,7 +28,5 @@
                 "Kakhura\\LaravelSiteBases\\SiteBasesServiceProvider"
             ]
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
-
