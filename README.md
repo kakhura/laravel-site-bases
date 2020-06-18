@@ -34,7 +34,7 @@ php artisan vendor:publish --tag=kakhura-site-bases-config
 
 This command will copy file `[/vendor/kakhura/laravel-site-bases/config/kakhura.site-basbes.php]` to `[/config/kakhura.site-basbes.php]`
 
-Default `waska.with_db_transactions.php` looks like:
+Default `kakhura.site-basbes.php` looks like:
 ```php
 return [
     /**
