@@ -1,11 +1,11 @@
 @extends('administrator.inc.layout')
 
-@section('title', 'პროექტები')
+@section('title', 'სერვისები')
 
 @section('content')
     <div class="page-title">
         <div class="title_left">
-            <h3>პროექტები</h3>
+            <h3>სერვისები</h3>
         </div>
     </div>
     @include('administrator.inc.message')
@@ -13,13 +13,13 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <a href="{{url('admin/projects/create')}}" class="btn btn-sm btn-success pull-right">
+                    <a href="{{url('admin/services/create')}}" class="btn btn-sm btn-success pull-right">
                         <i class="fa fa-models"></i> დამატება
                     </a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content admin_container">
-                    @if(count($projects))
+                    @if(count($services))
                         <table class="table table-striped jambo_table bulk_action">
                             <thead>
                                 <tr class="headings">
@@ -31,38 +31,38 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($projects as $key => $project)
+                                @foreach($services as $key => $service)
                                     <tr class="cursor-move">
-                                        <td class="text-center sort" id="sort{{ $key }}" data-id="{{ $project->id }}" data-ordering ="{{ $project->ordering }}">
-                                            {{ $project->ordering }}
+                                        <td class="text-center sort" id="sort{{ $key }}" data-id="{{ $service->id }}" data-ordering ="{{ $service->ordering }}">
+                                            {{ $service->ordering }}
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" value="published" id="{{ $project->id }}" class="js-switch publish" {{ $project->published ? 'checked' : '' }} />
+                                            <input type="checkbox" value="published" id="{{ $service->id }}" class="js-switch publish" {{ $service->published ? 'checked' : '' }} />
                                         </td>
                                         <td>
-                                            @if($project->image)
-                                                <img class="post" src="{{asset($project->image)}}" alt="" />
+                                            @if($service->image)
+                                                <img class="post" src="{{asset($service->image)}}" alt="" />
                                             @endif
-                                            <a href="{{ url('admin/projects/edit/' . $project->id) }}">
-                                                {{ Str::limit($project->detail()->where('locale', 'ka')->first()->title, 35) }}
+                                            <a href="{{ url('admin/services/edit/' . $service->id) }}">
+                                                {{ Str::limit($service->detail()->where('locale', 'ka')->first()->title, 35) }}
                                             </a>
                                         </td>
                                         <td class="text-center">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                            {{ $project->created_at }}
+                                            {{ $service->created_at }}
                                         </td>
                                         <td align="right">
-                                            <a href="{{ url('admin/projects/edit/' . $project->id) }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> </a>
+                                            <a href="{{ url('admin/services/edit/' . $service->id) }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> </a>
 
-                                            <a href="{{ url('admin/projects/delete/' . $project->id) }}" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                                            <a href="{{ url('admin/services/delete/' . $service->id) }}" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $projects->links() }}
+                        {{ $services->links() }}
                     @else
-                        <div class="alert alert-info">პროექტები ვერ მოიძებნა</div>
+                        <div class="alert alert-info">სერვისები ვერ მოიძებნა</div>
                     @endif
                 </div>
             </div>
@@ -123,7 +123,7 @@
 
                 arr = JSON.stringify(arr);
                 $.ajax({
-                    url:"{{url("admin/projects/ordering")}}",
+                    url:"{{url("admin/services/ordering")}}",
                     type:"POST",
                     data:"_token={{csrf_token()}}"+"&ordering="+arr,
                 }).done(function(data){})
@@ -176,7 +176,7 @@
 
                     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
 
-                    url: '{{url("admin/projects/publish")}}',
+                    url: '{{url("admin/services/publish")}}',
 
                     type: "post",
 

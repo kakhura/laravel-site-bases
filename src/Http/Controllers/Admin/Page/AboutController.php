@@ -4,7 +4,7 @@ namespace Kakhura\LaravelSiteBases\Http\Controllers\Admin\Page;
 
 use Kakhura\LaravelSiteBases\Http\Controllers\Controller;
 use Kakhura\LaravelSiteBases\Models\About\About;
-use Kakhura\LaravelSiteBases\Requests\About\Request;
+use Kakhura\LaravelSiteBases\Http\Requests\About\Request;
 use Kakhura\LaravelSiteBases\Services\About\AboutService;
 
 class AboutController extends Controller
@@ -12,7 +12,7 @@ class AboutController extends Controller
     public function about()
     {
         $about = About::first();
-        return view('resources.views.vendor.admin.site-bases.about.edit', compact('about'));
+        return view('vendor.admin.site-bases.about.edit', compact('about'));
     }
 
     public function storeAbout(Request $request, AboutService $aboutService)

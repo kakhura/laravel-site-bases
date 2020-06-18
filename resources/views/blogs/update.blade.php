@@ -1,4 +1,4 @@
-@extends('admin.inc.layout')
+@extends('administrator.inc.layout')
 
 @section('title', $blog->detail()->where('locale','ka')->first()->title)
 
@@ -89,6 +89,39 @@
                                 </div>
                             @endif
 
+                            <div class="form-group" style="margin-top:55px !important;">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="images">სურათები</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <input type="file" name="images" class="form-control" id="images">
+                                </div>
+                            </div>
+
+                            @if(!empty($blog->images))
+                                <div class="form-group" id="imgWrap">
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <div class="panel panel-default" style="border-radius:0">
+                                            <div class="panel-heading">ატვირთული სურათი</div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    @foreach ($blog->images as $key => $value)
+                                                        <div class="col-md-4">
+                                                            <div class="thumbnail">
+                                                                <div class="image view view-first" data-id="{{$value->id}}" data-main="{{$blog->id}}">
+                                                                    <img src="{{asset($value->image)}}">
+                                                                </div>
+                                                                <div class="caption">
+                                                                    <div class="btn btn-danger delImg" data-img="{{ asset($value->image) }}" data-id="{{ $value->id }}" data-main="{{ $blog->id }}"><i class="fa fa-close"></i> სურათის წაშლა</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-3 col-sm-4 col-xs-12">
                                     <label>
@@ -137,6 +170,58 @@
     <script>
         $(document).ready(function() {
             $('input[name="image"]').fileuploader({addMore: false});
+            $('input[name="images"]').fileuploader({addMore: true});
+
+            $('.delImg').click(function(e) {
+                var id = $(this).data('id');
+                var main_id = $(this).data('main');
+                var that = this;
+                var img = $(this).data('img');
+                $.confirm({
+                    title: 'დასტური',
+                    content: 'დარწმუნებული ხართ, რომ გურთ სურათის წაშლა?',
+                    buttons: {
+                        confirm: {
+                            text: 'წაშლა',
+                            btnClass: 'btn-red',
+                            action: function(){
+                                $.ajax({
+                                    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
+                                    url: '{{ url("admin/blogs/delaleimg") }}',
+                                    type: "post",
+                                    data: { id: id, main_id: main_id, img: img, _token: '{{ csrf_token() }}' },
+                                    success: function (response) {
+                                        var res = $.parseJSON(response);
+                                        if (res.status == 'success'){
+                                            new PNotify({
+                                                text: 'სურათი წარმატებით წაიშალა',
+                                                type: 'success',
+                                                styling: 'bootstrap3'
+                                            });
+                                            $(that).parent().parent().parent().remove();
+                                        } else {
+                                            new PNotify({
+                                                text: 'დაფიქსირდა შეცდომა',
+                                                type: 'error',
+                                                styling: 'bootstrap3'
+                                            });
+                                        }
+
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown) {
+                                        alert(2)
+                                    }
+                                });
+                            }
+                        },
+                        close: {
+                            text: 'დახურვა',
+                            action: function(){}
+                        }
+                    }
+                });
+
+            });
 
             $('textarea').redactor({
                 imageUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",

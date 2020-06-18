@@ -7,7 +7,7 @@ return [
     'modules_publish_mapper' => [
         'about',
         'contact',
-        'blog',
+        'blogs',
         'slides',
         'projects',
         'services',

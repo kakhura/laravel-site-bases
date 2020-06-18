@@ -28,7 +28,7 @@ class CreateSlidesTable extends Migration
         if (!Schema::hasTable('slide_details')) {
             Schema::create('slide_details', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->unsignedSmallInteger('slide_id')->index();
+                $table->unsignedBigInteger('slide_id')->index();
                 $table->string('title');
                 $table->string('locale')->index();
 

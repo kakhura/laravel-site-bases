@@ -1,4 +1,4 @@
-@extends('admin.inc.layout')
+@extends('administrator.inc.layout')
 
 @section('title', $project->detail()->where('locale','ka')->first()->title)
 

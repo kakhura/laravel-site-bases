@@ -1,4 +1,4 @@
-@extends('admin.inc.layout')
+@extends('administrator.inc.layout')
 
 @section('title', 'საკონტაქტო ინფორმაცია')
 

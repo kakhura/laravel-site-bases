@@ -4,7 +4,7 @@ namespace Kakhura\LaravelSiteBases\Http\Controllers\Admin\Page;
 
 use Kakhura\LaravelSiteBases\Http\Controllers\Controller;
 use Kakhura\LaravelSiteBases\Models\Contact\Contact;
-use Kakhura\LaravelSiteBases\Requests\Contact\Request;
+use Kakhura\LaravelSiteBases\Http\Requests\Contact\Request;
 use Kakhura\LaravelSiteBases\Services\Contact\ContactService;
 
 class ContactController extends Controller
@@ -12,7 +12,7 @@ class ContactController extends Controller
     public function contact()
     {
         $contact = Contact::first();
-        return view('resources.views.vendor.admin.site-bases.contact.edit', compact('contact'));
+        return view('vendor.admin.site-bases.contact.edit', compact('contact'));
     }
 
     public function storeContact(Request $request, ContactService $contactService)
