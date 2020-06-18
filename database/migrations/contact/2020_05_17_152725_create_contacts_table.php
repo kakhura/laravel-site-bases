@@ -33,6 +33,7 @@ class CreateContactsTable extends Migration
                 $table->tinyIncrements('id');
                 $table->unsignedTinyInteger('contact_id')->index();
                 $table->string('address');
+                $table->text('description')->nullable();
                 $table->string('locale')->index();
 
                 $table->timestamps();

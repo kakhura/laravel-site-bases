@@ -26,8 +26,8 @@ class Request extends BaseRequest
         return array_merge([
             'phone' => 'required|string|max:255',
             'email' => 'required|string|max:255',
-            'long' => 'nullabke|string|max:255',
-            'lat' => 'nullabke|string|max:255',
+            'long' => 'nullable|string|max:255',
+            'lat' => 'nullable|string|max:255',
             'facebook' => 'nullable|string|max:255',
             'other_socials' => 'nullable|array|min:1',
         ], $this->translationsValidation([

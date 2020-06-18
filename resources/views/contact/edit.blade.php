@@ -49,9 +49,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">ჩვენ შესახებ</label>
+                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">ტექსტი</label>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <textarea id="description_{{ $localeCode }}" class="textarea" required name="description_{{ $localeCode }}">{{ !empty($about) ? $about->detail()->where('locale', $localeCode)->first()->description : old('description_' . $localeCode) }}</textarea>
+                                                <textarea id="description_{{ $localeCode }}" class="textarea" required name="description_{{ $localeCode }}">{{ !empty($contact) ? $contact->detail()->where('locale', $localeCode)->first()->description : old('description_' . $localeCode) }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -81,7 +81,7 @@
                                 </div>
 
                                 <div class="form-group margin-top">
-                                    <label class="control-label col-md-2 col-sm-2 col-xs-12" id="lat">რუკა (lang)</label>
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12" id="lat">რუკა (lat)</label>
                                     <div class="col-md-10 col-sm-10  col-xs-12">
                                         <input type="text" name="lat" class="form-control" id="lat" value="{{ !empty($contact) ? $contact->lat : old('lat') }}">
                                     </div>

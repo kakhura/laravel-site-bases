@@ -11,7 +11,7 @@ class Contact extends Base
 
     protected $table = 'contacts';
 
-    protected $guarded = [
+    protected $fillable = [
         'phone',
         'email',
         'long',
