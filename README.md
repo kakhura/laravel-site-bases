@@ -20,7 +20,7 @@ For Laravel versions before 5.5 or if not using **auto-discovery**, register the
     /*
      * Package Service Providers...
      */
-    \Kakhura\SiteBases\SiteBasesServiceProvider::class,
+    \Kakhura\LaravelSiteBases\SiteBasesServiceProvider::class,
 ],
 ```
 
@@ -82,7 +82,7 @@ php artisan vendor:publish --tag=kakhura-site-bases-views
 This command will copy file `[/vendor/kakhura/laravel-site-bases/resources/views]` to `[/resources/views/vendor/admin/site-bases]`
 
 ## Migrations
-After publish [Migrations](#migrations), you must publish **views**, by running this command in console:
+After publish [Views](#views), you must publish **migrations**, by running this command in console:
 ```bash
 php artisan vendor:publish --tag=kakhura-site-bases-migrations
 ```

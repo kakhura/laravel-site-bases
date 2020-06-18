@@ -44,7 +44,7 @@ class SiteBasesServiceProvider extends ServiceProvider
             if (File::exists($viewPath)) {
                 $this->loadViewsFrom($viewPath, 'site-bases');
                 $this->publishes([
-                    $viewPath => base_path('resources/views/vendor/admin/site-bases'),
+                    $viewPath => base_path(sprintf('resources/views/vendor/admin/site-bases/%s', $module)),
                 ], 'kakhura-site-bases-views');
             }
         }
