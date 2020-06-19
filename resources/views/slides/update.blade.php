@@ -46,6 +46,13 @@
                                                 <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ $slide->detail()->where('locale', $localeCode)->first()->title }}">
                                             </div>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">აღწერა</label>
+                                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                                <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}">{{ $slide->detail()->where('locale', $localeCode)->first()->description }}</textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>

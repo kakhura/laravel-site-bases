@@ -120,12 +120,11 @@
                 for (var i = 0 ; i < multi.length ; i++){
                     arr.push( [$('#sort'+i).attr('data-id') , $('#sort'+i).attr('data-ordering')] );
                 }
-
                 arr = JSON.stringify(arr);
                 $.ajax({
                     url:"{{url("admin/slides/ordering")}}",
                     type:"POST",
-                    data:"_token={{csrf_token()}}"+"&ordering="+arr,
+                    data:"_token={{csrf_token()}}" + "&ordering=" + arr + "&className='{{ config('kakhura.site-bases.ordering_classes.slides') }}",
                 }).done(function(data){})
             }
         </script>
@@ -224,7 +223,6 @@
             });
         });
     </script>
-
 @endsection
 
 @section('css')
