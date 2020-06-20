@@ -2,7 +2,7 @@
 
 namespace Kakhura\LaravelSiteBases\Http\Controllers\Admin\Page;
 
-use Kakhura\LaravelSiteBases\Http\Controllers\Controller;
+use Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller;
 use Kakhura\LaravelSiteBases\Models\About\About;
 use Kakhura\LaravelSiteBases\Http\Requests\About\Request;
 use Kakhura\LaravelSiteBases\Services\About\AboutService;

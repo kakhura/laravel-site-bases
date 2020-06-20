@@ -124,7 +124,7 @@
                 $.ajax({
                     url:"{{url("admin/slides/ordering")}}",
                     type:"POST",
-                    data:"_token={{csrf_token()}}" + "&ordering=" + arr + "&className='{{ config('kakhura.site-bases.ordering_classes.slides') }}",
+                    data:"_token={{csrf_token()}}" + "&ordering=" + arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.slides')) }}",
                 }).done(function(data){})
             }
         </script>
@@ -175,7 +175,7 @@
 
                     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
 
-                    url: '{{url("admin/slides/publish")}}',
+                    url: '{{ url("admin/slides/publish") }}',
 
                     type: "post",
 
@@ -183,7 +183,7 @@
                         id: id,
                         published: published,
                         _token: '{{ csrf_token() }}',
-                        className="{{ config('kakhura.site-bases.publish_classes.slides') }}"
+                        className: "{{ addslashes(config('kakhura.site-bases.publish_classes.slides')) }}"
                     },
 
                     success: function (response) {

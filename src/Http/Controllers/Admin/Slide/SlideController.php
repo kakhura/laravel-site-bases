@@ -1,9 +1,9 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Http\Controllers\Admin\Page;
+namespace Kakhura\LaravelSiteBases\Http\Controllers\Admin\Slide;
 
 use Illuminate\Http\Request;
-use Kakhura\LaravelSiteBases\Http\Controllers\Controller;
+use Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller;
 use Kakhura\LaravelSiteBases\Http\Requests\Slide\CreateRequest;
 use Kakhura\LaravelSiteBases\Http\Requests\Slide\UpdateRequest;
 use Kakhura\LaravelSiteBases\Models\Slide\Slide;

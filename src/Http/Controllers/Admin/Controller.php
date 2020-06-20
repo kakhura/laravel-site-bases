@@ -1,6 +1,6 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Http\Controllers;
+namespace Kakhura\LaravelSiteBases\Http\Controllers\Admin;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -19,12 +19,11 @@ class Controller extends BaseController
     {
         if ($request->hasFile('file')) {
             config(['kakhura.site-bases.images_thumbs.generate_thumb_for_images' => false]);
-            $imageName = UploadHelper::uploadFile($request->file, '/upload/redactor/');
+            $image = UploadHelper::uploadFile($request->file, '/upload/redactor/');
             $file = [
-                'filelink' => asset($imageName),
+                'filelink' => asset(Arr::get($image, 'fileName')),
             ];
             return response()->json($file);
-            // echo stripslashes(json_encode());
         }
     }
 
