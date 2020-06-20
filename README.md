@@ -36,6 +36,12 @@ This command will copy file `[/vendor/kakhura/laravel-site-bases/config/kakhura.
 
 Default `kakhura.site-basbes.php` looks like:
 ```php
+use Kakhura\LaravelSiteBases\Models\Blog\Blog;
+use Kakhura\LaravelSiteBases\Models\News\News;
+use Kakhura\LaravelSiteBases\Models\Project\Project;
+use Kakhura\LaravelSiteBases\Models\Service\Service;
+use Kakhura\LaravelSiteBases\Models\Slide\Slide;
+
 return [
     /**
      * Which module's views and migrations do you want to publish.
@@ -43,12 +49,13 @@ return [
     'modules_publish_mapper' => [
         'about',
         'contact',
-        'blog',
+        'blogs',
         'slides',
         'projects',
         'services',
         'news',
     ],
+
     /**
      * Generate thumbs.
      */
@@ -57,6 +64,7 @@ return [
         'thumb_width' => 400,
         'thumb_height' => null,
     ],
+
     /**
      * Add watermark.
      */
@@ -67,10 +75,33 @@ return [
         'watermark_x' => 20,
         'watermark_y' => 20,
     ],
+
     /**
      * Admin languages active tab.
      */
     'admin_editors_default_locale' => 'ka',
+
+    /**
+     * Ordering classes
+     */
+    'ordering_classes' => [
+        'blogs' => Blog::class,
+        'slides' => Slide::class,
+        'projects' => Project::class,
+        'services' => Service::class,
+        'news' => News::class,
+    ],
+
+    /**
+     * Publish classes
+     */
+    'publish_classes' => [
+        'blogs' => Blog::class,
+        'slides' => Slide::class,
+        'projects' => Project::class,
+        'services' => Service::class,
+        'news' => News::class,
+    ],
 ];
 ```
 ## Views

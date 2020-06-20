@@ -55,4 +55,15 @@ return [
         'services' => Service::class,
         'news' => News::class,
     ],
+
+    /**
+     * Publish classes
+     */
+    'publish_classes' => [
+        'blogs' => Blog::class,
+        'slides' => Slide::class,
+        'projects' => Project::class,
+        'services' => Service::class,
+        'news' => News::class,
+    ],
 ];

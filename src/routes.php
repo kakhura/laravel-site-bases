@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/edit/{slide}', 'SlideController@editSlide');
         Route::post('/edit/{slide}', 'SlideController@updateSlide');
         Route::get('/delete/{slide}', 'SlideController@deleteSlide');
-        Route::post('/publish', 'SlideController@slidePublish');
+        Route::post('/publish', 'SlideController@publish');
         Route::post('/ordering', 'SlideController@ordering');
     });
 
@@ -31,7 +31,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/edit/{project}', 'ProjectController@editProject');
         Route::post('/edit/{project}', 'ProjectController@updateProject');
         Route::get('/delete/{project}', 'ProjectController@deleteProject');
-        Route::post('/publish', 'ProjectController@projectPublish');
+        Route::post('/publish', 'ProjectController@publish');
         Route::post('/ordering', 'ProjectController@ordering');
         Route::post('/delaleimg', 'ProjectController@projectDelaleimg');
     });
@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/edit/{blog}', 'BlogController@editBlog');
         Route::post('/edit/{blog}', 'BlogController@updateBlog');
         Route::get('/delete/{blog}', 'BlogController@deleteBlog');
-        Route::post('/publish', 'BlogController@blogPublish');
+        Route::post('/publish', 'BlogController@publish');
         Route::post('/ordering', 'BlogController@ordering');
         Route::post('/delaleimg', 'BlogController@blogDelaleimg');
     });
@@ -55,7 +55,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/edit/{news}', 'NewsController@editNews');
         Route::post('/edit/{news}', 'NewsController@updateNews');
         Route::get('/delete/{news}', 'NewsController@deleteNews');
-        Route::post('/publish', 'NewsController@newsPublish');
+        Route::post('/publish', 'NewsController@publish');
         Route::post('/ordering', 'NewsController@ordering');
         Route::post('/delaleimg', 'NewsController@newsDelaleimg');
     });
@@ -67,7 +67,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/edit/{service}', 'AdminController@editService');
         Route::post('/edit/{service}', 'AdminController@updateService');
         Route::get('/delete/{service}', 'AdminController@deleteService');
-        Route::post('/publish', 'AdminController@servicePublish');
+        Route::post('/publish', 'AdminController@publish');
         Route::post('/ordering', 'AdminController@ordering');
     });
 });

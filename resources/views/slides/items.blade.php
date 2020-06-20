@@ -179,7 +179,12 @@
 
                     type: "post",
 
-                    data: { id: id, published: published, _token: '{{ csrf_token() }}' },
+                    data: {
+                        id: id,
+                        published: published,
+                        _token: '{{ csrf_token() }}',
+                        className="{{ config('kakhura.site-bases.publish_classes.slides') }}"
+                    },
 
                     success: function (response) {
 
