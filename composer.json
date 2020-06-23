@@ -29,11 +29,5 @@
                 "Kakhura\\LaravelSiteBases\\SiteBasesServiceProvider"
             ]
         }
-    },
-    "scripts": {
-        "post-package-install": [
-            "@php artisan ui bootstrap --auth",
-            "@php artisan vendor:publish --provider='Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider'"
-        ]
     }
 }

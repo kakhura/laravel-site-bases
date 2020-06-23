@@ -45,7 +45,8 @@ class CreateProjectsTable extends Migration
             Schema::create('project_images', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->unsignedBigInteger('project_id')->index();
-                $table->text('image');
+                $table->string('image');
+                $table->string('thumb');
 
                 $table->timestamps();
                 $table->softDeletes();

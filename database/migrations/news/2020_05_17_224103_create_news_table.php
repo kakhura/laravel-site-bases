@@ -45,7 +45,8 @@ class CreateNewsTable extends Migration
             Schema::create('news_images', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->unsignedBigInteger('news_id')->index();
-                $table->text('image');
+                $table->string('image');
+                $table->string('thumb');
 
                 $table->timestamps();
                 $table->softDeletes();

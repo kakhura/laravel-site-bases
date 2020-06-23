@@ -45,7 +45,8 @@ class CreateBlogsTable extends Migration
             Schema::create('blog_images', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->unsignedBigInteger('blog_id')->index();
-                $table->text('image');
+                $table->string('image');
+                $table->string('thumb');
 
                 $table->timestamps();
                 $table->softDeletes();

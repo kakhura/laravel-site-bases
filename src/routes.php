@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/delete/{project}', 'ProjectController@deleteProject');
         Route::post('/publish', 'ProjectController@publish');
         Route::post('/ordering', 'ProjectController@ordering');
-        Route::post('/delaleimg', 'ProjectController@projectDelaleimg');
+        Route::post('/delete-img', 'ProjectController@projectDeleteImg');
     });
 
     Route::group(['prefix' => 'blogs', 'namespace' => 'Blog'], function () {
