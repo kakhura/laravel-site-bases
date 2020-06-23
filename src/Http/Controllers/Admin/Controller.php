@@ -15,6 +15,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function index()
+    {
+        return view('vendor.admin.site-bases.index');
+    }
+
     public function uploadFromRedactor(Request $request)
     {
         if ($request->hasFile('file')) {

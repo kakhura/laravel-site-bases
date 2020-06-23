@@ -1,9 +1,9 @@
-@extends('administrator.inc.layout')
+@extends('vendor.admin.site-bases.inc.layout')
 
 @section('title', $blog->detail()->where('locale','ka')->first()->title)
 
 @section('content')
-    @include('administrator.inc.message')
+    @include('vendor.admin.site-bases.inc.message')
     <div class="page-title">
         <div class="title_left">
             <h3>{{ $blog->detail()->where('locale','ka')->first()->title }}</h3>

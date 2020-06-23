@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('/admin/upload', 'Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller@uploadFromRedactor')->middleware(['web', 'auth']);
-
 Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http\Controllers\Admin', 'middleware' => ['web', 'auth', 'with_db_transactions']], function () {
+    Route::post('/admin/upload', 'Controller@uploadFromRedactor');
+
+    Route::get('/', 'Controller@index');
+
     Route::group(['prefix' => 'pages/edit', 'namespace' => 'Page'], function () {
         Route::get('/about', 'AboutController@about');
         Route::post('/about', 'AboutController@storeAbout');
@@ -33,7 +35,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/delete/{project}', 'ProjectController@deleteProject');
         Route::post('/publish', 'ProjectController@publish');
         Route::post('/ordering', 'ProjectController@ordering');
-        Route::post('/delete-img', 'ProjectController@projectDeleteImg');
+        Route::post('/delete-gallery-img', 'ProjectController@projectDeleteImg');
     });
 
     Route::group(['prefix' => 'blogs', 'namespace' => 'Blog'], function () {

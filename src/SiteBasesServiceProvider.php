@@ -48,6 +48,20 @@ class SiteBasesServiceProvider extends ServiceProvider
                 ], 'kakhura-site-bases-views');
             }
         }
+        $viewPath = __DIR__ . '/../resources/views/inc';
+        if (File::exists($viewPath)) {
+            $this->loadViewsFrom($viewPath, 'site-bases');
+            $this->publishes([
+                $viewPath => base_path('resources/views/vendor/admin/site-bases/inc'),
+            ], 'kakhura-site-bases-views');
+        }
+        $viewPath = __DIR__ . '/../resources/views/inc/index.blade.php';
+        if (File::exists($viewPath)) {
+            $this->loadViewsFrom($viewPath, 'site-bases');
+            $this->publishes([
+                $viewPath => base_path('resources/views/vendor/admin/site-bases/inc/index.blade.php'),
+            ], 'kakhura-site-bases-views');
+        }
     }
 
     protected function publishMigrations()

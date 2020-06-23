@@ -1,9 +1,9 @@
-@extends('administrator.inc.layout')
+@extends('vendor.admin.site-bases.inc.layout')
 
 @section('title', 'დამატება')
 
 @section('content')
-    @include('administrator.inc.message')
+    @include('vendor.admin.site-bases.inc.message')
 
     <div class="page-title">
         <div class="title_left">
@@ -42,16 +42,18 @@
                             <div class="tab-content">
                                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                     <div class="tab-pane {{ $localeCode == config('kakhura.site-bases.admin_editors_default_locale') ? 'active' : '' }}" id="{{ $localeCode }}">
+
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title_{{ $localeCode }}">სათაური</label>
                                             <div class="col-md-10 col-sm-10  col-xs-12">
-                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}">
+                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ old('title_' . $localeCode) }}">
                                             </div>
                                         </div>
+
                                         <div class="form-group">
-                                            <label class="control-label col-md-2 col-sm-2 col-xs-12">აღწერა</label>
-                                            <div class="col-md-10 col-sm-10  col-xs-12">
-                                                <textarea name="description_{{ $localeCode }}"></textarea>
+                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">აღწერა</label>
+                                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                                <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}">{{ old('description_' . $localeCode) }}</textarea>
                                             </div>
                                         </div>
                                     </div>

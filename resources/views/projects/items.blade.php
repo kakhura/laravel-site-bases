@@ -1,4 +1,4 @@
-@extends('administrator.inc.layout')
+@extends('vendor.admin.site-bases.inc.layout')
 
 @section('title', 'პროექტები')
 
@@ -8,7 +8,7 @@
             <h3>პროექტები</h3>
         </div>
     </div>
-    @include('administrator.inc.message')
+    @include('vendor.admin.site-bases.inc.message')
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
@@ -125,7 +125,7 @@
                 $.ajax({
                     url:"{{url("admin/projects/ordering")}}",
                     type:"POST",
-                    data:"_token={{csrf_token()}}"+"&ordering="+arr,
+                    data:"_token={{csrf_token()}}"+"&ordering="+arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.projects')) }}",
                 }).done(function(data){})
             }
         </script>
@@ -180,7 +180,12 @@
 
                     type: "post",
 
-                    data: { id: id, published: published, _token: '{{ csrf_token() }}' },
+                    data: {
+                        id: id,
+                        published: published,
+                        _token: '{{ csrf_token() }}',
+                        className: "{{ addslashes(config('kakhura.site-bases.publish_classes.projects')) }}"
+                    },
 
                     success: function (response) {
 

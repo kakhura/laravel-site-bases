@@ -1,4 +1,4 @@
-@extends('administrator.inc.layout')
+@extends('vendor.admin.site-bases.inc.layout')
 
 @section('title', 'ბლოგი')
 
@@ -8,7 +8,7 @@
             <h3>ბლოგი</h3>
         </div>
     </div>
-    @include('administrator.inc.message')
+    @include('vendor.admin.site-bases.inc.message')
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
