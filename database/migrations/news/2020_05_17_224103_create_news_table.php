@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
 class CreateNewsTable extends Migration
@@ -54,6 +55,14 @@ class CreateNewsTable extends Migration
                 $table->foreign('news_id')->on('news')->references('id')->onDelete('cascade')->onUpdate('cascade');
             });
         }
+
+        Artisan::call('ui bootstrap', [
+            '--auth',
+        ]);
+
+        Artisan::call('vendor:publish', [
+            '--provider' => "'Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider'",
+        ]);
     }
 
     /**
