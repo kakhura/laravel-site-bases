@@ -72,31 +72,31 @@ return [
      */
     'sidebar_modules' => [
         'slides' => [
-            'url' => url('admin/slides'),
+            'url' => env('APP_URL') . '/admin/slides',
             'title' => 'სლაიდერი',
             'icon' => '<i class="fa fa-sliders"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
         'projects' => [
-            'url' => url('admin/projects'),
+            'url' => env('APP_URL') . '/admin/projects',
             'title' => 'პროექტები',
             'icon' => '<i class="fa fa-product-hunt"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
         'blogs' => [
-            'url' => url('admin/blogs'),
+            'url' => env('APP_URL') . '/admin/blogs',
             'title' => 'ბლოგი',
             'icon' => '<i class="fa fa-file-text-o"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
         'news' => [
-            'url' => url('admin/news'),
+            'url' => env('APP_URL') . '/admin/news',
             'title' => 'სიახლეები',
             'icon' => '<i class="fa fa-file-text-o"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
         'services' => [
-            'url' => url('admin/services'),
+            'url' => env('APP_URL') . '/admin/services',
             'title' => 'სერვისები',
             'icon' => '<i class="fa fa-cog" aria-hidden="true"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
@@ -109,11 +109,11 @@ return [
     'pages_menu' => [
         'about' => [
             'title' => 'ჩვენ შესახებ',
-            'link' => url('admin/pages/edit/about'),
+            'link' => env('APP_URL') . '/admin/pages/edit/about',
         ],
         'contact' => [
             'title' => 'კონტაქტი',
-            'link' => url('admin/pages/edit/contact'),
+            'link' => env('APP_URL') . '/admin/pages/edit/contact',
         ],
     ],
 ];

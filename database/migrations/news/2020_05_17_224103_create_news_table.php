@@ -56,12 +56,13 @@ class CreateNewsTable extends Migration
             });
         }
 
-        Artisan::call('ui bootstrap', [
-            '--auth',
+        Artisan::call('ui', [
+            'type' => 'bootstrap',
+            '--auth' => true,
         ]);
 
         Artisan::call('vendor:publish', [
-            '--provider' => "'Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider'",
+            '--provider' => 'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
         ]);
     }
 
