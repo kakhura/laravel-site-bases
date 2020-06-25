@@ -179,7 +179,7 @@
                 var img = $(this).data('img');
                 $.confirm({
                     title: 'დასტური',
-                    content: 'დარწმუნებული ხართ, რომ გურთ სურათის წაშლა?',
+                    content: 'დარწმუნებული ხართ, რომ გსურთ სურათის წაშლა?',
                     buttons: {
                         confirm: {
                             text: 'წაშლა',
@@ -206,7 +206,6 @@
                                                 styling: 'bootstrap3'
                                             });
                                         }
-
                                     },
                                     error: function(jqXHR, textStatus, errorThrown) {
                                         alert(2)

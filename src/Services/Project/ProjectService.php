@@ -50,7 +50,7 @@ class ProjectService extends Service
      */
     public function update(array $data, Project $project): bool
     {
-        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/projects/', [public_path($project->image)], $project);
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/projects/', [public_path($project->image), public_path($project->thumb)], $project);
         $update = $project->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
@@ -79,6 +79,9 @@ class ProjectService extends Service
     public function delete(Project $project): bool
     {
         $this->deleteFiles([public_path($project->image), public_path($project->thumb)]);
+        foreach ($project->images as $image) {
+            $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
+        }
         $project->detail()->delete();
         return $project->delete();
     }
