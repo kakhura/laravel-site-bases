@@ -56,14 +56,7 @@ class CreateNewsTable extends Migration
             });
         }
 
-        Artisan::call('ui', [
-            'type' => 'bootstrap',
-            '--auth' => true,
-        ]);
-
-        Artisan::call('vendor:publish', [
-            '--provider' => 'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
-        ]);
+        $this->runCommands();
     }
 
     /**
@@ -76,5 +69,18 @@ class CreateNewsTable extends Migration
         Schema::dropIfExists('news_images');
         Schema::dropIfExists('news_details');
         Schema::dropIfExists('news');
+    }
+
+    protected function runCommands()
+    {
+        Artisan::call('ui', [
+            'type' => 'bootstrap',
+            '--auth' => true,
+            '--no-interaction' => true,
+        ]);
+
+        Artisan::call('vendor:publish', [
+            '--provider' => 'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
+        ]);
     }
 }
