@@ -1,12 +1,12 @@
 @extends('vendor.admin.site-bases.inc.layout')
 
-@section('title', $news->detail()->where('locale','ka')->first()->title)
+@section('title', $news->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title)
 
 @section('content')
     @include('vendor.admin.site-bases.inc.message')
     <div class="page-title">
         <div class="title_left">
-            <h3>{{ $news->detail()->where('locale','ka')->first()->title }}</h3>
+            <h3>{{ $news->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title }}</h3>
         </div>
     </div>
     <div class="row">
@@ -45,14 +45,14 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title_{{ $localeCode }}">სათაური</label>
                                             <div class="col-md-10 col-sm-10  col-xs-12">
-                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ $news->detail()->where('locale', $localeCode)->first()->title }}">
+                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ $news->detail()->where('locale', $localeCode)->first()->title }}" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-2 col-sm-2 col-xs-12">აღწერა</label>
-                                            <div class="col-md-10 col-sm-10  col-xs-12">
-                                                <textarea name="description_{{ $localeCode }}">{{ $news->detail()->where('locale', $localeCode)->first()->description }}</textarea>
+                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">აღწერა</label>
+                                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                                <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}" required>{{ $news->detail()->where('locale', $localeCode)->first()->description }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -60,6 +60,13 @@
                             </div>
 
                             <hr>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video">ვიდეო</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <input type="text" name="video" class="form-control" id="video" value="{{ $news->video }}">
+                                </div>
+                            </div>
 
                             <div class="form-group margin-top">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="image">მთავარი სურათი</label>
@@ -78,7 +85,7 @@
                                                     <div class="col-md-4">
                                                         <div class="thumbnail">
                                                             <div class="image view view-first" style="height:260px">
-                                                                <img src="{{asset($news->image)}}" >
+                                                                <img src="{{ asset($news->image) }}" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -103,14 +110,14 @@
                                             <div class="panel-heading">ატვირთული სურათი</div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    @foreach ($news->images as $key => $value)
+                                                    @foreach ($news->images as $key => $image)
                                                         <div class="col-md-4">
                                                             <div class="thumbnail">
-                                                                <div class="image view view-first" data-id="{{$value->id}}" data-main="{{$news->id}}">
-                                                                    <img src="{{asset($value->image)}}">
+                                                                <div class="image view view-first" data-id="{{ $image->id }}" data-main="{{ $news->id }}">
+                                                                    <img src="{{asset($image->image)}}">
                                                                 </div>
                                                                 <div class="caption">
-                                                                    <div class="btn btn-danger delImg" data-img="{{ asset($value->image) }}" data-id="{{ $value->id }}" data-main="{{ $news->id }}"><i class="fa fa-close"></i> სურათის წაშლა</div>
+                                                                    <div class="btn btn-danger delImg" data-img="{{ asset($image->image) }}" data-id="{{ $image->id }}" data-main="{{ $news->id }}"><i class="fa fa-close"></i> სურათის წაშლა</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -179,7 +186,7 @@
                 var img = $(this).data('img');
                 $.confirm({
                     title: 'დასტური',
-                    content: 'დარწმუნებული ხართ, რომ გურთ სურათის წაშლა?',
+                    content: 'დარწმუნებული ხართ, რომ გსურთ სურათის წაშლა?',
                     buttons: {
                         confirm: {
                             text: 'წაშლა',
@@ -187,7 +194,7 @@
                             action: function(){
                                 $.ajax({
                                     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                                    url: '{{ url("admin/news/delaleimg") }}',
+                                    url: '{{ url("admin/news/delete-news-img") }}',
                                     type: "post",
                                     data: { id: id, main_id: main_id, img: img, _token: '{{ csrf_token() }}' },
                                     success: function (response) {
@@ -206,7 +213,6 @@
                                                 styling: 'bootstrap3'
                                             });
                                         }
-
                                     },
                                     error: function(jqXHR, textStatus, errorThrown) {
                                         alert(2)

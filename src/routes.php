@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/delete/{news}', 'NewsController@deleteNews');
         Route::post('/publish', 'NewsController@publish');
         Route::post('/ordering', 'NewsController@ordering');
-        Route::post('/delaleimg', 'NewsController@newsDelaleimg');
+        Route::post('/delete-news-img', 'NewsController@newsDeleteImg');
     });
 
     Route::group(['prefix' => 'services', 'namespace' => 'Service'], function () {

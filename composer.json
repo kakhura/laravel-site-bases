@@ -13,6 +13,7 @@
     ],
     "require": {
         "php": ">=7.0.0",
+        "barryvdh/laravel-translation-manager": "^0.5.8",
         "mcamara/laravel-localization": "^1.5",
         "waska14/laravel-with-db-transactions": "^2.0",
         "intervention/image": "^2.5",

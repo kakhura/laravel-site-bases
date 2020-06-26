@@ -1,12 +1,12 @@
 @extends('vendor.admin.site-bases.inc.layout')
 
-@section('title', $project->detail()->where('locale','ka')->first()->title)
+@section('title', $project->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title)
 
 @section('content')
     @include('vendor.admin.site-bases.inc.message')
     <div class="page-title">
         <div class="title_left">
-            <h3>{{ $project->detail()->where('locale','ka')->first()->title }}</h3>
+            <h3>{{ $project->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title }}</h3>
         </div>
     </div>
     <div class="row">

@@ -1,0 +1,101 @@
+<?php
+
+namespace Kakhura\LaravelSiteBases\Services\News;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Kakhura\LaravelSiteBases\Models\News\News;
+use Kakhura\LaravelSiteBases\Models\News\NewsImage;
+use Kakhura\LaravelSiteBases\Services\Service;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+class NewsService extends Service
+{
+    /**
+     * @param array $data
+     * @return void
+     */
+    public function create(array $data)
+    {
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/news/');
+        /** @var News $news */
+        $news = News::create([
+            'image' => Arr::get($image, 'fileName'),
+            'thumb' => Arr::get($image, 'thumbFileName'),
+            'published' => Arr::get($data, 'published') == 'on' ? true : false,
+            'video' => Arr::get($data, 'video'),
+        ]);
+        $news->update([
+            'ordering' => $news->id,
+        ]);
+        foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
+            $news->detail()->create([
+                'title' => Arr::get($data, 'title_' . $localeCode),
+                'description' => Arr::get($data, 'description_' . $localeCode),
+                'locale' => $localeCode,
+            ]);
+        }
+        foreach (Arr::get($data, 'images', []) as $image) {
+            $file = $this->uploadFile($image, '/upload/news/');
+            $news->images()->create([
+                'image' => Arr::get($file, 'fileName'),
+                'thumb' => Arr::get($file, 'thumbFileName'),
+            ]);
+        }
+    }
+
+    /**
+     * @param array $data
+     * @param News $news
+     * @return bool
+     */
+    public function update(array $data, News $news): bool
+    {
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/news/', [public_path($news->image), public_path($news->thumb)], $news);
+        $update = $news->update([
+            'image' => Arr::get($image, 'fileName'),
+            'thumb' => Arr::get($image, 'thumbFileName'),
+            'published' => Arr::get($data, 'published') == 'on' ? true : false,
+            'video' => Arr::get($data, 'video'),
+        ]);
+        foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
+            $news->detail()->where('locale', $localeCode)->first()->update([
+                'title' => Arr::get($data, 'title_' . $localeCode),
+                'description' => Arr::get($data, 'description_' . $localeCode),
+            ]);
+        }
+        foreach (Arr::get($data, 'images', []) as $image) {
+            $file = $this->uploadFile($image, '/upload/news/');
+            $news->images()->create([
+                'image' => Arr::get($file, 'fileName'),
+                'thumb' => Arr::get($file, 'thumbFileName'),
+            ]);
+        }
+        return $update;
+    }
+
+    /**
+     * @param News $news
+     * @return boolean
+     */
+    public function delete(News $news): bool
+    {
+        $this->deleteFiles([public_path($news->image), public_path($news->thumb)]);
+        foreach ($news->images as $image) {
+            $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
+        }
+        $news->detail()->delete();
+        return $news->delete();
+    }
+
+    /**
+     * @param Request $request
+     * @return boolean
+     */
+    public function deleteImg(Request $request): bool
+    {
+        $image = NewsImage::find($request->id);
+        $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
+        return $image->delete();
+    }
+}

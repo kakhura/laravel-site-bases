@@ -122,9 +122,9 @@
                 }
                 arr = JSON.stringify(arr);
                 $.ajax({
-                    url:"{{url("admin/slides/ordering")}}",
+                    url:"{{ url('admin/slides/ordering') }}",
                     type:"POST",
-                    data:"_token={{csrf_token()}}" + "&ordering=" + arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.slides')) }}",
+                    data:"_token={{ csrf_token() }}" + "&ordering=" + arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.slides')) }}",
                 }).done(function(data){})
             }
         </script>

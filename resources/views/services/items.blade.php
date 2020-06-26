@@ -120,12 +120,11 @@
                 for (var i = 0 ; i < multi.length ; i++){
                     arr.push( [$('#sort'+i).attr('data-id') , $('#sort'+i).attr('data-ordering')] );
                 }
-
                 arr = JSON.stringify(arr);
                 $.ajax({
-                    url:"{{url("admin/services/ordering")}}",
+                    url:"{{ url('admin/services/ordering') }}",
                     type:"POST",
-                    data:"_token={{csrf_token()}}"+"&ordering="+arr,
+                    data:"_token={{ csrf_token() }}" + "&ordering=" + arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.services')) }}",
                 }).done(function(data){})
             }
         </script>
@@ -173,58 +172,41 @@
                 var id = $(this).attr('id');
                 var published = ($(this).is(':checked')) ? 1 : 0;
                 $.ajax({
-
                     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-
-                    url: '{{url("admin/services/publish")}}',
-
+                    url: '{{ url("admin/services/publish") }}',
                     type: "post",
-
-                    data: { id: id, published: published, _token: '{{ csrf_token() }}' },
-
-                    success: function (response) {
-
-                        var res = $.parseJSON(response)
-
-                            if (res.status == 'success'){
-
-                                new PNotify({
-
-                                text: 'წარმატებით განახლდა',
-
-                                type: 'success',
-
-                                styling: 'bootstrap3'
-
-                                });
-
-                            } else {
-
-                                new PNotify({
-
-                                text: 'დაფიქსირდა შეცდომა, მეტის გამოქვეყნება არ შეგიძლიათ',
-
-                                type: 'error',
-
-                                styling: 'bootstrap3'
-
-                                });
-
-                            }
-
+                    data: {
+                        id: id,
+                        published: published,
+                        _token: '{{ csrf_token() }}',
+                        className: "{{ addslashes(config('kakhura.site-bases.publish_classes.services')) }}"
                     },
-
+                    success: function (response) {
+                        if (response.status == 'success'){
+                            new PNotify({
+                                text: 'წარმატებით განახლდა',
+                                type: 'success',
+                                styling: 'bootstrap3'
+                            });
+                        } else {
+                            new PNotify({
+                                text: 'დაფიქსირდა შეცდომა',
+                                type: 'error',
+                                styling: 'bootstrap3'
+                            });
+                        }
+                    },
                     error: function(jqXHR, textStatus, errorThrown) {
-
-                        alert(2)
-
+                        new PNotify({
+                            text: 'დაფიქსირდა შეცდომა',
+                            type: 'error',
+                            styling: 'bootstrap3'
+                        });
                     }
-
                 });
             });
         });
     </script>
-
 @endsection
 
 @section('css')

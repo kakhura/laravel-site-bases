@@ -25,8 +25,14 @@ class Service
      * @param Base $model
      * @return array
      */
-    protected function uploadFile(UploadedFile $file = null, string $uploadPath = null, array $deletePathes = [], Base $model = null): array
+    protected function uploadFile(UploadedFile $file = null, string $uploadPath = null, array $deletePathes = [], Base $model = null, bool $notUploaded = false): array
     {
+        if ($notUploaded) {
+            return [
+                'fileName' => null,
+                'thumbFileName' => null,
+            ];
+        }
         if (!is_null($file)) {
             $file = UploadHelper::uploadFile($file, $uploadPath);
             if (count($deletePathes) > 0) {

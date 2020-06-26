@@ -29,8 +29,8 @@
                         @if (in_array($module, config('kakhura.site-bases.modules_publish_mapper')))
                             <li>
                                 <a href="{{ Arr::get($item, 'url') }}">
-                                    {{ Arr::get($item, 'icon') }} {{ Arr::get($item, 'title') }}
-                                    {{ Arr::get($item, 'arrow-icon') }}
+                                    {!! Arr::get($item, 'icon') !!} {{ Arr::get($item, 'title') }}
+                                    {!! Arr::get($item, 'arrow-icon') !!}
                                 </a>
                             </li>
                         @endif

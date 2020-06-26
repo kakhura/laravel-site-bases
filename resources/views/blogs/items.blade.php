@@ -123,9 +123,9 @@
 
                 arr = JSON.stringify(arr);
                 $.ajax({
-                    url:"{{url("admin/blogs/ordering")}}",
+                    url:"{{ url('admin/blogs/ordering') }}",
                     type:"POST",
-                    data:"_token={{csrf_token()}}"+"&ordering="+arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.blogs')) }}",
+                    data:"_token={{ csrf_token() }}" + "&ordering=" + arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.blogs')) }}",
                 }).done(function(data){})
             }
         </script>
