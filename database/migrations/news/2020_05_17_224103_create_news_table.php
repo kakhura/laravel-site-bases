@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
 class CreateNewsTable extends Migration
@@ -21,6 +20,7 @@ class CreateNewsTable extends Migration
                 $table->unsignedSmallInteger('ordering')->nullable()->index();
                 $table->string('image');
                 $table->string('thumb')->nullable();
+                $table->text('video')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();
@@ -55,8 +55,6 @@ class CreateNewsTable extends Migration
                 $table->foreign('news_id')->on('news')->references('id')->onDelete('cascade')->onUpdate('cascade');
             });
         }
-
-        $this->runCommands();
     }
 
     /**
@@ -69,18 +67,5 @@ class CreateNewsTable extends Migration
         Schema::dropIfExists('news_images');
         Schema::dropIfExists('news_details');
         Schema::dropIfExists('news');
-    }
-
-    protected function runCommands()
-    {
-        Artisan::call('ui', [
-            'type' => 'bootstrap',
-            '--auth' => true,
-            '--no-interaction' => true,
-        ]);
-
-        Artisan::call('vendor:publish', [
-            '--provider' => 'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
-        ]);
     }
 }

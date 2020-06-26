@@ -14,6 +14,7 @@ class About extends Base
     protected $fillable = [
         'image',
         'thumb',
+        'video',
     ];
 
     public function detail()

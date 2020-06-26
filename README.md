@@ -169,3 +169,9 @@ php artisan vendor:publish --tag=kakhura-site-bases-migrations
 ```
 
 This command will copy file `[/vendor/kakhura/laravel-site-bases/database/migrations]` to `[/database/migrations]`
+
+After publish [Migrations](#migrations), you must run this command in console:
+```bash
+php artisan kakhura:run-commands
+```
+This command creates some necessary stuffs.

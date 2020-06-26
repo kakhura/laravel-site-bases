@@ -20,6 +20,7 @@ class CreateProjectsTable extends Migration
                 $table->unsignedSmallInteger('ordering')->nullable()->index();
                 $table->string('image');
                 $table->string('thumb')->nullable();
+                $table->text('video')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();

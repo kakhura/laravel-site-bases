@@ -4,6 +4,7 @@ namespace Kakhura\LaravelSiteBases;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
+use Kakhura\LaravelSiteBases\Console\Commands\RunCommands;
 
 class SiteBasesServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,7 @@ class SiteBasesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->commands([RunCommands::class]);
     }
 
     /**

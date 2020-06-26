@@ -18,6 +18,7 @@ class News extends Base
         'ordering',
         'image',
         'thumb',
+        'video',
     ];
 
     protected $urlSegment = 'news';

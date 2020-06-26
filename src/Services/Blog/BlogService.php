@@ -1,15 +1,15 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Services\Project;
+namespace Kakhura\LaravelSiteBases\Services\Blog;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Kakhura\LaravelSiteBases\Models\Project\Project;
-use Kakhura\LaravelSiteBases\Models\Project\ProjectImage;
+use Kakhura\LaravelSiteBases\Models\Blog\Blog;
+use Kakhura\LaravelSiteBases\Models\Blog\BlogImage;
 use Kakhura\LaravelSiteBases\Services\Service;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-class ProjectService extends Service
+class BlogService extends Service
 {
     /**
      * @param array $data
@@ -17,27 +17,27 @@ class ProjectService extends Service
      */
     public function create(array $data)
     {
-        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/projects/');
-        /** @var Project $project */
-        $project = Project::create([
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/blogs/');
+        /** @var Blog $blog */
+        $blog = Blog::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
         ]);
-        $project->update([
-            'ordering' => $project->id,
+        $blog->update([
+            'ordering' => $blog->id,
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
-            $project->detail()->create([
+            $blog->detail()->create([
                 'title' => Arr::get($data, 'title_' . $localeCode),
                 'description' => Arr::get($data, 'description_' . $localeCode),
                 'locale' => $localeCode,
             ]);
         }
         foreach (Arr::get($data, 'images', []) as $image) {
-            $file = $this->uploadFile($image, '/upload/projects/');
-            $project->images()->create([
+            $file = $this->uploadFile($image, '/upload/blogs/');
+            $blog->images()->create([
                 'image' => Arr::get($file, 'fileName'),
                 'thumb' => Arr::get($file, 'thumbFileName'),
             ]);
@@ -46,27 +46,27 @@ class ProjectService extends Service
 
     /**
      * @param array $data
-     * @param Project $project
+     * @param Blog $blog
      * @return bool
      */
-    public function update(array $data, Project $project): bool
+    public function update(array $data, Blog $blog): bool
     {
-        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/projects/', [public_path($project->image), public_path($project->thumb)], $project);
-        $update = $project->update([
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/blogs/', [public_path($blog->image), public_path($blog->thumb)], $blog);
+        $update = $blog->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
-            $project->detail()->where('locale', $localeCode)->first()->update([
+            $blog->detail()->where('locale', $localeCode)->first()->update([
                 'title' => Arr::get($data, 'title_' . $localeCode),
                 'description' => Arr::get($data, 'description_' . $localeCode),
             ]);
         }
         foreach (Arr::get($data, 'images', []) as $image) {
-            $file = $this->uploadFile($image, '/upload/projects/');
-            $project->images()->create([
+            $file = $this->uploadFile($image, '/upload/blogs/');
+            $blog->images()->create([
                 'image' => Arr::get($file, 'fileName'),
                 'thumb' => Arr::get($file, 'thumbFileName'),
             ]);
@@ -75,17 +75,17 @@ class ProjectService extends Service
     }
 
     /**
-     * @param Project $project
+     * @param Blog $blog
      * @return boolean
      */
-    public function delete(Project $project): bool
+    public function delete(Blog $blog): bool
     {
-        $this->deleteFiles([public_path($project->image), public_path($project->thumb)]);
-        foreach ($project->images as $image) {
+        $this->deleteFiles([public_path($blog->image), public_path($blog->thumb)]);
+        foreach ($blog->images as $image) {
             $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
         }
-        $project->detail()->delete();
-        return $project->delete();
+        $blog->detail()->delete();
+        return $blog->delete();
     }
 
     /**
@@ -94,7 +94,7 @@ class ProjectService extends Service
      */
     public function deleteImg(Request $request): bool
     {
-        $image = ProjectImage::find($request->id);
+        $image = BlogImage::find($request->id);
         $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
         return $image->delete();
     }

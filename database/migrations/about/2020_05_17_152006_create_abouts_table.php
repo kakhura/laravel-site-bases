@@ -18,6 +18,7 @@ class CreateAboutsTable extends Migration
                 $table->tinyIncrements('id');
                 $table->string('image');
                 $table->string('thumb')->nullable();
+                $table->text('video')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();

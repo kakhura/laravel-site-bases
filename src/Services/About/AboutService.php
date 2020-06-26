@@ -19,6 +19,7 @@ class AboutService extends Service
         $about = About::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video' => Arr::get($data, 'video'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
             $about->detail()->create([
@@ -40,6 +41,7 @@ class AboutService extends Service
         $about->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video' => Arr::get($data, 'video'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
             $about->detail()->where('locale', $localeCode)->first()->update([

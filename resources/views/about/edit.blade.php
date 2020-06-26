@@ -59,6 +59,13 @@
 
                                 <hr>
 
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video">ვიდეო</label>
+                                    <div class="col-md-10 col-sm-10  col-xs-12">
+                                        <input type="text" name="video" class="form-control" id="video" value="{{ !empty($about) ? $about->video : old('video') }}">
+                                    </div>
+                                </div>
+
                                 <div class="form-group margin-top">
                                     <label class="control-label col-md-2 col-sm-2 col-xs-12" id="image">სურათი</label>
                                     <div class="col-md-10 col-sm-10  col-xs-12">
@@ -136,8 +143,8 @@
             $('input[name="image"]').fileuploader({addMore: false});
 
             $('textarea').redactor({
-                imageUpload: "{{ url('admin/upload') }}?_token=" + "{{csrf_token()}}",
-                fileUpload: "{{ url('admin/upload') }}?_token=" + "{{csrf_token()}}",
+                imageUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",
+                fileUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",
                 lang: 'ka',
                 autoresize: true,
                 minHeight: 300

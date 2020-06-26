@@ -1,10 +1,10 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Http\Requests\About;
+namespace Kakhura\LaravelSiteBases\Http\Requests\Blog;
 
 use Kakhura\LaravelSiteBases\Http\Requests\Request as BaseRequest;
 
-class Request extends BaseRequest
+class UpdateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,9 @@ class Request extends BaseRequest
     {
         return array_merge([
             'image' => 'array|min:1',
+            'published' => 'nullable|string',
             'video' => 'nullable|string',
+            'images' => 'array|min:1',
         ], $this->translationsValidation([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
