@@ -42,20 +42,45 @@ class RunCommands extends Command
 
     protected function runCommands()
     {
-        $this->call('migrate');
+        $this->migrate();
+        $this->ui();
+        $this->localization();
+        $this->translations();
+    }
 
+    protected function migrate()
+    {
+        $this->call('migrate');
+    }
+
+    protected function ui()
+    {
         $this->call('ui', [
             'type' => 'bootstrap',
             '--auth' => true,
             '--no-interaction' => true,
         ]);
+    }
 
-        $this->info('Auth created succsesfully');
-
+    protected function localization()
+    {
         $this->call('vendor:publish', [
             '--provider' => 'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
         ]);
+        $this->info('Localization config published succsesfully');
+    }
 
-        $this->info('Translation config published succsesfully');
+    protected function translations()
+    {
+        $this->call('vendor:publish', [
+            '--provider' => 'Barryvdh\TranslationManager\ManagerServiceProvider',
+            '--tag' => 'migrations',
+        ]);
+        $this->migrate();
+        $this->call('vendor:publish', [
+            '--provider' => 'Barryvdh\TranslationManager\ManagerServiceProvider',
+            '--tag' => 'config',
+        ]);
+        $this->info('Translation manager published succsesfully');
     }
 }

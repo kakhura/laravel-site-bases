@@ -63,13 +63,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
     });
 
     Route::group(['prefix' => 'services', 'namespace' => 'Service'], function () {
-        Route::get('/', 'AdminController@services');
-        Route::get('/create', 'AdminController@createService');
-        Route::post('/create', 'AdminController@storeService');
-        Route::get('/edit/{service}', 'AdminController@editService');
-        Route::post('/edit/{service}', 'AdminController@updateService');
-        Route::get('/delete/{service}', 'AdminController@deleteService');
-        Route::post('/publish', 'AdminController@publish');
-        Route::post('/ordering', 'AdminController@ordering');
+        Route::get('/', 'ServiceController@services');
+        Route::get('/create', 'ServiceController@createService');
+        Route::post('/create', 'ServiceController@storeService');
+        Route::get('/edit/{service}', 'ServiceController@editService');
+        Route::post('/edit/{service}', 'ServiceController@updateService');
+        Route::get('/delete/{service}', 'ServiceController@deleteService');
+        Route::post('/publish', 'ServiceController@publish');
+        Route::post('/ordering', 'ServiceController@ordering');
     });
 });
