@@ -18,6 +18,7 @@ return [
         'projects',
         'services',
         'news',
+        'admins',
     ],
 
     /**

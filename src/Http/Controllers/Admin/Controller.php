@@ -15,11 +15,18 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * @return void
+     */
     public function index()
     {
         return view('vendor.admin.site-bases.index');
     }
 
+    /**
+     * @param Request $request
+     * @return void
+     */
     public function uploadFromRedactor(Request $request)
     {
         if ($request->hasFile('file')) {
