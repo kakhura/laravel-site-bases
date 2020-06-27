@@ -2,6 +2,7 @@
 
 use Kakhura\LaravelSiteBases\Models\Blog\Blog;
 use Kakhura\LaravelSiteBases\Models\News\News;
+use Kakhura\LaravelSiteBases\Models\Product\Product;
 use Kakhura\LaravelSiteBases\Models\Project\Project;
 use Kakhura\LaravelSiteBases\Models\Service\Service;
 use Kakhura\LaravelSiteBases\Models\Slide\Slide;
@@ -21,6 +22,7 @@ return [
         'news',
         'admins',
         'videos',
+        'products',
     ],
 
     /**
@@ -58,6 +60,7 @@ return [
         'services' => Service::class,
         'news' => News::class,
         'videos' => Video::class,
+        'products' => Product::class,
     ],
 
     /**
@@ -70,6 +73,7 @@ return [
         'services' => Service::class,
         'news' => News::class,
         'videos' => Video::class,
+        'products' => Product::class,
     ],
 
     /**
@@ -81,6 +85,17 @@ return [
             'title' => 'სლაიდერი',
             'icon' => '<i class="fa fa-sliders"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
+        ],
+        'products' => [
+            'title' => 'პროდუქცია',
+            'icon' => '<i class="fa fa-product-hunt"></i>',
+            'arrow-icon' => '<span class="fa fa-chevron-down"></span>',
+            'children' => [
+                'products' => [
+                    'url' => env('APP_URL') . '/admin/products',
+                    'title' => 'პროდუქცია',
+                ],
+            ],
         ],
         'projects' => [
             'url' => env('APP_URL') . '/admin/projects',

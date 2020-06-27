@@ -28,10 +28,22 @@
                     @foreach (config('kakhura.site-bases.sidebar_modules') as $module => $item)
                         @if (in_array($module, config('kakhura.site-bases.modules_publish_mapper')))
                             <li>
-                                <a href="{{ Arr::get($item, 'url') }}">
+                                <a href="{{ Arr::get($item, 'children', false) ? '#!' : Arr::get($item, 'url') }}">
                                     {!! Arr::get($item, 'icon') !!} {{ Arr::get($item, 'title') }}
                                     {!! Arr::get($item, 'arrow-icon') !!}
                                 </a>
+                                @if (Arr::get($item, 'children', false))
+                                    <ul class="nav child_menu">
+                                        @foreach (Arr::get($item, 'children', []) as $child)
+                                            <li>
+                                                <a href="{{ Arr::get($child, 'url') }}">
+                                                    Arr::get($child, 'title')
+                                                    <span class="fa fa-chevron-right"></span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </li>
                         @endif
                     @endforeach
