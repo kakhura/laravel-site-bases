@@ -1,11 +1,11 @@
 @extends('vendor.admin.site-bases.inc.layout')
 
-@section('title', 'სლაიდები')
+@section('title', 'ვიდეოები')
 
 @section('content')
     <div class="page-title">
         <div class="title_left">
-            <h3>სლაიდები</h3>
+            <h3>ვიდეოები</h3>
         </div>
     </div>
     @include('vendor.admin.site-bases.inc.message')
@@ -13,13 +13,13 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <a href="{{url('admin/slides/create')}}" class="btn btn-sm btn-success pull-right">
+                    <a href="{{url('admin/videos/create')}}" class="btn btn-sm btn-success pull-right">
                         <i class="fa fa-models"></i> დამატება
                     </a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content admin_container">
-                    @if(count($slides))
+                    @if(count($videos))
                         <table class="table table-striped jambo_table bulk_action">
                             <thead>
                                 <tr class="headings">
@@ -31,38 +31,38 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($slides as $key => $slide)
+                                @foreach($videos as $key => $video)
                                     <tr class="cursor-move">
-                                        <td class="text-center sort" id="sort{{ $key }}" data-id="{{ $slide->id }}" data-ordering ="{{ $slide->ordering }}">
-                                            {{ $slide->ordering }}
+                                        <td class="text-center sort" id="sort{{ $key }}" data-id="{{ $video->id }}" data-ordering ="{{ $video->ordering }}">
+                                            {{ $video->ordering }}
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" value="published" id="{{ $slide->id }}" class="js-switch publish" {{ $slide->published ? 'checked' : '' }} />
+                                            <input type="checkbox" value="published" id="{{ $video->id }}" class="js-switch publish" {{ $video->published ? 'checked' : '' }} />
                                         </td>
                                         <td>
-                                            @if($slide->image)
-                                                <img class="post" src="{{asset($slide->image)}}" alt="" />
+                                            @if($video->image)
+                                                <img class="post" src="{{asset($video->image)}}" alt="" />
                                             @endif
-                                            <a href="{{ url('admin/slides/edit/' . $slide->id) }}">
-                                                {{ Str::limit($slide->detail()->where('locale', 'ka')->first()->title, 35) }}
+                                            <a href="{{ url('admin/videos/edit/' . $video->id) }}">
+                                                {{ Str::limit($video->detail()->where('locale', 'ka')->first()->title, 35) }}
                                             </a>
                                         </td>
                                         <td class="text-center">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                            {{ $slide->created_at }}
+                                            {{ $video->created_at }}
                                         </td>
                                         <td align="right">
-                                            <a href="{{ url('admin/slides/edit/' . $slide->id) }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> </a>
+                                            <a href="{{ url('admin/videos/edit/' . $video->id) }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> </a>
 
-                                            <a href="{{ url('admin/slides/delete/' . $slide->id) }}" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                                            <a href="{{ url('admin/videos/delete/' . $video->id) }}" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $slides->links() }}
+                        {{ $videos->links() }}
                     @else
-                        <div class="alert alert-info">სლაიდები ვერ მოიძებნა</div>
+                        <div class="alert alert-info">ვიდეოები ვერ მოიძებნა</div>
                     @endif
                 </div>
             </div>
@@ -122,9 +122,9 @@
                 }
                 arr = JSON.stringify(arr);
                 $.ajax({
-                    url:"{{ url('admin/slides/ordering') }}",
+                    url:"{{ url('admin/videos/ordering') }}",
                     type:"POST",
-                    data:"_token={{ csrf_token() }}" + "&ordering=" + arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.slides')) }}",
+                    data:"_token={{ csrf_token() }}" + "&ordering=" + arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.videos')) }}",
                 }).done(function(data){})
             }
         </script>
@@ -173,13 +173,13 @@
                 var published = ($(this).is(':checked')) ? 1 : 0;
                 $.ajax({
                     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                    url: '{{ url("admin/slides/publish") }}',
+                    url: '{{ url("admin/videos/publish") }}',
                     type: "post",
                     data: {
                         id: id,
                         published: published,
                         _token: '{{ csrf_token() }}',
-                        className: "{{ addslashes(config('kakhura.site-bases.publish_classes.slides')) }}"
+                        className: "{{ addslashes(config('kakhura.site-bases.publish_classes.videos')) }}"
                     },
                     success: function (response) {
                         if (response.status == 'success'){

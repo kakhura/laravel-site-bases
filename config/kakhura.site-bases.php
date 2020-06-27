@@ -5,6 +5,7 @@ use Kakhura\LaravelSiteBases\Models\News\News;
 use Kakhura\LaravelSiteBases\Models\Project\Project;
 use Kakhura\LaravelSiteBases\Models\Service\Service;
 use Kakhura\LaravelSiteBases\Models\Slide\Slide;
+use Kakhura\LaravelSiteBases\Models\Video\Video;
 
 return [
     /**
@@ -19,6 +20,7 @@ return [
         'services',
         'news',
         'admins',
+        'videos',
     ],
 
     /**
@@ -55,6 +57,7 @@ return [
         'projects' => Project::class,
         'services' => Service::class,
         'news' => News::class,
+        'videos' => Video::class,
     ],
 
     /**
@@ -66,6 +69,7 @@ return [
         'projects' => Project::class,
         'services' => Service::class,
         'news' => News::class,
+        'videos' => Video::class,
     ],
 
     /**
@@ -100,6 +104,12 @@ return [
             'url' => env('APP_URL') . '/admin/services',
             'title' => 'სერვისები',
             'icon' => '<i class="fa fa-cog" aria-hidden="true"></i>',
+            'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
+        ],
+        'videos' => [
+            'url' => env('APP_URL') . '/admin/videos',
+            'title' => 'ვიდეო გალერეა',
+            'icon' => '<i class="fa fa-file-video-o" aria-hidden="true"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
     ],

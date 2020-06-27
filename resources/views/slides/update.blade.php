@@ -83,7 +83,7 @@
                                                     <div class="col-md-4">
                                                         <div class="thumbnail">
                                                             <div class="image view view-first" style="height:260px">
-                                                                <img src="{{ asset($slide->image) }}" >
+                                                                <img src="{{ asset($slide->image) }}">
                                                             </div>
                                                         </div>
                                                     </div>

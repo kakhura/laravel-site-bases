@@ -1,6 +1,6 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Http\Requests\Slide;
+namespace Kakhura\LaravelSiteBases\Http\Requests\Video;
 
 use Kakhura\LaravelSiteBases\Http\Requests\Request as BaseRequest;
 
@@ -25,11 +25,10 @@ class UpdateRequest extends BaseRequest
     {
         return array_merge([
             'image' => 'array|min:1',
-            'link' => 'nullable|string',
+            'video_url' => 'required|string',
             'published' => 'nullable|string',
         ], $this->translationsValidation([
-            'title' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
+            'title' => 'required|string|max:255',
         ]));
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Http\Requests\Slide;
+namespace Kakhura\LaravelSiteBases\Http\Requests\Video;
 
 use Kakhura\LaravelSiteBases\Http\Requests\Request as BaseRequest;
 
-class UpdateRequest extends BaseRequest
+class CreateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,11 @@ class UpdateRequest extends BaseRequest
     public function rules()
     {
         return array_merge([
-            'image' => 'array|min:1',
-            'link' => 'nullable|string',
+            'image' => 'required|array|min:1',
+            'video_url' => 'required|string',
             'published' => 'nullable|string',
         ], $this->translationsValidation([
-            'title' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
+            'title' => 'required|string|max:255',
         ]));
     }
 }

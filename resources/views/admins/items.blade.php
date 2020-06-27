@@ -66,7 +66,7 @@
                 e.preventDefault();
                 $.confirm({
                     title: 'დასტური',
-                    content: 'დარწმუნებული ხართ, რომ გურთ ამის სამუდამოდ წაშლა?',
+                    content: 'დარწმუნებული ხართ, რომ გსურთ ამის წაშლა?',
                     buttons: {
 
                         confirm: {

@@ -48,13 +48,6 @@
                                                 <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ old('title_' . $localeCode) }}">
                                             </div>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">აღწერა</label>
-                                            <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}">{{ old('description_' . $localeCode) }}</textarea>
-                                            </div>
-                                        </div>
                                     </div>
                                 @endforeach
                             </div>
@@ -62,9 +55,9 @@
                             <hr/>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="link">ლინკი</label>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video_url">ლინკი</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
-                                    <input type="text" name="link" class="form-control" id="link" value="{{ old('link') }}">
+                                    <input type="text" name="video_url" class="form-control" id="video_url" value="{{ old('video_url') }}" required>
                                 </div>
                             </div>
 

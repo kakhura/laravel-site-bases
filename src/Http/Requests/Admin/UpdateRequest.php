@@ -25,7 +25,7 @@ class UpdateRequest extends BaseRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:id,' . $this->route('admin'),
+            'email' => 'required|email|unique:users,id,' . $this->route('admin')->id,
         ];
     }
 }
