@@ -37,7 +37,7 @@
                                         @foreach (Arr::get($item, 'children', []) as $child)
                                             <li>
                                                 <a href="{{ Arr::get($child, 'url') }}">
-                                                    Arr::get($child, 'title')
+                                                    {{ Arr::get($child, 'title') }}
                                                     <span class="fa fa-chevron-right"></span>
                                                 </a>
                                             </li>

@@ -11,45 +11,45 @@ use Kakhura\LaravelSiteBases\Services\Product\ProductService;
 
 class ProductController extends Controller
 {
-    public function projects()
+    public function products()
     {
-        $projects = Product::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.projects.items', compact('projects', 'limit'));
+        $products = Product::orderBy('ordering', 'asc')->paginate($limit = 100000);
+        return view('vendor.admin.site-bases.products.items', compact('products', 'limit'));
     }
 
     public function createProduct()
     {
-        return view('vendor.admin.site-bases.projects.create');
+        return view('vendor.admin.site-bases.products.create');
     }
 
-    public function storeProduct(CreateRequest $request, ProductService $projectService)
+    public function storeProduct(CreateRequest $request, ProductService $productService)
     {
-        $projectService->create($request->validated());
-        return redirect('/admin/projects')->with(['success' => 'ინფორმაცია წარმატებით შეიცვალა']);
+        $productService->create($request->validated());
+        return redirect('/admin/products')->with(['success' => 'ინფორმაცია წარმატებით შეიცვალა']);
     }
 
-    public function editProduct(Product $project)
+    public function editProduct(Product $product)
     {
-        return view('vendor.admin.site-bases.projects.update', compact('project'));
+        return view('vendor.admin.site-bases.products.update', compact('product'));
     }
 
-    public function updateProduct(UpdateRequest $request, ProductService $projectService, Product $project)
+    public function updateProduct(UpdateRequest $request, ProductService $productService, Product $product)
     {
-        $update = $projectService->update($request->validated(), $project);
+        $update = $productService->update($request->validated(), $product);
 
         if ($update) {
             $request->session()->flash('status', 'success');
             $request->session()->flash('message', 'ინფორმაცია წარმატებით განახლდა');
-            return redirect('/admin/projects');
+            return redirect('/admin/products');
         }
         $request->session()->flash('status', 'error');
         $request->session()->flash('message', 'დაფიქსირდა შეცდომა');
-        return redirect('/admin/projects');
+        return redirect('/admin/products');
     }
 
-    public function deleteProduct(Request $request, ProductService $projectService, Product $project)
+    public function deleteProduct(Request $request, ProductService $productService, Product $product)
     {
-        if ($projectService->delete($project)) {
+        if ($productService->delete($product)) {
             $request->session()->flash('status', 'success');
             $request->session()->flash('message', 'ინფორმაცია წარმატებით წაიშალა');
             return back();
@@ -59,10 +59,10 @@ class ProductController extends Controller
         return back();
     }
 
-    public function projectDeleteImg(Request $request, ProductService $projectService)
+    public function productDeleteImg(Request $request, ProductService $productService)
     {
         $status = array('status' => 'error');
-        if ($projectService->deleteImg($request)) {
+        if ($productService->deleteImg($request)) {
             $status['status'] = 'success';
         }
         return json_encode($status);

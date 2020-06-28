@@ -49,6 +49,18 @@ class SiteBasesServiceProvider extends ServiceProvider
                 ], 'kakhura-site-bases-views');
             }
         }
+        $this->publishOtherViews();
+    }
+
+    protected function publishOtherViews()
+    {
+        $viewPath = __DIR__ . '/../resources/views/translation-manager';
+        if (File::exists($viewPath)) {
+            $this->loadViewsFrom($viewPath, 'site-bases');
+            $this->publishes([
+                $viewPath => base_path('resources/views/vendor/translation-manager'),
+            ], 'kakhura-site-bases-views');
+        }
         $viewPath = __DIR__ . '/../resources/views/inc';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
