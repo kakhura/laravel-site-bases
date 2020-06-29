@@ -7,6 +7,7 @@ use Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller;
 use Kakhura\LaravelSiteBases\Http\Requests\News\CreateRequest;
 use Kakhura\LaravelSiteBases\Http\Requests\News\UpdateRequest;
 use Kakhura\LaravelSiteBases\Models\News\News;
+use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Services\News\NewsService;
 
 class NewsController extends Controller
@@ -19,7 +20,8 @@ class NewsController extends Controller
 
     public function createNews()
     {
-        return view('vendor.admin.site-bases.news.create');
+        $photos = Photo::orderBy('ordering', 'asc')->get();
+        return view('vendor.admin.site-bases.news.create', compact('photos'));
     }
 
     public function storeNews(CreateRequest $request, NewsService $newsService)
@@ -30,7 +32,8 @@ class NewsController extends Controller
 
     public function editNews(News $news)
     {
-        return view('vendor.admin.site-bases.news.update', compact('news'));
+        $photos = Photo::orderBy('ordering', 'asc')->get();
+        return view('vendor.admin.site-bases.news.update', compact('news', 'photos'));
     }
 
     public function updateNews(UpdateRequest $request, NewsService $newsService, News $news)

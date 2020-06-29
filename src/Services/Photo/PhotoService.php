@@ -1,15 +1,15 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Services\News;
+namespace Kakhura\LaravelSiteBases\Services\Photo;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Kakhura\LaravelSiteBases\Models\News\News;
-use Kakhura\LaravelSiteBases\Models\News\NewsImage;
+use Kakhura\LaravelSiteBases\Models\Photo\Photo;
+use Kakhura\LaravelSiteBases\Models\Photo\PhotoImage;
 use Kakhura\LaravelSiteBases\Services\Service;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-class NewsService extends Service
+class PhotoService extends Service
 {
     /**
      * @param array $data
@@ -17,28 +17,27 @@ class NewsService extends Service
      */
     public function create(array $data)
     {
-        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/news/');
-        /** @var News $news */
-        $news = News::create([
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/photos/');
+        /** @var Photo $photo */
+        $photo = Photo::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
-            'photo_id' => Arr::get($data, 'photo_id'),
         ]);
-        $news->update([
-            'ordering' => $news->id,
+        $photo->update([
+            'ordering' => $photo->id,
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
-            $news->detail()->create([
+            $photo->detail()->create([
                 'title' => Arr::get($data, 'title_' . $localeCode),
                 'description' => Arr::get($data, 'description_' . $localeCode),
                 'locale' => $localeCode,
             ]);
         }
         foreach (Arr::get($data, 'images', []) as $image) {
-            $file = $this->uploadFile($image, '/upload/news/');
-            $news->images()->create([
+            $file = $this->uploadFile($image, '/upload/photos/');
+            $photo->images()->create([
                 'image' => Arr::get($file, 'fileName'),
                 'thumb' => Arr::get($file, 'thumbFileName'),
             ]);
@@ -47,28 +46,27 @@ class NewsService extends Service
 
     /**
      * @param array $data
-     * @param News $news
+     * @param Photo $photo
      * @return bool
      */
-    public function update(array $data, News $news): bool
+    public function update(array $data, Photo $photo): bool
     {
-        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/news/', [public_path($news->image), public_path($news->thumb)], $news);
-        $update = $news->update([
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/photos/', [public_path($photo->image), public_path($photo->thumb)], $photo);
+        $update = $photo->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
-            'photo_id' => Arr::get($data, 'photo_id'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
-            $news->detail()->where('locale', $localeCode)->first()->update([
+            $photo->detail()->where('locale', $localeCode)->first()->update([
                 'title' => Arr::get($data, 'title_' . $localeCode),
                 'description' => Arr::get($data, 'description_' . $localeCode),
             ]);
         }
         foreach (Arr::get($data, 'images', []) as $image) {
-            $file = $this->uploadFile($image, '/upload/news/');
-            $news->images()->create([
+            $file = $this->uploadFile($image, '/upload/photos/');
+            $photo->images()->create([
                 'image' => Arr::get($file, 'fileName'),
                 'thumb' => Arr::get($file, 'thumbFileName'),
             ]);
@@ -77,17 +75,17 @@ class NewsService extends Service
     }
 
     /**
-     * @param News $news
+     * @param Photo $photo
      * @return boolean
      */
-    public function delete(News $news): bool
+    public function delete(Photo $photo): bool
     {
-        $this->deleteFiles([public_path($news->image), public_path($news->thumb)]);
-        foreach ($news->images as $image) {
+        $this->deleteFiles([public_path($photo->image), public_path($photo->thumb)]);
+        foreach ($photo->images as $image) {
             $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
         }
-        $news->detail()->delete();
-        return $news->delete();
+        $photo->detail()->delete();
+        return $photo->delete();
     }
 
     /**
@@ -96,7 +94,7 @@ class NewsService extends Service
      */
     public function deleteImg(Request $request): bool
     {
-        $image = NewsImage::find($request->id);
+        $image = PhotoImage::find($request->id);
         $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
         return $image->delete();
     }

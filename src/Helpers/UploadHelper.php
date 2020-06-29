@@ -81,7 +81,7 @@ class UploadHelper
     public static function getFileTypeFolder(string $folder): string
     {
         if (!File::exists(public_path($folder))) {
-            File::makeDirectory(public_path($folder), 0700, true);
+            File::makeDirectory(public_path($folder), 0755, true);
         }
         return $folder;
     }

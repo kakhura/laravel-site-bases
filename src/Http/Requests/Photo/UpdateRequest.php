@@ -1,10 +1,10 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Http\Requests\News;
+namespace Kakhura\LaravelSiteBases\Http\Requests\Photo;
 
 use Kakhura\LaravelSiteBases\Http\Requests\Request as BaseRequest;
 
-class CreateRequest extends BaseRequest
+class UpdateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class CreateRequest extends BaseRequest
     public function rules()
     {
         return array_merge([
-            'image' => 'required|array|min:1',
-            'photo_id' => 'nullable|integer|exists:photos,id,deleted_at,NULL',
+            'image' => 'array|min:1',
             'published' => 'nullable|string',
             'video' => 'nullable|string',
             'images' => 'array|min:1',

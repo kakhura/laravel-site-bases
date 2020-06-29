@@ -7,6 +7,7 @@ use Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller;
 use Kakhura\LaravelSiteBases\Http\Requests\Blog\CreateRequest;
 use Kakhura\LaravelSiteBases\Http\Requests\Blog\UpdateRequest;
 use Kakhura\LaravelSiteBases\Models\Blog\Blog;
+use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Services\Blog\BlogService;
 
 class BlogController extends Controller
@@ -19,7 +20,8 @@ class BlogController extends Controller
 
     public function createBlog()
     {
-        return view('vendor.admin.site-bases.blogs.create');
+        $photos = Photo::orderBy('ordering', 'asc')->get();
+        return view('vendor.admin.site-bases.blogs.create', compact('photos'));
     }
 
     public function storeBlog(CreateRequest $request, BlogService $blogService)
@@ -30,7 +32,8 @@ class BlogController extends Controller
 
     public function editBlog(Blog $blog)
     {
-        return view('vendor.admin.site-bases.blogs.update', compact('blog'));
+        $photos = Photo::orderBy('ordering', 'asc')->get();
+        return view('vendor.admin.site-bases.blogs.update', compact('blog', 'photos'));
     }
 
     public function updateBlog(UpdateRequest $request, BlogService $blogService, Blog $blog)

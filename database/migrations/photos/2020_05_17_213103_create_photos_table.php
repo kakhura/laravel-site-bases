@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsTable extends Migration
+class CreatePhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('news')) {
-            Schema::create('news', function (Blueprint $table) {
+        if (!Schema::hasTable('photos')) {
+            Schema::create('photos', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->unsignedBigInteger('photo_id')->nullable()->index();
                 $table->boolean('published')->default(true);
                 $table->unsignedSmallInteger('ordering')->nullable()->index();
                 $table->string('image');
@@ -25,15 +24,13 @@ class CreateNewsTable extends Migration
 
                 $table->timestamps();
                 $table->softDeletes();
-
-                $table->foreign('photo_id')->on('photos')->references('id')->onDelete('cascade')->onUpdate('cascade');
             });
         }
 
-        if (!Schema::hasTable('news_details')) {
-            Schema::create('news_details', function (Blueprint $table) {
+        if (!Schema::hasTable('photo_details')) {
+            Schema::create('photo_details', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->unsignedBigInteger('news_id')->index();
+                $table->unsignedBigInteger('photo_id')->index();
                 $table->string('title');
                 $table->text('description');
                 $table->string('locale')->index();
@@ -41,21 +38,21 @@ class CreateNewsTable extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->foreign('news_id')->on('news')->references('id')->onDelete('cascade')->onUpdate('cascade');
+                $table->foreign('photo_id')->on('photos')->references('id')->onDelete('cascade')->onUpdate('cascade');
             });
         }
 
-        if (!Schema::hasTable('news_images')) {
-            Schema::create('news_images', function (Blueprint $table) {
+        if (!Schema::hasTable('photo_images')) {
+            Schema::create('photo_images', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->unsignedBigInteger('news_id')->index();
+                $table->unsignedBigInteger('photo_id')->index();
                 $table->string('image');
                 $table->string('thumb');
 
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->foreign('news_id')->on('news')->references('id')->onDelete('cascade')->onUpdate('cascade');
+                $table->foreign('photo_id')->on('photos')->references('id')->onDelete('cascade')->onUpdate('cascade');
             });
         }
     }
@@ -67,8 +64,8 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_images');
-        Schema::dropIfExists('news_details');
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('photo_images');
+        Schema::dropIfExists('photo_details');
+        Schema::dropIfExists('photos');
     }
 }

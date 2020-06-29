@@ -16,6 +16,7 @@ class CreateBlogsTable extends Migration
         if (!Schema::hasTable('blogs')) {
             Schema::create('blogs', function (Blueprint $table) {
                 $table->bigIncrements('id');
+                $table->unsignedBigInteger('photo_id')->nullable()->index();
                 $table->boolean('published')->default(true);
                 $table->unsignedSmallInteger('ordering')->nullable()->index();
                 $table->string('image');
@@ -24,6 +25,8 @@ class CreateBlogsTable extends Migration
 
                 $table->timestamps();
                 $table->softDeletes();
+
+                $table->foreign('photo_id')->on('photos')->references('id')->onDelete('cascade')->onUpdate('cascade');
             });
         }
 

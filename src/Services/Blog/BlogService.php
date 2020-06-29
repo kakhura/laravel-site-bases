@@ -24,6 +24,7 @@ class BlogService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
+            'photo_id' => Arr::get($data, 'photo_id'),
         ]);
         $blog->update([
             'ordering' => $blog->id,
@@ -57,6 +58,7 @@ class BlogService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
+            'photo_id' => Arr::get($data, 'photo_id'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
             $blog->detail()->where('locale', $localeCode)->first()->update([

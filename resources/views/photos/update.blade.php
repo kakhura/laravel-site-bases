@@ -1,12 +1,12 @@
 @extends('vendor.admin.site-bases.inc.layout')
 
-@section('title', $blog->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title)
+@section('title', $photo->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title)
 
 @section('content')
     @include('vendor.admin.site-bases.inc.message')
     <div class="page-title">
         <div class="title_left">
-            <h3>{{ $blog->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title }}</h3>
+            <h3>{{ $photo->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title }}</h3>
         </div>
     </div>
     <div class="row">
@@ -45,14 +45,14 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title_{{ $localeCode }}">სათაური</label>
                                             <div class="col-md-10 col-sm-10  col-xs-12">
-                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ $blog->detail()->where('locale', $localeCode)->first()->title }}" required>
+                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ $photo->detail()->where('locale', $localeCode)->first()->title }}" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">აღწერა</label>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}" required>{{ $blog->detail()->where('locale', $localeCode)->first()->description }}</textarea>
+                                                <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}" required>{{ $photo->detail()->where('locale', $localeCode)->first()->description }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -64,21 +64,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video">ვიდეო</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
-                                    <input type="text" name="video" class="form-control" id="video" value="{{ $blog->video }}">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="photo_id">ფოტო გალერეა</label>
-                                <div class="col-md-10 col-sm-10  col-xs-12">
-                                    <select name="photo_id" class="form-control" id="photo_id">
-                                        <option value="">აირჩიეთ</option>
-                                        @foreach ($photos as $photo)
-                                            <option {{ $blog->photo_id == $photo->id ? 'selected' : '' }} value="{{ $photo->id }}">
-                                                {{ $photo->title }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" name="video" class="form-control" id="video" value="{{ $photo->video }}">
                                 </div>
                             </div>
 
@@ -89,7 +75,7 @@
                                 </div>
                             </div>
 
-                            @if($blog->image)
+                            @if($photo->image)
                                 <div class="form-group" id="imgWrap">
                                     <div class="col-md-10 col-md-offset-2">
                                         <div class="panel panel-default" style="border-radius:0">
@@ -99,7 +85,7 @@
                                                     <div class="col-md-4">
                                                         <div class="thumbnail">
                                                             <div class="image view view-first" style="height:260px">
-                                                                <img src="{{ asset($blog->image) }}" >
+                                                                <img src="{{ asset($photo->image) }}" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -117,21 +103,21 @@
                                 </div>
                             </div>
 
-                            @if(!empty($blog->images))
+                            @if(!empty($photo->images))
                                 <div class="form-group" id="imgWrap">
                                     <div class="col-md-10 col-md-offset-2">
                                         <div class="panel panel-default" style="border-radius:0">
                                             <div class="panel-heading">ატვირთული სურათი</div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    @foreach ($blog->images as $key => $image)
+                                                    @foreach ($photo->images as $key => $image)
                                                         <div class="col-md-4">
                                                             <div class="thumbnail">
-                                                                <div class="image view view-first" data-id="{{ $image->id }}" data-main="{{ $blog->id }}">
+                                                                <div class="image view view-first" data-id="{{ $image->id }}" data-main="{{ $photo->id }}">
                                                                     <img src="{{asset($image->image)}}">
                                                                 </div>
                                                                 <div class="caption">
-                                                                    <div class="btn btn-danger delImg" data-img="{{ asset($image->image) }}" data-id="{{ $image->id }}" data-main="{{ $blog->id }}"><i class="fa fa-close"></i> სურათის წაშლა</div>
+                                                                    <div class="btn btn-danger delImg" data-img="{{ asset($image->image) }}" data-id="{{ $image->id }}" data-main="{{ $photo->id }}"><i class="fa fa-close"></i> სურათის წაშლა</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -146,7 +132,7 @@
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-3 col-sm-4 col-xs-12">
                                     <label>
-                                        <input type="checkbox" name="published" class="js-switch" {{ $blog->published ? 'checked' : '' }} />
+                                        <input type="checkbox" name="published" class="js-switch" {{ $photo->published ? 'checked' : '' }} />
                                         გამოქვეყნებულია
                                     </label>
                                 </div>
@@ -207,7 +193,7 @@
                             action: function(){
                                 $.ajax({
                                     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                                    url: '{{ url("admin/blogs/delete-blog-img") }}',
+                                    url: '{{ url("admin/photos/delete-photo-img") }}',
                                     type: "post",
                                     data: { id: id, main_id: main_id, img: img, _token: '{{ csrf_token() }}' },
                                     success: function (response) {

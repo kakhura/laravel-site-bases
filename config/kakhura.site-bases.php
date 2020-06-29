@@ -2,6 +2,7 @@
 
 use Kakhura\LaravelSiteBases\Models\Blog\Blog;
 use Kakhura\LaravelSiteBases\Models\News\News;
+use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Models\Product\Product;
 use Kakhura\LaravelSiteBases\Models\Project\Project;
 use Kakhura\LaravelSiteBases\Models\Service\Service;
@@ -23,6 +24,7 @@ return [
         'admins',
         'videos',
         'products',
+        'photos',
     ],
 
     /**
@@ -60,6 +62,7 @@ return [
         'services' => Service::class,
         'news' => News::class,
         'videos' => Video::class,
+        'photos' => Photo::class,
         'products' => Product::class,
     ],
 
@@ -73,6 +76,7 @@ return [
         'services' => Service::class,
         'news' => News::class,
         'videos' => Video::class,
+        'photos' => Photo::class,
         'products' => Product::class,
     ],
 
@@ -125,6 +129,12 @@ return [
             'url' => env('APP_URL') . '/admin/videos',
             'title' => 'ვიდეო გალერეა',
             'icon' => '<i class="fa fa-file-video-o" aria-hidden="true"></i>',
+            'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
+        ],
+        'photos' => [
+            'url' => env('APP_URL') . '/admin/photos',
+            'title' => 'ფოტო გალერეა',
+            'icon' => '<i class="fa fa fa-picture-o" aria-hidden="true"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
     ],
