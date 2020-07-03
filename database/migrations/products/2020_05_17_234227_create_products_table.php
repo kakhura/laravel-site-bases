@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
         if (!Schema::hasTable('products')) {
             Schema::create('products', function (Blueprint $table) {
                 $table->bigIncrements('id');
+                $table->unsignedBigInteger('category_id')->index()->nullable();
                 $table->boolean('published')->default(true);
                 $table->unsignedBigInteger('ordering')->nullable()->index();
                 $table->string('image');
@@ -26,6 +27,8 @@ class CreateProductsTable extends Migration
 
                 $table->timestamps();
                 $table->softDeletes();
+
+                $table->foreign('category_id')->on('categories')->references('id')->onDelete('set null')->onUpdate('cascade');
             });
         }
 

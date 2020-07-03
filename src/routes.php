@@ -50,6 +50,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::post('/delete-gallery-img', 'ProductController@productDeleteImg');
     });
 
+    Route::group(['prefix' => 'categories', 'namespace' => 'Category'], function () {
+        Route::get('/', 'CategoryController@categories');
+        Route::get('/create', 'CategoryController@createCategory');
+        Route::post('/create', 'CategoryController@storeCategory');
+        Route::get('/edit/{category}', 'CategoryController@editCategory');
+        Route::post('/edit/{category}', 'CategoryController@updateCategory');
+        Route::get('/delete/{category}', 'CategoryController@deleteCategory');
+        Route::post('/publish', 'CategoryController@publish');
+        Route::post('/ordering', 'CategoryController@ordering');
+    });
+
     Route::group(['prefix' => 'blogs', 'namespace' => 'Blog'], function () {
         Route::get('/', 'BlogController@blogs');
         Route::get('/create', 'BlogController@createBlog');
