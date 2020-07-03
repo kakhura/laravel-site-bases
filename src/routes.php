@@ -73,6 +73,18 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::post('/delete-blog-img', 'BlogController@blogDeleteImg');
     });
 
+    Route::group(['prefix' => 'pages', 'namespace' => 'DynamicPage'], function () {
+        Route::get('/', 'PageController@pages');
+        Route::get('/create', 'PageController@createPage');
+        Route::post('/create', 'PageController@storePage');
+        Route::get('/edit/{page}', 'PageController@editPage');
+        Route::post('/edit/{page}', 'PageController@updatePage');
+        Route::get('/delete/{page}', 'PageController@deletePage');
+        Route::post('/publish', 'PageController@publish');
+        Route::post('/ordering', 'PageController@ordering');
+        Route::post('/delete-page-img', 'PageController@pageDeleteImg');
+    });
+
     Route::group(['prefix' => 'photos', 'namespace' => 'Photo'], function () {
         Route::get('/', 'PhotoController@photos');
         Route::get('/create', 'PhotoController@createPhoto');

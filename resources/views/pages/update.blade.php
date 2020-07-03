@@ -1,12 +1,12 @@
 @extends('vendor.admin.site-bases.inc.layout')
 
-@section('title', $product->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title)
+@section('title', $page->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title)
 
 @section('content')
     @include('vendor.admin.site-bases.inc.message')
     <div class="page-title">
         <div class="title_left">
-            <h3>{{ $product->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title }}</h3>
+            <h3>{{ $page->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title }}</h3>
         </div>
     </div>
     <div class="row">
@@ -45,14 +45,14 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title_{{ $localeCode }}">სათაური</label>
                                             <div class="col-md-10 col-sm-10  col-xs-12">
-                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ $product->detail()->where('locale', $localeCode)->first()->title }}" required>
+                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ $page->detail()->where('locale', $localeCode)->first()->title }}" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">აღწერა</label>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}" required>{{ $product->detail()->where('locale', $localeCode)->first()->description }}</textarea>
+                                                <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}" required>{{ $page->detail()->where('locale', $localeCode)->first()->description }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -64,21 +64,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video">ვიდეო</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
-                                    <input type="text" name="video" class="form-control" id="video" value="{{ $product->video }}">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="price">ფასი</label>
-                                <div class="col-md-10 col-sm-10  col-xs-12">
-                                    <input type="text" name="price" class="form-control" id="price" value="{{ $product->price }}" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="discounted_price">ფასდაკლებული ფასი</label>
-                                <div class="col-md-10 col-sm-10  col-xs-12">
-                                    <input type="text" name="discounted_price" class="form-control" id="discounted_price" value="{{ $product->discounted_price }}">
+                                    <input type="text" name="video" class="form-control" id="video" value="{{ $page->video }}">
                                 </div>
                             </div>
 
@@ -89,7 +75,7 @@
                                 </div>
                             </div>
 
-                            @if($product->image)
+                            @if($page->image)
                                 <div class="form-group" id="imgWrap">
                                     <div class="col-md-10 col-md-offset-2">
                                         <div class="panel panel-default" style="border-radius:0">
@@ -99,7 +85,7 @@
                                                     <div class="col-md-4">
                                                         <div class="thumbnail">
                                                             <div class="image view view-first" style="height:260px">
-                                                                <img src="{{ asset($product->image) }}">
+                                                                <img src="{{ asset($page->image) }}" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -117,21 +103,21 @@
                                 </div>
                             </div>
 
-                            @if(!empty($product->images))
+                            @if(!empty($page->images))
                                 <div class="form-group" id="imgWrap">
                                     <div class="col-md-10 col-md-offset-2">
                                         <div class="panel panel-default" style="border-radius:0">
                                             <div class="panel-heading">ატვირთული სურათი</div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    @foreach ($product->images as $key => $image)
+                                                    @foreach ($page->images as $key => $image)
                                                         <div class="col-md-4">
                                                             <div class="thumbnail">
-                                                                <div class="image view view-first" data-id="{{ $image->id }}" data-main="{{ $product->id }}">
+                                                                <div class="image view view-first" data-id="{{ $image->id }}" data-main="{{ $page->id }}">
                                                                     <img src="{{asset($image->image)}}">
                                                                 </div>
                                                                 <div class="caption">
-                                                                    <div class="btn btn-danger delImg" data-img="{{ asset($image->image) }}" data-id="{{ $image->id }}" data-main="{{ $product->id }}"><i class="fa fa-close"></i> სურათის წაშლა</div>
+                                                                    <div class="btn btn-danger delImg" data-img="{{ asset($image->image) }}" data-id="{{ $image->id }}" data-main="{{ $page->id }}"><i class="fa fa-close"></i> სურათის წაშლა</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -146,12 +132,20 @@
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-3 col-sm-4 col-xs-12">
                                     <label>
-                                        <input type="checkbox" name="published" class="js-switch" {{ $product->published ? 'checked' : '' }} />
+                                        <input type="checkbox" name="published" class="js-switch" {{ $page->published ? 'checked' : '' }} />
                                         გამოქვეყნებულია
                                     </label>
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-3 col-sm-4 col-xs-12">
+                                    <label>
+                                        <input type="checkbox" name="in_main_menu" class="js-switch" {{ $page->in_main_menu ? 'checked' : '' }} />
+                                        გამოჩნდეს მთავარ მენიუში
+                                    </label>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-2">
@@ -208,7 +202,7 @@
                             action: function(){
                                 $.ajax({
                                     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                                    url: '{{ url("admin/products/delete-gallery-img") }}',
+                                    url: '{{ url("admin/pages/delete-page-img") }}',
                                     type: "post",
                                     data: { id: id, main_id: main_id, img: img, _token: '{{ csrf_token() }}' },
                                     success: function (response) {

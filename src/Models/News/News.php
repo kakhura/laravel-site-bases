@@ -14,6 +14,7 @@ class News extends Base
     protected $table = 'news';
 
     protected $fillable = [
+        'photo_id',
         'published',
         'ordering',
         'image',

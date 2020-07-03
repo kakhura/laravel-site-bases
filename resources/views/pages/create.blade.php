@@ -1,14 +1,16 @@
 @extends('vendor.admin.site-bases.inc.layout')
 
-@section('title', $video->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title)
+@section('title', 'დამატება')
 
 @section('content')
     @include('vendor.admin.site-bases.inc.message')
+
     <div class="page-title">
         <div class="title_left">
-            <h3>{{ $video->detail()->where('locale', config('kakhura.site-bases.admin_editors_default_locale'))->first()->title }}</h3>
+            <h3>დამატება</h3>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
@@ -40,22 +42,30 @@
                             <div class="tab-content">
                                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                     <div class="tab-pane {{ $localeCode == config('kakhura.site-bases.admin_editors_default_locale') ? 'active' : '' }}" id="{{ $localeCode }}">
+
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title_{{ $localeCode }}">სათაური</label>
                                             <div class="col-md-10 col-sm-10  col-xs-12">
-                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ $video->detail()->where('locale', $localeCode)->first()->title }}">
+                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ old('title_' . $localeCode) }}" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">აღწერა</label>
+                                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                                <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}" required>{{ old('description_' . $localeCode) }}</textarea>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
 
-                            <hr>
+                            <hr/>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video_url">ლინკი</label>
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video">ვიდეო</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
-                                    <input type="text" name="video_url" class="form-control" id="video_url" required value="{{ $video->video_url }}">
+                                    <input type="text" name="video" class="form-control" id="video" value="{{ old('video') }}">
                                 </div>
                             </div>
 
@@ -66,40 +76,36 @@
                                 </div>
                             </div>
 
-                            @if($video->image)
-                                <div class="form-group" id="imgWrap">
-                                    <div class="col-md-10 col-md-offset-2">
-                                        <div class="panel panel-default" style="border-radius:0">
-                                            <div class="panel-heading">ატვირთული სურათი</div>
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="thumbnail">
-                                                            <div class="image view view-first" style="height:260px">
-                                                                <img src="{{ asset($video->image) }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="form-group margin-top">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="images">სურათები</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <input type="file" name="images" class="form-control" id="images" multiple>
                                 </div>
-                            @endif
+                            </div>
+
+                            <hr/>
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-3 col-sm-4 col-xs-12">
                                     <label>
-                                        <input type="checkbox" name="published" class="js-switch" {{ $video->published ? 'checked' : '' }} />
+                                        <input type="checkbox" name="published" class="js-switch" checked="checked" />
                                         გამოქვეყნებულია
                                     </label>
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-3 col-sm-4 col-xs-12">
+                                    <label>
+                                        <input type="checkbox" name="in_main_menu" class="js-switch" />
+                                        გამოჩნდეს მთავარ მენიუში
+                                    </label>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-2">
-                                    <button type="submit" class="btn btn-success btn-add">განახლება</button>
+                                    <button type="submit" class="btn btn-success btn-add">დამატება</button>
                                 </div>
                             </div>
                         </form>
@@ -116,33 +122,36 @@
             margin-top: 50px !important;
         }
     </style>
-    <link href="{{ asset('assets/admin/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/admin/vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/admin/vendors/redactor/redactor1.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/admin/vendors/jquery.fileuploader/jquery.fileuploader.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin') }}/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+
+    <link href="{{ asset('assets/admin') }}/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+
+    <link href="{{ asset('assets/admin') }}/vendors/redactor/redactor1.css" rel="stylesheet">
+
+    <link href="{{asset('assets/admin/vendors/jquery.fileuploader/jquery.fileuploader.css')}}" rel="stylesheet">
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/admin/vendors/jquery.tagsinput/src/jquery.tagsinput.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendors/switchery/dist/switchery.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendors/select2/dist/js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendors/autosize/dist/autosize.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendors/starrr/dist/starrr.js') }}"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{ asset('assets/admin') }}/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <script src="{{ asset('assets/admin') }}/vendors/switchery/dist/switchery.min.js"></script>
+    <script src="{{ asset('assets/admin') }}/vendors/select2/dist/js/select2.full.min.js"></script>
+    <script src="{{ asset('assets/admin') }}/vendors/autosize/dist/autosize.min.js"></script>
+    <script src="{{ asset('assets/admin') }}/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <script src="{{ asset('assets/admin') }}/vendors/starrr/dist/starrr.js"></script>
     <script src="{{ asset('assets/admin/vendors/redactor/redactor1.js') }}"></script>
     <script src="{{ asset('assets/admin/vendors/jquery.fileuploader/jquery.fileuploader.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('input[name="image"]').fileuploader({addMore: false});
+            $('input[name="images"]').fileuploader({addMore: true});
+        });
 
-            $('textarea').redactor({
-                imageUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",
-                fileUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",
-                lang: 'en',
-                autoresize: true,
-                minHeight: 200,
-            });
+        $('textarea').redactor({
+            imageUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",
+            fileUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",
+            lang: 'ka',
+            autoresize: true,
+            minHeight: 500
         });
     </script>
 @endsection

@@ -39,7 +39,7 @@
 
                             <div class="tab-content">
                                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                    <div class="tab-pane @if($localeCode == 'ka') active @endif" id="{{$localeCode}}">
+                                    <div class="tab-pane {{ $localeCode == config('kakhura.site-bases.admin_editors_default_locale') ? 'active' : '' }}" id="{{ $localeCode }}">
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title_{{ $localeCode }}">სათაური</label>
                                             <div class="col-md-10 col-sm-10  col-xs-12">

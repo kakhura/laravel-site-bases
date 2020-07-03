@@ -3,21 +3,21 @@
 namespace Kakhura\LaravelSiteBases\Http\Controllers\Admin\Page;
 
 use Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller;
-use Kakhura\LaravelSiteBases\Models\About\About;
-use Kakhura\LaravelSiteBases\Http\Requests\About\Request;
-use Kakhura\LaravelSiteBases\Services\About\AboutService;
+use Kakhura\LaravelSiteBases\Models\Rule\Rule;
+use Kakhura\LaravelSiteBases\Http\Requests\Rule\Request;
+use Kakhura\LaravelSiteBases\Services\Rule\RuleService;
 
-class AboutController extends Controller
+class RuleController extends Controller
 {
     public function about()
     {
-        $about = About::first();
+        $about = Rule::first();
         return view('vendor.admin.site-bases.about.edit', compact('about'));
     }
 
-    public function storeAbout(Request $request, AboutService $aboutService)
+    public function storeRule(Request $request, RuleService $aboutService)
     {
-        $about = About::first();
+        $about = Rule::first();
         if (!is_null($about)) {
             $aboutService->update($request->validated(), $about);
         } else {

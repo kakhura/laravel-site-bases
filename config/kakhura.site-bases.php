@@ -3,6 +3,7 @@
 use Kakhura\LaravelSiteBases\Models\Blog\Blog;
 use Kakhura\LaravelSiteBases\Models\Category\Category;
 use Kakhura\LaravelSiteBases\Models\News\News;
+use Kakhura\LaravelSiteBases\Models\Page\Page;
 use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Models\Product\Product;
 use Kakhura\LaravelSiteBases\Models\Project\Project;
@@ -27,6 +28,7 @@ return [
         'products',
         'categories',
         'photos',
+        'pages',
     ],
 
     /**
@@ -67,6 +69,7 @@ return [
         'photos' => Photo::class,
         'products' => Product::class,
         'categories' => Category::class,
+        'pages' => Page::class,
     ],
 
     /**
@@ -82,6 +85,7 @@ return [
         'photos' => Photo::class,
         'products' => Product::class,
         'categories' => Category::class,
+        'pages' => Page::class,
     ],
 
     /**
@@ -92,6 +96,12 @@ return [
             'url' => env('APP_URL') . '/admin/slides',
             'title' => 'სლაიდერი',
             'icon' => '<i class="fa fa-sliders"></i>',
+            'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
+        ],
+        'pages' => [
+            'url' => env('APP_URL') . '/admin/pages',
+            'title' => 'დინამიური გვერდები',
+            'icon' => '<i class="fa fa-file-text-o"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
         'products' => [
@@ -154,6 +164,10 @@ return [
         'about' => [
             'title' => 'ჩვენ შესახებ',
             'link' => env('APP_URL') . '/admin/pages/edit/about',
+        ],
+        'rules' => [
+            'title' => 'წესები და პირობები',
+            'link' => env('APP_URL') . '/admin/pages/edit/rules',
         ],
         'contact' => [
             'title' => 'კონტაქტი',
