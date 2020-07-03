@@ -40,8 +40,8 @@ class Service
             }
         } else {
             $file = [
-                'fileName' => $model->image,
-                'thumbFileName' => $model->thumb,
+                'fileName' => $model->image ?? null,
+                'thumbFileName' => $model->thumb ?? null,
             ];
         }
         return $file;

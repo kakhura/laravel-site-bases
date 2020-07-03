@@ -13,7 +13,7 @@ class CategoryController extends Controller
 {
     public function categories()
     {
-        $categories = Category::with('childrenRecursive')->whereNull('parent_id')->get();
+        $categories = Category::with('childrenRecursive')->whereNull('parent_id')->orderBy('ordering', 'asc')->get();
         return view('vendor.admin.site-bases.categories.items', compact('categories'));
     }
 

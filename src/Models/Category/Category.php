@@ -12,6 +12,7 @@ class Category extends Base
     protected $table = 'categories';
 
     protected $fillable = [
+        'parent_id',
         'published',
         'ordering',
         'image',
@@ -35,6 +36,6 @@ class Category extends Base
 
     public function childrenRecursive()
     {
-        return $this->children()->with('childrenRecursive');
+        return $this->children()->with('childrenRecursive')->orderBy('ordering', 'asc');
     }
 }

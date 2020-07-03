@@ -63,13 +63,16 @@
 
                             <div class="form-group margin-top">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="parent_id">კატეგორია</label>
-                                <select name="parent_id" id="parent_id" class="form-control">
-                                    @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ $category->id === $category->parent_id ? 'selected' : '' }}>
-                                            {{ $category->parent_id ? ' --- ' . $category->name : $category->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <select name="parent_id" id="parent_id" class="form-control">
+                                        <option value="">აირჩიეთ</option>
+                                        @foreach($categories as $item)
+                                            <option value="{{ $item->id }}" {{ $item->id === $category->parent_id ? 'selected' : '' }}>
+                                                {{ $item->parent_id ? ' --- ' . $item->title : $item->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group margin-top">

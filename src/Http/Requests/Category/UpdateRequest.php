@@ -29,7 +29,7 @@ class UpdateRequest extends BaseRequest
             'published' => 'nullable|string',
         ], $this->translationsValidation([
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
         ]));
     }
 }

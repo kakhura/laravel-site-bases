@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -34,7 +34,7 @@ class CreateProductsTable extends Migration
                 $table->bigIncrements('id');
                 $table->unsignedBigInteger('category_id')->index();
                 $table->string('title');
-                $table->text('description');
+                $table->text('description')->nullable();
                 $table->string('locale')->index();
 
                 $table->timestamps();

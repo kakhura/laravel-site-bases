@@ -141,7 +141,7 @@ return [
                 ],
                 'categories' => [
                     'url' => env('APP_URL') . '/admin/categories',
-                    'title' => 'პროდუქცია',
+                    'title' => 'კატეგორიები',
                 ],
             ],
         ],

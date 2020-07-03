@@ -48,9 +48,11 @@ class Controller extends BaseController
         $className = $request->get('className');
         foreach (json_decode($request->ordering) as $value) {
             $object = $className::find(Arr::get($value, 0));
-            $object->update([
-                'ordering' => $value[1],
-            ]);
+            if ($object) {
+                $object->update([
+                    'ordering' => Arr::get($value, 1, 0),
+                ]);
+            }
         }
     }
 

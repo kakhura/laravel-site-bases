@@ -65,9 +65,6 @@ class CategoryService extends Service
     public function delete(Category $category): bool
     {
         $this->deleteFiles([public_path($category->image), public_path($category->thumb)]);
-        foreach ($category->images as $image) {
-            $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
-        }
         $category->detail()->delete();
         return $category->delete();
     }

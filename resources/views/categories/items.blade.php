@@ -15,28 +15,34 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    @if(count($categries))
+                    @if(count($categories))
                         <ul class="list-group">
-                        @foreach ($categries as $key => $item)
-                            <li class="list-group-item sort cursor-move" data-id="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
-                                <span class="pull-left">
-                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                    @if ($item->image)
-                                        <img src="{{ asset($item->image) }}" alt="">
-                                    @endif
-                                    {{ $item->id }} : {{ $item->title }}
-                                </span>
+                            @foreach ($categories as $key => $item)
+                                <li class="list-group-item sort cursor-move" data-id="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
+                                    <div class="for-display">
+                                        <div class="col-md-5 for-display">
+                                            <span>
+                                                <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                                                @if ($item->image)
+                                                    <img src="{{ asset($item->image) }}" alt="" class="post">
+                                                @endif
+                                                {{ $item->id }} : {{ $item->title }}
+                                            </span>
 
-                                <span class="pull-left">
-                                    <input type="checkbox" id="{{ $item->id }}" class="js-switch publish" {{ $item->published ? 'checked' : '' }}/>
-                                </span>
-                                <span class="pull-right">
-                                    <a href="{{ url('/categories/edit/' . $item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{ url('/categories/delete/' . $item->id) }}" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
-                                </span>
-                                @include('vendor.admin.site-bases.categories.category-child' , ['category' => $item])
-                            </li>
-                        @endforeach
+                                            <span class="display-inline-block">
+                                                <input type="checkbox" id="{{ $item->id }}" class="js-switch publish" {{ $item->published ? 'checked' : '' }}/>
+                                            </span>
+                                        </div>
+                                        <span>
+                                            <a href="{{ url('/admin/categories/edit/' . $item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{ url('/admin/categories/delete/' . $item->id) }}" class="delete btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                                        </span>
+                                    </div>
+                                    @if ($item->childrenRecursive->count() > 0)
+                                        @include('vendor.admin.site-bases.categories.category-child' , ['category' => $item, 'depth' => 1])
+                                    @endif
+                                </li>
+                            @endforeach
                         </ul>
                     @else
                         <div class="alert alert-info">
@@ -50,10 +56,8 @@
     </div>
 @endsection
 
-@section('script')
-	<script src="{{asset('assets/admin')}}/js/jquery.min.js"></script>
-	<script src="{{asset('assets/admin')}}/js/jquery-ui.min.js"></script>
-	<script src="{{asset('assets/admin')}}/js/bootstrap.min.js"></script>
+@section('js')
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script>
         $(document).ready(function() {
             $('.delete').click(function(e) {
@@ -61,7 +65,7 @@
                 e.preventDefault();
                 $.confirm({
                     title: 'დასტური',
-                    content: 'დარწმუნებული ხართ, რომ გურთ ამის სამუდამოდ წაშლა?',
+                    content: 'დარწმუნებული ხართ, რომ გსურთ კატეგორიის სამუდამოდ წაშლა?',
                     buttons: {
                         confirm: {
                             text: 'წაშლა',
@@ -123,14 +127,14 @@
                     var children = $(ui.item).parent().find('> li');
                     var arr = [];
                     children.each(function(){
-                        $(this).attr('data-ordering',$(this).index());
-                        arr.push( [$(this).attr('data-id') , (parent + ($(this).attr('data-ordering')))]);
+                        $(this).attr('data-ordering', $(this).index());
+                        arr.push([$(this).attr('data-id'), (parent + Number($(this).attr('data-ordering')))]);
                     });
                     arr = JSON.stringify(arr);
                     $.ajax({
                         url:"{{ url('admin/categories/ordering') }}",
                         type:"POST",
-                        data:"_token={{ csrf_token( )}}" + "&ordering=" + arr,
+                        data:"_token={{ csrf_token( )}}" + "&ordering=" + arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.categories')) }}",
                     })
                     .done(function(data){
                         new PNotify({
@@ -145,18 +149,15 @@
 	</script>
 @endsection
 
-@section('js')
-
-    <script type="text/javascript">
-    </script>
-@endsection
-
 @section('css')
     <style type="text/css">
+        .list-group {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
         .post {
-            width: 30px;
-            height: 30px;
-            vertical-align: middle;
+            width: 55px;
+            margin-left: 10px;
             margin-right: 10px;
         }
         .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
@@ -167,6 +168,14 @@
         }
         .cursor-move {
             cursor: move;
+        }
+        .display-inline-block {
+            display: inline-block;
+        }
+        div.for-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
     </style>
 @endsection
