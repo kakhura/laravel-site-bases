@@ -53,6 +53,7 @@ return [
      */
     'modules_publish_mapper' => [
         'about',
+        'rules',
         'contact',
         'blogs',
         'slides',
@@ -65,6 +66,7 @@ return [
         'categories',
         'photos',
         'pages',
+        'partners',
     ],
 
     /**
@@ -106,6 +108,7 @@ return [
         'products' => Product::class,
         'categories' => Category::class,
         'pages' => Page::class,
+        'partner' => Partner::class,
     ],
 
     /**
@@ -122,6 +125,7 @@ return [
         'products' => Product::class,
         'categories' => Category::class,
         'pages' => Page::class,
+        'partner' => Partner::class,
     ],
 
     /**
@@ -189,6 +193,12 @@ return [
             'url' => env('APP_URL') . '/admin/photos',
             'title' => 'ფოტო გალერეა',
             'icon' => '<i class="fa fa fa-picture-o" aria-hidden="true"></i>',
+            'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
+        ],
+        'partners' => [
+            'url' => env('APP_URL') . '/admin/partners',
+            'title' => 'პარტნიორები',
+            'icon' => '<i class="fa fa-handshake-o" aria-hidden="true"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
     ],

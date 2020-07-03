@@ -4,6 +4,7 @@ use Kakhura\LaravelSiteBases\Models\Blog\Blog;
 use Kakhura\LaravelSiteBases\Models\Category\Category;
 use Kakhura\LaravelSiteBases\Models\News\News;
 use Kakhura\LaravelSiteBases\Models\Page\Page;
+use Kakhura\LaravelSiteBases\Models\Partner\Partner;
 use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Models\Product\Product;
 use Kakhura\LaravelSiteBases\Models\Project\Project;
@@ -17,6 +18,7 @@ return [
      */
     'modules_publish_mapper' => [
         'about',
+        'rules',
         'contact',
         'blogs',
         'slides',
@@ -29,6 +31,7 @@ return [
         'categories',
         'photos',
         'pages',
+        'partners',
     ],
 
     /**
@@ -70,6 +73,7 @@ return [
         'products' => Product::class,
         'categories' => Category::class,
         'pages' => Page::class,
+        'partners' => Partner::class,
     ],
 
     /**
@@ -86,6 +90,7 @@ return [
         'products' => Product::class,
         'categories' => Category::class,
         'pages' => Page::class,
+        'partners' => Partner::class,
     ],
 
     /**
@@ -153,6 +158,12 @@ return [
             'url' => env('APP_URL') . '/admin/photos',
             'title' => 'ფოტო გალერეა',
             'icon' => '<i class="fa fa fa-picture-o" aria-hidden="true"></i>',
+            'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
+        ],
+        'partners' => [
+            'url' => env('APP_URL') . '/admin/partners',
+            'title' => 'პარტნიორები',
+            'icon' => '<i class="fa fa-handshake-o" aria-hidden="true"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
     ],

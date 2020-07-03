@@ -11,6 +11,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/about', 'AboutController@about');
         Route::post('/about', 'AboutController@storeAbout');
 
+        Route::get('/rules', 'RuleController@rules');
+        Route::post('/rules', 'RuleController@storeRules');
+
         Route::get('/contact', 'ContactController@contact');
         Route::post('/contact', 'ContactController@storeContact');
     });
@@ -118,6 +121,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/delete/{service}', 'ServiceController@deleteService');
         Route::post('/publish', 'ServiceController@publish');
         Route::post('/ordering', 'ServiceController@ordering');
+    });
+
+    Route::group(['prefix' => 'partners', 'namespace' => 'Partner'], function () {
+        Route::get('/', 'PartnerController@partners');
+        Route::get('/create', 'PartnerController@createPartner');
+        Route::post('/create', 'PartnerController@storePartner');
+        Route::get('/edit/{partner}', 'PartnerController@editPartner');
+        Route::post('/edit/{partner}', 'PartnerController@updatePartner');
+        Route::get('/delete/{partner}', 'PartnerController@deletePartner');
+        Route::post('/publish', 'PartnerController@publish');
+        Route::post('/ordering', 'PartnerController@ordering');
     });
 
     Route::group(['prefix' => 'videos', 'namespace' => 'Video'], function () {

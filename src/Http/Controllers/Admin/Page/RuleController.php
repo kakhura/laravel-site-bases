@@ -9,19 +9,19 @@ use Kakhura\LaravelSiteBases\Services\Rule\RuleService;
 
 class RuleController extends Controller
 {
-    public function about()
+    public function rules()
     {
-        $about = Rule::first();
-        return view('vendor.admin.site-bases.about.edit', compact('about'));
+        $rules = Rule::first();
+        return view('vendor.admin.site-bases.rules.edit', compact('rules'));
     }
 
-    public function storeRule(Request $request, RuleService $aboutService)
+    public function storeRules(Request $request, RuleService $ruleService)
     {
-        $about = Rule::first();
-        if (!is_null($about)) {
-            $aboutService->update($request->validated(), $about);
+        $rules = Rule::first();
+        if (!is_null($rules)) {
+            $ruleService->update($request->validated(), $rules);
         } else {
-            $aboutService->create($request->validated());
+            $ruleService->create($request->validated());
         }
         return back()->with(['success' => 'ინფორმაცია წარმატებით შეიცვალა']);
     }

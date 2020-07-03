@@ -7,7 +7,6 @@ use Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller;
 use Kakhura\LaravelSiteBases\Http\Requests\Page\CreateRequest;
 use Kakhura\LaravelSiteBases\Http\Requests\Page\UpdateRequest;
 use Kakhura\LaravelSiteBases\Models\Page\Page;
-use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Services\Page\PageService;
 
 class PageController extends Controller
@@ -20,8 +19,7 @@ class PageController extends Controller
 
     public function createPage()
     {
-        $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.pages.create', compact('photos'));
+        return view('vendor.admin.site-bases.pages.create');
     }
 
     public function storePage(CreateRequest $request, PageService $pageService)
@@ -32,8 +30,7 @@ class PageController extends Controller
 
     public function editPage(Page $page)
     {
-        $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.pages.update', compact('page', 'photos'));
+        return view('vendor.admin.site-bases.pages.update', compact('page'));
     }
 
     public function updatePage(UpdateRequest $request, PageService $pageService, Page $page)

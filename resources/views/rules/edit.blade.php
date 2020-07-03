@@ -1,13 +1,13 @@
 @extends('vendor.admin.site-bases.inc.layout')
 
-@section('title', 'ჩვენ შესახებ')
+@section('title', 'წესები და პირობები')
 
 @section('content')
     @include('vendor.admin.site-bases.inc.message')
 
     <div class="page-title">
         <div class="title_left">
-            <h3>ჩვენ შესახებ</h3>
+            <h3>წესები და პირობები</h3>
         </div>
     </div>
 
@@ -45,13 +45,13 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title_{{ $localeCode }}">სათაური</label>
                                             <div class="col-md-10 col-sm-10  col-xs-12">
-                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" required value="{{ !empty($about) ? $about->detail()->where('locale', $localeCode)->first()->title : old('title_' . $localeCode) }}">
+                                                <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" required value="{{ !empty($rules) ? $rules->detail()->where('locale', $localeCode)->first()->title : old('title_' . $localeCode) }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">ჩვენ შესახებ</label>
+                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">წესები და პირობები</label>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <textarea id="description_{{ $localeCode }}" class="textarea" required name="description_{{ $localeCode }}">{{ !empty($about) ? $about->detail()->where('locale', $localeCode)->first()->description : old('description_' . $localeCode) }}</textarea>
+                                                <textarea id="description_{{ $localeCode }}" class="textarea" required name="description_{{ $localeCode }}">{{ !empty($rules) ? $rules->detail()->where('locale', $localeCode)->first()->description : old('description_' . $localeCode) }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video">ვიდეო</label>
                                     <div class="col-md-10 col-sm-10  col-xs-12">
-                                        <input type="text" name="video" class="form-control" id="video" value="{{ !empty($about) ? $about->video : old('video') }}">
+                                        <input type="text" name="video" class="form-control" id="video" value="{{ !empty($rules) ? $rules->video : old('video') }}">
                                     </div>
                                 </div>
 
@@ -73,17 +73,17 @@
                                     </div>
                                 </div>
 
-                                @if(!empty($about) && $about->image)
+                                @if(!empty($rules) && $rules->image)
                                     <div class="form-group" id="imageCont">
                                         <div class="col-md-10 col-md-offset-2">
                                             <div class="panel panel-default" style="border-radius:0">
                                                 <div class="panel-heading">ატვირთული სურათი</div>
                                                 <div class="panel-body">
                                                     <div class="row">
-                                                        <div class="col-md-4 " data-id="{{ $about->id }}">
+                                                        <div class="col-md-4 " data-id="{{ $rules->id }}">
                                                             <div class="thumbnail"  style="height:auto;">
                                                                 <div class="image view view-first">
-                                                                    <img style="width: 100%; display: block;" src="{{ asset($about->image) }}" alt="image" />
+                                                                    <img style="width: 100%; display: block;" src="{{ asset($rules->image) }}" alt="image" />
                                                                 </div>
                                                             </div>
                                                         </div>
