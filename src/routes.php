@@ -108,6 +108,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::post('/ordering', 'ServiceController@ordering');
     });
 
+    Route::group(['prefix' => 'videos', 'namespace' => 'Video'], function () {
+        Route::get('/', 'VideoController@videos');
+        Route::get('/create', 'VideoController@createVideo');
+        Route::post('/create', 'VideoController@storeVideo');
+        Route::get('/edit/{video}', 'VideoController@editVideo');
+        Route::post('/edit/{video}', 'VideoController@updateVideo');
+        Route::get('/delete/{video}', 'VideoController@deleteVideo');
+        Route::post('/publish', 'VideoController@publish');
+        Route::post('/ordering', 'VideoController@ordering');
+    });
+
     Route::group(['prefix' => 'admins', 'namespace' => 'Admin'], function () {
         Route::get('/', 'AdminController@admins');
         Route::get('/create', 'AdminController@createAdmin');

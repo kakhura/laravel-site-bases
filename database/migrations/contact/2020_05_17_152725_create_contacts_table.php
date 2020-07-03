@@ -21,7 +21,6 @@ class CreateContactsTable extends Migration
                 $table->string('long')->nullable();
                 $table->string('lat')->nullable();
                 $table->string('facebook')->nullable();
-                $table->json('other_socials')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();
