@@ -1,6 +1,7 @@
 <?php
 
 use Kakhura\LaravelSiteBases\Models\Blog\Blog;
+use Kakhura\LaravelSiteBases\Models\Category\Category;
 use Kakhura\LaravelSiteBases\Models\News\News;
 use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Models\Product\Product;
@@ -24,6 +25,7 @@ return [
         'admins',
         'videos',
         'products',
+        'categories',
         'photos',
     ],
 
@@ -64,6 +66,7 @@ return [
         'videos' => Video::class,
         'photos' => Photo::class,
         'products' => Product::class,
+        'categories' => Category::class,
     ],
 
     /**
@@ -78,6 +81,7 @@ return [
         'videos' => Video::class,
         'photos' => Photo::class,
         'products' => Product::class,
+        'categories' => Category::class,
     ],
 
     /**
@@ -97,6 +101,10 @@ return [
             'children' => [
                 'products' => [
                     'url' => env('APP_URL') . '/admin/products',
+                    'title' => 'პროდუქცია',
+                ],
+                'categories' => [
+                    'url' => env('APP_URL') . '/admin/categories',
                     'title' => 'პროდუქცია',
                 ],
             ],

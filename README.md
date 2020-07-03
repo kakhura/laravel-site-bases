@@ -37,7 +37,9 @@ This command will copy file `[/vendor/kakhura/laravel-site-bases/config/kakhura.
 Default `kakhura.site-basbes.php` looks like:
 ```php
 use Kakhura\LaravelSiteBases\Models\Blog\Blog;
+use Kakhura\LaravelSiteBases\Models\Category\Category;
 use Kakhura\LaravelSiteBases\Models\News\News;
+use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Models\Product\Product;
 use Kakhura\LaravelSiteBases\Models\Project\Project;
 use Kakhura\LaravelSiteBases\Models\Service\Service;
@@ -59,6 +61,8 @@ return [
         'admins',
         'videos',
         'products',
+        'categories',
+        'photos',
     ],
 
     /**
@@ -96,7 +100,9 @@ return [
         'services' => Service::class,
         'news' => News::class,
         'videos' => Video::class,
+        'photos' => Photo::class,
         'products' => Product::class,
+        'categories' => Category::class,
     ],
 
     /**
@@ -109,7 +115,9 @@ return [
         'services' => Service::class,
         'news' => News::class,
         'videos' => Video::class,
+        'photos' => Photo::class,
         'products' => Product::class,
+        'categories' => Category::class,
     ],
 
     /**
@@ -129,6 +137,10 @@ return [
             'children' => [
                 'products' => [
                     'url' => env('APP_URL') . '/admin/products',
+                    'title' => 'პროდუქცია',
+                ],
+                'categories' => [
+                    'url' => env('APP_URL') . '/admin/categories',
                     'title' => 'პროდუქცია',
                 ],
             ],
@@ -161,6 +173,12 @@ return [
             'url' => env('APP_URL') . '/admin/videos',
             'title' => 'ვიდეო გალერეა',
             'icon' => '<i class="fa fa-file-video-o" aria-hidden="true"></i>',
+            'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
+        ],
+        'photos' => [
+            'url' => env('APP_URL') . '/admin/photos',
+            'title' => 'ფოტო გალერეა',
+            'icon' => '<i class="fa fa fa-picture-o" aria-hidden="true"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
     ],
