@@ -40,6 +40,13 @@ class SiteBasesServiceProvider extends ServiceProvider
 
     protected function publishViews()
     {
+        $this->publishAdminViews();
+        $this->publishWebsiteViews();
+        $this->publishOtherViews();
+    }
+
+    protected function publishAdminViews()
+    {
         foreach (config('kakhura.site-bases.modules_publish_mapper') as $module) {
             $viewPath = __DIR__ . sprintf('/../resources/views/%s', $module);
             if (File::exists($viewPath)) {
@@ -49,7 +56,26 @@ class SiteBasesServiceProvider extends ServiceProvider
                 ], 'kakhura-site-bases-views');
             }
         }
-        $this->publishOtherViews();
+    }
+
+    protected function publishWebsiteViews()
+    {
+        foreach (config('kakhura.site-bases.modules_publish_mapper') as $module) {
+            $viewPath = __DIR__ . sprintf('/../resources/views/website/client/%s', $module);
+            if (File::exists($viewPath)) {
+                $this->loadViewsFrom($viewPath, 'site-bases');
+                $this->publishes([
+                    $viewPath => base_path(sprintf('resources/views/vendor/website/site-bases/%s', $module)),
+                ], 'kakhura-site-bases-views');
+            }
+        }
+        $viewPath = __DIR__ . '/../resources/views/website/layouts';
+        if (File::exists($viewPath)) {
+            $this->loadViewsFrom($viewPath, 'site-bases');
+            $this->publishes([
+                $viewPath => base_path(sprintf('resources/views/vendor/website/site-bases/layouts', $module)),
+            ], 'kakhura-site-bases-views');
+        }
     }
 
     protected function publishOtherViews()
