@@ -41,7 +41,9 @@ class SiteBasesServiceProvider extends ServiceProvider
     protected function publishViews()
     {
         $this->publishAdminViews();
-        $this->publishWebsiteViews();
+        if (config('kakhura.site-bases.publish_website_views')) {
+            $this->publishWebsiteViews();
+        }
         $this->publishOtherViews();
     }
 

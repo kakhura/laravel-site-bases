@@ -114,6 +114,11 @@ return [
     ],
 
     /**
+     * Publish website views.
+     */
+    'publish_website_views' => true,
+
+    /**
      * Generate thumbs.
      */
     'images_thumbs' => [

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http\Controllers\Admin', 'middleware' => ['web', 'auth', 'with_db_transactions']], function () {
     Route::post('/admin/upload', 'Controller@uploadFromRedactor');
@@ -167,7 +168,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
     });
 });
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'namespace' => 'App\Http\Controllers\Page', 'middleware' => ['web']], function () {
     foreach (config('kakhura.site-bases.routes_mapper') as $module) {
         Route::get(sprintf('/%s', Arr::get($module, 'main_url')), sprintf('PageController@%s', Arr::get($module, 'main_method_name')));
         if (Arr::get($module, 'item_url', false) && Arr::get($module, 'item_method_name', false)) {
