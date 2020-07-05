@@ -134,6 +134,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::post('/ordering', 'PartnerController@ordering');
     });
 
+    Route::group(['prefix' => 'brands', 'namespace' => 'Brand'], function () {
+        Route::get('/', 'BrandController@brands');
+        Route::get('/create', 'BrandController@createBrand');
+        Route::post('/create', 'BrandController@storeBrand');
+        Route::get('/edit/{brand}', 'BrandController@editBrand');
+        Route::post('/edit/{brand}', 'BrandController@updateBrand');
+        Route::get('/delete/{brand}', 'BrandController@deleteBrand');
+        Route::post('/publish', 'BrandController@publish');
+        Route::post('/ordering', 'BrandController@ordering');
+    });
+
     Route::group(['prefix' => 'videos', 'namespace' => 'Video'], function () {
         Route::get('/', 'VideoController@videos');
         Route::get('/create', 'VideoController@createVideo');

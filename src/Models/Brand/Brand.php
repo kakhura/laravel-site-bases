@@ -1,17 +1,17 @@
 <?php
 
-namespace Kakhura\LaravelSiteBases\Models\Partner;
+namespace Kakhura\LaravelSiteBases\Models\Brand;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kakhura\LaravelSiteBases\Models\Base;
 use Kakhura\LaravelSiteBases\Traits\Models\ForDetail;
 use Kakhura\LaravelSiteBases\Traits\Models\ForUrl;
 
-class Partner extends Base
+class Brand extends Base
 {
     use SoftDeletes, ForDetail, ForUrl;
 
-    protected $table = 'partners';
+    protected $table = 'brands';
 
     protected $fillable = [
         'published',
@@ -21,10 +21,10 @@ class Partner extends Base
         'video',
     ];
 
-    protected $urlSegment = 'partners';
+    protected $urlSegment = 'brands';
 
     public function detail()
     {
-        return $this->hasMany(PartnerDetail::class);
+        return $this->hasMany(BrandDetail::class);
     }
 }

@@ -37,15 +37,17 @@ This command will copy file `[/vendor/kakhura/laravel-site-bases/config/kakhura.
 Default `kakhura.site-basbes.php` looks like:
 ```php
 use Kakhura\LaravelSiteBases\Models\Blog\Blog;
-use Kakhura\LaravelSiteBases\Models\Category\Category;
 use Kakhura\LaravelSiteBases\Models\News\News;
 use Kakhura\LaravelSiteBases\Models\Page\Page;
+use Kakhura\LaravelSiteBases\Models\Brand\Brand;
 use Kakhura\LaravelSiteBases\Models\Photo\Photo;
+use Kakhura\LaravelSiteBases\Models\Slide\Slide;
+use Kakhura\LaravelSiteBases\Models\Video\Video;
+use Kakhura\LaravelSiteBases\Models\Partner\Partner;
 use Kakhura\LaravelSiteBases\Models\Product\Product;
 use Kakhura\LaravelSiteBases\Models\Project\Project;
 use Kakhura\LaravelSiteBases\Models\Service\Service;
-use Kakhura\LaravelSiteBases\Models\Slide\Slide;
-use Kakhura\LaravelSiteBases\Models\Video\Video;
+use Kakhura\LaravelSiteBases\Models\Category\Category;
 
 return [
     /**
@@ -67,6 +69,7 @@ return [
         'photos',
         'pages',
         'partners',
+        'brands',
     ],
 
     /**
@@ -108,7 +111,8 @@ return [
         'products' => Product::class,
         'categories' => Category::class,
         'pages' => Page::class,
-        'partner' => Partner::class,
+        'partners' => Partner::class,
+        'brands' => Brand::class,
     ],
 
     /**
@@ -125,7 +129,8 @@ return [
         'products' => Product::class,
         'categories' => Category::class,
         'pages' => Page::class,
-        'partner' => Partner::class,
+        'partners' => Partner::class,
+        'brands' => Brand::class,
     ],
 
     /**
@@ -199,6 +204,12 @@ return [
             'url' => env('APP_URL') . '/admin/partners',
             'title' => 'პარტნიორები',
             'icon' => '<i class="fa fa-handshake-o" aria-hidden="true"></i>',
+            'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
+        ],
+        'brands' => [
+            'url' => env('APP_URL') . '/admin/brands',
+            'title' => 'ბრენდები',
+            'icon' => '<i class="fa fa-money" aria-hidden="true"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
     ],
