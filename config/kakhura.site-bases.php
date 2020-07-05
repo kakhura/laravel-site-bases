@@ -1,17 +1,17 @@
 <?php
 
 use Kakhura\LaravelSiteBases\Models\Blog\Blog;
+use Kakhura\LaravelSiteBases\Models\Brand\Brand;
+use Kakhura\LaravelSiteBases\Models\Category\Category;
 use Kakhura\LaravelSiteBases\Models\News\News;
 use Kakhura\LaravelSiteBases\Models\Page\Page;
-use Kakhura\LaravelSiteBases\Models\Brand\Brand;
-use Kakhura\LaravelSiteBases\Models\Photo\Photo;
-use Kakhura\LaravelSiteBases\Models\Slide\Slide;
-use Kakhura\LaravelSiteBases\Models\Video\Video;
 use Kakhura\LaravelSiteBases\Models\Partner\Partner;
+use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Models\Product\Product;
 use Kakhura\LaravelSiteBases\Models\Project\Project;
 use Kakhura\LaravelSiteBases\Models\Service\Service;
-use Kakhura\LaravelSiteBases\Models\Category\Category;
+use Kakhura\LaravelSiteBases\Models\Slide\Slide;
+use Kakhura\LaravelSiteBases\Models\Video\Video;
 
 return [
     /**
@@ -34,6 +34,60 @@ return [
         'pages',
         'partners',
         'brands',
+    ],
+
+    /**
+     * Which module's routes must done.
+     */
+    'routes_mapper' => [
+        'about' => [
+            'main_url' => 'about',
+        ],
+        'rules' => [
+            'main_url' => 'rules',
+        ],
+        'contact' => [
+            'main_url' => 'contact',
+        ],
+        'blogs' => [
+            'main_url' => 'blogs',
+            'item_url' => 'blog',
+        ],
+        'projects' => [
+            'main_url' => 'projects',
+            'item_url' => 'project',
+        ],
+        'services' => [
+            'main_url' => 'services',
+            'item_url' => 'service',
+        ],
+        'news' => [
+            'main_url' => 'news',
+            'item_url' => 'news',
+        ],
+        'videos' => [
+            'main_url' => 'videos',
+        ],
+        'products' => [
+            'main_url' => 'products',
+            'item_url' => 'product',
+        ],
+        'photos' => [
+            'main_url' => 'photos',
+            'item_url' => 'photo',
+        ],
+        'pages' => [
+            'main_url' => 'pages',
+            'item_url' => 'page',
+        ],
+        'partners' => [
+            'main_url' => 'partners',
+            'item_url' => 'partner',
+        ],
+        'brands' => [
+            'main_url' => 'brands',
+            'item_url' => 'brand',
+        ],
     ],
 
     /**

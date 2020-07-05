@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http\Controllers\Admin', 'middleware' => ['web', 'auth', 'with_db_transactions']], function () {
@@ -164,4 +165,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::post('/edit/{admin}', 'AdminController@updateAdmin');
         Route::get('/delete/{admin}', 'AdminController@deleteAdmin');
     });
+});
+
+Route::group(['middleware' => ['web']], function () {
+    foreach (config('kakhura.site-bases.routes_mapper') as $module) {
+        Route::get(sprintf('/%s', Arr::get($module, 'main_url')), sprintf('PageController@%s', Arr::get($module, 'main_method_name')));
+        if (Arr::get($module, 'item_url', false) && Arr::get($module, 'item_method_name', false)) {
+            Route::get(sprintf('/%s/{%s}', Arr::get($module, 'main_url'), Arr::get($module, 'item_url')), sprintf('PageController@%s', Arr::get($module, 'item_method_name')));
+        }
+    }
 });
