@@ -26,6 +26,7 @@ class ProductService extends Service
             'video' => Arr::get($data, 'video'),
             'price' => Arr::get($data, 'price'),
             'discounted_price' => Arr::get($data, 'discounted_price'),
+            'category_id' => Arr::get($data, 'category_id'),
         ]);
         $product->update([
             'ordering' => $product->id,
@@ -61,6 +62,7 @@ class ProductService extends Service
             'video' => Arr::get($data, 'video'),
             'price' => Arr::get($data, 'price'),
             'discounted_price' => Arr::get($data, 'discounted_price'),
+            'category_id' => Arr::get($data, 'category_id'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
             $product->detail()->where('locale', $localeCode)->first()->update([

@@ -25,7 +25,8 @@ class UpdateRequest extends BaseRequest
     {
         return array_merge([
             'image' => 'array|min:1',
-            'price' => 'required|numeric|min:0',
+            'category_id' => 'nullable|integer|exists:categories,id,deleted_at,NULL',
+            'price' => 'nullable|numeric|min:0',
             'discounted_price' => 'nullable|numeric|min:0',
             'published' => 'nullable|string',
             'video' => 'nullable|string',

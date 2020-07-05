@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller;
 use Kakhura\LaravelSiteBases\Http\Requests\Product\CreateRequest;
 use Kakhura\LaravelSiteBases\Http\Requests\Product\UpdateRequest;
+use Kakhura\LaravelSiteBases\Models\Category\Category;
 use Kakhura\LaravelSiteBases\Models\Product\Product;
 use Kakhura\LaravelSiteBases\Services\Product\ProductService;
 
@@ -19,7 +20,8 @@ class ProductController extends Controller
 
     public function createProduct()
     {
-        return view('vendor.admin.site-bases.products.create');
+        $categories = Category::where('published', true)->orderBy('ordering', 'asc')->get();
+        return view('vendor.admin.site-bases.products.create', compact('categories'));
     }
 
     public function storeProduct(CreateRequest $request, ProductService $productService)
@@ -30,7 +32,8 @@ class ProductController extends Controller
 
     public function editProduct(Product $product)
     {
-        return view('vendor.admin.site-bases.products.update', compact('product'));
+        $categories = Category::where('published', true)->orderBy('ordering', 'asc')->get();
+        return view('vendor.admin.site-bases.products.update', compact('product', 'categories'));
     }
 
     public function updateProduct(UpdateRequest $request, ProductService $productService, Product $product)

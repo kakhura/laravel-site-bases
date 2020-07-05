@@ -167,7 +167,7 @@ return [
         'partners' => [
             'url' => env('APP_URL') . '/admin/partners',
             'title' => 'პარტნიორები',
-            'icon' => '<i class="fa fa-handshake-o" aria-hidden="true"></i>',
+            'icon' => '<i class="fa fa-suitcase" aria-hidden="true"></i>',
             'arrow-icon' => '<span class="fa fa-chevron-right"></span>',
         ],
         'brands' => [

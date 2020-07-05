@@ -62,6 +62,20 @@
                             <hr/>
 
                             <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="category_id">კატეგორია</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <select name="category_id" class="form-control" id="category_id">
+                                        <option value="">აირჩიეთ</option>
+                                        @foreach ($categories as $category)
+                                            <option {{ $product->category_id == $category->id ? 'selected' : '' }} value="{{ $category->id }}">
+                                                {{ $category->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video">ვიდეო</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
                                     <input type="text" name="video" class="form-control" id="video" value="{{ old('video') }}">
@@ -71,7 +85,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="price">ფასი</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
-                                    <input type="text" name="price" class="form-control" id="price" value="{{ old('price') }}" required>
+                                    <input type="text" name="price" class="form-control" id="price" value="{{ old('price') }}">
                                 </div>
                             </div>
 

@@ -14,6 +14,7 @@ class Product extends Base
     protected $table = 'products';
 
     protected $fillable = [
+        'category_id',
         'published',
         'ordering',
         'image',
