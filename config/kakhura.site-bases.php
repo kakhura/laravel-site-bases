@@ -41,50 +41,73 @@ return [
      */
     'routes_mapper' => [
         'about' => [
+            'main_method_name' => 'about',
             'main_url' => 'about',
         ],
         'rules' => [
+            'main_method_name' => 'rules',
             'main_url' => 'rules',
         ],
         'contact' => [
+            'main_method_name' => 'contact',
             'main_url' => 'contact',
         ],
         'blogs' => [
+            'main_method_name' => 'blogs',
+            'item_method_name' => 'blog',
             'main_url' => 'blogs',
             'item_url' => 'blog',
         ],
         'projects' => [
+            'main_method_name' => 'projects',
+            'item_method_name' => 'project',
             'main_url' => 'projects',
             'item_url' => 'project',
         ],
         'services' => [
+            'main_method_name' => 'services',
+            'item_method_name' => 'service',
             'main_url' => 'services',
             'item_url' => 'service',
         ],
         'news' => [
+            'main_method_name' => 'news',
+            'item_method_name' => 'news_in',
             'main_url' => 'news',
             'item_url' => 'news',
         ],
         'videos' => [
+            'main_method_name' => 'videos',
+            'item_method_name' => 'video',
             'main_url' => 'videos',
         ],
         'products' => [
+            'main_method_name' => 'products',
+            'item_method_name' => 'product',
             'main_url' => 'products',
             'item_url' => 'product',
         ],
         'photos' => [
+            'main_method_name' => 'photos',
+            'item_method_name' => 'photo',
             'main_url' => 'photos',
             'item_url' => 'photo',
         ],
         'pages' => [
+            'main_method_name' => 'pages',
+            'item_method_name' => 'page',
             'main_url' => 'pages',
             'item_url' => 'page',
         ],
         'partners' => [
+            'main_method_name' => 'partners',
+            'item_method_name' => 'partner',
             'main_url' => 'partners',
             'item_url' => 'partner',
         ],
         'brands' => [
+            'main_method_name' => 'brands',
+            'item_method_name' => 'brand',
             'main_url' => 'brands',
             'item_url' => 'brand',
         ],
