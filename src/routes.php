@@ -168,11 +168,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
     });
 });
 
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'namespace' => 'App\Http\Controllers\Page', 'middleware' => ['web']], function () {
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'namespace' => 'Kakhura\LaravelSiteBases\Http\Controllers', 'middleware' => ['web']], function () {
     foreach (config('kakhura.site-bases.routes_mapper') as $module) {
-        Route::get(sprintf('/%s', Arr::get($module, 'main_url')), sprintf('PageController@%s', Arr::get($module, 'main_method_name')));
-        if (Arr::get($module, 'item_url', false) && Arr::get($module, 'item_method_name', false)) {
-            Route::get(sprintf('/%s/{%s}', Arr::get($module, 'main_url'), Arr::get($module, 'item_url')), sprintf('PageController@%s', Arr::get($module, 'item_method_name')));
-        }
+        Route::group(['namespace' => Arr::get($module, 'namespace')], function () use ($module) {
+            Route::get(sprintf('/%s', Arr::get($module, 'main_url')), sprintf('PageController@%s', Arr::get($module, 'main_method_name')));
+            if (Arr::get($module, 'item_url', false) && Arr::get($module, 'item_method_name', false)) {
+                Route::get(sprintf('/%s/{%s}', Arr::get($module, 'main_url'), Arr::get($module, 'item_url')), sprintf('PageController@%s', Arr::get($module, 'item_method_name')));
+            }
+        });
     }
 });

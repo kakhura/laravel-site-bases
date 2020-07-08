@@ -42,74 +42,123 @@ return [
     'routes_mapper' => [
         'about' => [
             'main_method_name' => 'about',
+            'namespace' => 'About',
             'main_url' => 'about',
         ],
         'rules' => [
             'main_method_name' => 'rules',
+            'namespace' => 'Rule',
             'main_url' => 'rules',
         ],
         'contact' => [
             'main_method_name' => 'contact',
+            'namespace' => 'Contact',
             'main_url' => 'contact',
         ],
         'blogs' => [
             'main_method_name' => 'blogs',
+            'namespace' => 'Blog',
             'item_method_name' => 'blog',
             'main_url' => 'blogs',
             'item_url' => 'blog',
         ],
         'projects' => [
             'main_method_name' => 'projects',
+            'namespace' => 'Project',
             'item_method_name' => 'project',
             'main_url' => 'projects',
             'item_url' => 'project',
         ],
         'services' => [
             'main_method_name' => 'services',
+            'namespace' => 'Service',
             'item_method_name' => 'service',
             'main_url' => 'services',
             'item_url' => 'service',
         ],
         'news' => [
             'main_method_name' => 'news',
+            'namespace' => 'News',
             'item_method_name' => 'news_in',
             'main_url' => 'news',
             'item_url' => 'news',
         ],
         'videos' => [
             'main_method_name' => 'videos',
+            'namespace' => 'Video',
             'item_method_name' => 'video',
             'main_url' => 'videos',
         ],
         'products' => [
             'main_method_name' => 'products',
+            'namespace' => 'Product',
             'item_method_name' => 'product',
             'main_url' => 'products',
             'item_url' => 'product',
         ],
         'photos' => [
             'main_method_name' => 'photos',
+            'namespace' => 'Photo',
             'item_method_name' => 'photo',
             'main_url' => 'photos',
             'item_url' => 'photo',
         ],
         'pages' => [
             'main_method_name' => 'pages',
+            'namespace' => 'Page',
             'item_method_name' => 'page',
             'main_url' => 'pages',
             'item_url' => 'page',
         ],
         'partners' => [
             'main_method_name' => 'partners',
+            'namespace' => 'Partner',
             'item_method_name' => 'partner',
             'main_url' => 'partners',
             'item_url' => 'partner',
         ],
         'brands' => [
             'main_method_name' => 'brands',
+            'namespace' => 'Brand',
             'item_method_name' => 'brand',
             'main_url' => 'brands',
             'item_url' => 'brand',
+        ],
+    ],
+
+    /**
+     * Which module's pagination number.
+     */
+    'pagination_mapper' => [
+        'blogs' => [
+            'pagination' => 15,
+        ],
+        'projects' => [
+            'pagination' => 15,
+        ],
+        'services' => [
+            'pagination' => 15,
+        ],
+        'news' => [
+            'pagination' => 15,
+        ],
+        'videos' => [
+            'pagination' => 15,
+        ],
+        'products' => [
+            'pagination' => 15,
+        ],
+        'photos' => [
+            'pagination' => 15,
+        ],
+        'pages' => [
+            'pagination' => 15,
+        ],
+        'partners' => [
+            'pagination' => 15,
+        ],
+        'brands' => [
+            'pagination' => 15,
         ],
     ],
 

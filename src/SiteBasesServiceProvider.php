@@ -71,6 +71,13 @@ class SiteBasesServiceProvider extends ServiceProvider
                 ], 'kakhura-site-bases-views');
             }
         }
+        $viewPath = __DIR__ . '/../resources/views/website/client/main';
+        if (File::exists($viewPath)) {
+            $this->loadViewsFrom($viewPath, 'site-bases');
+            $this->publishes([
+                $viewPath => base_path('resources/views/vendor/website/site-bases/main'),
+            ], 'kakhura-site-bases-views');
+        }
         $viewPath = __DIR__ . '/../resources/views/website/layouts';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
