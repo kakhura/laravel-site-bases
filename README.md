@@ -166,36 +166,16 @@ return [
      * Which module's pagination number.
      */
     'pagination_mapper' => [
-        'blogs' => [
-            'pagination' => 15,
-        ],
-        'projects' => [
-            'pagination' => 15,
-        ],
-        'services' => [
-            'pagination' => 15,
-        ],
-        'news' => [
-            'pagination' => 15,
-        ],
-        'videos' => [
-            'pagination' => 15,
-        ],
-        'products' => [
-            'pagination' => 15,
-        ],
-        'photos' => [
-            'pagination' => 15,
-        ],
-        'pages' => [
-            'pagination' => 15,
-        ],
-        'partners' => [
-            'pagination' => 15,
-        ],
-        'brands' => [
-            'pagination' => 15,
-        ],
+        'blogs' => 15,
+        'projects' => 15,
+        'services' => 15,
+        'news' => 15,
+        'videos' => 15,
+        'products' => 15,
+        'photos' => 15,
+        'pages' => 15,
+        'partners' => 15,
+        'brands' => 15,
     ],
 
     /**
