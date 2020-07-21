@@ -25,7 +25,7 @@ class Service
      * @param Base $model
      * @return array
      */
-    protected function uploadFile(UploadedFile $file = null, string $uploadPath = null, array $deletePathes = [], Base $model = null, bool $notUploaded = false): array
+    protected function uploadFile(UploadedFile $file = null, string $uploadPath = null, array $deletePathes = [], Base $model = null, bool $notUploaded = false, bool $isImage = true): array
     {
         if ($notUploaded) {
             return [
@@ -34,7 +34,7 @@ class Service
             ];
         }
         if (!is_null($file)) {
-            $file = UploadHelper::uploadFile($file, $uploadPath);
+            $file = UploadHelper::uploadFile($file, $uploadPath, $isImage);
             if (count($deletePathes) > 0) {
                 $this->deleteFiles($deletePathes);
             }
@@ -47,3 +47,4 @@ class Service
         return $file;
     }
 }
+

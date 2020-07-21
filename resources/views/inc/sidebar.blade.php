@@ -34,13 +34,15 @@
                                 </a>
                                 @if (Arr::get($item, 'children', false))
                                     <ul class="nav child_menu">
-                                        @foreach (Arr::get($item, 'children', []) as $child)
-                                            <li>
-                                                <a href="{{ Arr::get($child, 'url') }}">
-                                                    {{ Arr::get($child, 'title') }}
-                                                    <span class="fa fa-chevron-right"></span>
-                                                </a>
-                                            </li>
+                                        @foreach (Arr::get($item, 'children', []) as $childModule => $child)
+                                            @if (in_array($childModule, config('kakhura.site-bases.modules_publish_mapper')))
+                                                <li>
+                                                    <a href="{{ Arr::get($child, 'url') }}">
+                                                        {{ Arr::get($child, 'title') }}
+                                                        <span class="fa fa-chevron-right"></span>
+                                                    </a>
+                                                </li>
+                                            @endif
                                         @endforeach
                                     </ul>
                                 @endif
@@ -64,3 +66,4 @@
         </div>
     </div>
 </div>
+

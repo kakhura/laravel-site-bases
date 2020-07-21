@@ -40,7 +40,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/delete/{project}', 'ProjectController@deleteProject');
         Route::post('/publish', 'ProjectController@publish');
         Route::post('/ordering', 'ProjectController@ordering');
-        Route::post('/delete-gallery-img', 'ProjectController@projectDeleteImg');
+        Route::post('/delete-project-img', 'ProjectController@projectDeleteImg');
     });
 
     Route::group(['prefix' => 'products', 'namespace' => 'Product'], function () {
@@ -52,7 +52,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http
         Route::get('/delete/{product}', 'ProductController@deleteProduct');
         Route::post('/publish', 'ProductController@publish');
         Route::post('/ordering', 'ProductController@ordering');
-        Route::post('/delete-gallery-img', 'ProductController@productDeleteImg');
+        Route::post('/delete-product-img', 'ProductController@productDeleteImg');
     });
 
     Route::group(['prefix' => 'categories', 'namespace' => 'Category'], function () {
@@ -178,3 +178,4 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         });
     }
 });
+
