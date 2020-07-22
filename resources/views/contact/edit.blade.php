@@ -87,12 +87,16 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group margin-top">
-                                    <label class="control-label col-md-2 col-sm-2 col-xs-12" id="facebook">Facebook</label>
-                                    <div class="col-md-10 col-sm-10  col-xs-12">
-                                        <input type="text" name="facebook" class="form-control" id="facebook" value="{{ !empty($contact) ? $contact->facebook : old('facebook') }}">
-                                    </div>
-                                </div>
+                                @if (!is_null(config('kakhura.site-bases.contact_socials')) && is_array(config('kakhura.site-bases.contact_socials')))
+                                    @foreach (config('kakhura.site-bases.contact_socials') as $social)
+                                        <div class="form-group margin-top">
+                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" id="{{ $social }}">{{ Str::ucfirst($social) }}</label>
+                                            <div class="col-md-10 col-sm-10  col-xs-12">
+                                                <input type="text" name="{{ $social }}" class="form-control" id="{{ $social }}" value="{{ !empty($contact) ? $contact->$social : old($social) }}">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
 
                                 <hr>
 

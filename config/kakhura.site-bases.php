@@ -43,21 +43,25 @@ return [
         'about' => [
             'main_method_name' => 'about',
             'namespace' => 'About',
+            'controller' => 'AboutController',
             'main_url' => 'about',
         ],
         'rules' => [
             'main_method_name' => 'rules',
             'namespace' => 'Rule',
+            'controller' => 'RuleController',
             'main_url' => 'rules',
         ],
         'contact' => [
             'main_method_name' => 'contact',
             'namespace' => 'Contact',
+            'controller' => 'ContactController',
             'main_url' => 'contact',
         ],
         'blogs' => [
             'main_method_name' => 'blogs',
             'namespace' => 'Blog',
+            'controller' => 'BlogController',
             'item_method_name' => 'blog',
             'main_url' => 'blogs',
             'item_url' => 'blog',
@@ -65,6 +69,7 @@ return [
         'projects' => [
             'main_method_name' => 'projects',
             'namespace' => 'Project',
+            'controller' => 'ProjectController',
             'item_method_name' => 'project',
             'main_url' => 'projects',
             'item_url' => 'project',
@@ -72,6 +77,7 @@ return [
         'services' => [
             'main_method_name' => 'services',
             'namespace' => 'Service',
+            'controller' => 'ServiceController',
             'item_method_name' => 'service',
             'main_url' => 'services',
             'item_url' => 'service',
@@ -79,6 +85,7 @@ return [
         'news' => [
             'main_method_name' => 'news',
             'namespace' => 'News',
+            'controller' => 'NewsController',
             'item_method_name' => 'news_in',
             'main_url' => 'news',
             'item_url' => 'news',
@@ -86,12 +93,14 @@ return [
         'videos' => [
             'main_method_name' => 'videos',
             'namespace' => 'Video',
+            'controller' => 'VideoController',
             'item_method_name' => 'video',
             'main_url' => 'videos',
         ],
         'products' => [
             'main_method_name' => 'products',
             'namespace' => 'Product',
+            'controller' => 'ProductController',
             'item_method_name' => 'product',
             'main_url' => 'products',
             'item_url' => 'product',
@@ -99,6 +108,7 @@ return [
         'photos' => [
             'main_method_name' => 'photos',
             'namespace' => 'Photo',
+            'controller' => 'PhotoController',
             'item_method_name' => 'photo',
             'main_url' => 'photos',
             'item_url' => 'photo',
@@ -106,6 +116,7 @@ return [
         'pages' => [
             'main_method_name' => 'pages',
             'namespace' => 'Page',
+            'controller' => 'PageController',
             'item_method_name' => 'page',
             'main_url' => 'pages',
             'item_url' => 'page',
@@ -113,6 +124,7 @@ return [
         'partners' => [
             'main_method_name' => 'partners',
             'namespace' => 'Partner',
+            'controller' => 'PartnerController',
             'item_method_name' => 'partner',
             'main_url' => 'partners',
             'item_url' => 'partner',
@@ -120,6 +132,7 @@ return [
         'brands' => [
             'main_method_name' => 'brands',
             'namespace' => 'Brand',
+            'controller' => 'BrandController',
             'item_method_name' => 'brand',
             'main_url' => 'brands',
             'item_url' => 'brand',
@@ -305,5 +318,12 @@ return [
             'title' => 'კონტაქტი',
             'link' => env('APP_URL') . '/admin/pages/edit/contact',
         ],
+    ],
+
+    /**
+     * Admin pages menu
+     */
+    'contact_socials' => [
+        'facebook',
     ],
 ];

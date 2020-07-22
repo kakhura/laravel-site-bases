@@ -28,11 +28,25 @@ class Request extends BaseRequest
             'email' => 'required|string|max:255',
             'long' => 'nullable|string|max:255',
             'lat' => 'nullable|string|max:255',
-            'facebook' => 'nullable|string|max:255',
-            'other_socials' => 'nullable|array|min:1',
-        ], $this->translationsValidation([
+        ], $this->generateSocialsRules(), $this->translationsValidation([
             'address' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]));
+    }
+
+    /**
+     * @return array
+     */
+    protected function generateSocialsRules(): array
+    {
+        $result = [];
+        if (!is_null(config('kakhura.site-bases.contact_socials')) && is_array(config('kakhura.site-bases.contact_socials'))) {
+            foreach (config('kakhura.site-bases.contact_socials') as $social) {
+                $result[] = [
+                    $social => 'nullable|string|max:255',
+                ];
+            }
+        }
+        return $result;
     }
 }

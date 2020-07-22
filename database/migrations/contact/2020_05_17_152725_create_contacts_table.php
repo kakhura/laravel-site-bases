@@ -20,8 +20,11 @@ class CreateContactsTable extends Migration
                 $table->string('email');
                 $table->string('long')->nullable();
                 $table->string('lat')->nullable();
-                $table->string('facebook')->nullable();
-
+                if (!is_null(config('kakhura.site-bases.contact_socials')) && is_array(config('kakhura.site-bases.contact_socials'))) {
+                    foreach (config('kakhura.site-bases.contact_socials') as $social) {
+                        $table->string($social)->nullable();
+                    }
+                }
                 $table->timestamps();
                 $table->softDeletes();
             });
