@@ -60,9 +60,7 @@ class ContactService extends Service
         $result = [];
         if (!is_null(config('kakhura.site-bases.contact_socials')) && is_array(config('kakhura.site-bases.contact_socials'))) {
             foreach (config('kakhura.site-bases.contact_socials') as $social) {
-                $result[] = [
-                    $social => Arr::get($data, $social),
-                ];
+                $result[$social] = Arr::get($data, $social);
             }
         }
         return $result;

@@ -11,17 +11,8 @@ class Contact extends Base
 
     protected $table = 'contacts';
 
-    protected $fillable = [
-        'phone',
-        'email',
-        'long',
-        'lat',
-        'facebook',
-        'other_socials',
-    ];
-
-    protected $casts = [
-        'other_socials' => 'array',
+    protected $guarded = [
+        'id',
     ];
 
     public function detail()

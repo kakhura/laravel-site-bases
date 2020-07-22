@@ -42,9 +42,7 @@ class Request extends BaseRequest
         $result = [];
         if (!is_null(config('kakhura.site-bases.contact_socials')) && is_array(config('kakhura.site-bases.contact_socials'))) {
             foreach (config('kakhura.site-bases.contact_socials') as $social) {
-                $result[] = [
-                    $social => 'nullable|string|max:255',
-                ];
+                $result[$social] = 'nullable|string|max:255';
             }
         }
         return $result;
