@@ -21,6 +21,7 @@ class CreateBrandsTable extends Migration
                 $table->string('image');
                 $table->string('thumb')->nullable();
                 $table->text('video')->nullable();
+                $table->text('link')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();

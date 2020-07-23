@@ -19,6 +19,7 @@ class Partner extends Base
         'image',
         'thumb',
         'video',
+        'link',
     ];
 
     protected $urlSegment = 'partners';

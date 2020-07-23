@@ -22,6 +22,7 @@ class BrandService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
+            'link' => Arr::get($data, 'link'),
         ]);
         $brand->update([
             'ordering' => $brand->id,
@@ -48,6 +49,7 @@ class BrandService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
+            'link' => Arr::get($data, 'link'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
             $brand->detail()->where('locale', $localeCode)->first()->update([

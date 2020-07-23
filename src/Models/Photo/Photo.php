@@ -32,4 +32,9 @@ class Photo extends Base
     {
         return $this->hasMany(PhotoImage::class);
     }
+
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class);
+    }
 }

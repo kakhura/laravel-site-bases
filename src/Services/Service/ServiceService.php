@@ -15,9 +15,10 @@ class ServiceService extends BaseService
      */
     public function create(array $data)
     {
-        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/services/', [], null, true);
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/services/');
         $service = Service::create([
             'image' => Arr::get($image, 'fileName'),
+            'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
         ]);
@@ -45,6 +46,7 @@ class ServiceService extends BaseService
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/services/', [public_path($service->image), public_path($service->thumb)], $service);
         $update = $service->update([
             'image' => Arr::get($image, 'fileName'),
+            'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
         ]);

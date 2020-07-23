@@ -33,4 +33,9 @@ class Blog extends Base
     {
         return $this->hasMany(BlogImage::class);
     }
+
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class);
+    }
 }

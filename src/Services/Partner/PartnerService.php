@@ -22,6 +22,7 @@ class PartnerService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
+            'link' => Arr::get($data, 'link'),
         ]);
         $partner->update([
             'ordering' => $partner->id,
@@ -48,6 +49,7 @@ class PartnerService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
+            'link' => Arr::get($data, 'link'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
             $partner->detail()->where('locale', $localeCode)->first()->update([

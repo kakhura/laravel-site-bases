@@ -69,6 +69,13 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="link">ბმული</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <input type="text" name="link" class="form-control" id="link" value="{{ old('link') }}">
+                                </div>
+                            </div>
+
                             <div class="form-group margin-top">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="image">მთავარი სურათი</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
