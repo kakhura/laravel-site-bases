@@ -67,7 +67,7 @@
                                     <select name="category_id" class="form-control" id="category_id">
                                         <option value="">აირჩიეთ</option>
                                         @foreach ($categories as $category)
-                                            <option {{ $product->category_id == $category->id ? 'selected' : '' }} value="{{ $category->id }}">
+                                            <option {{ old('category_id') == $category->id ? 'selected' : '' }} value="{{ $category->id }}">
                                                 {{ $category->title }}
                                             </option>
                                         @endforeach

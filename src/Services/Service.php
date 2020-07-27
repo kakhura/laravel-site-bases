@@ -25,7 +25,7 @@ class Service
      * @param Base $model
      * @return array
      */
-    protected function uploadFile(UploadedFile $file = null, string $uploadPath = null, array $deletePathes = [], Base $model = null, bool $notUploaded = false, bool $isImage = true, string $fileName = null): array
+    public function uploadFile(UploadedFile $file = null, string $uploadPath = null, array $deletePathes = [], Base $model = null, bool $notUploaded = false, bool $isImage = true, string $fileName = null): array
     {
         if ($notUploaded) {
             return [
@@ -38,7 +38,7 @@ class Service
             if (count($deletePathes) > 0) {
                 $this->deleteFiles($deletePathes);
             }
-        } else {
+        } elseif (!is_null($model)) {
             if ($isImage) {
                 $file = [
                     'fileName' => $model->image,
@@ -49,6 +49,11 @@ class Service
                     'fileName' => $model->$fileName,
                 ];
             }
+        } else {
+            $file = [
+                'fileName' => null,
+                'thumbFileName' => null,
+            ];
         }
         return $file;
     }
