@@ -20,6 +20,7 @@ class Blog extends Base
         'image',
         'thumb',
         'video',
+        'video_image',
     ];
 
     protected $urlSegment = 'blogs';

@@ -18,10 +18,12 @@ class ProductService extends Service
     public function create(array $data)
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/products/');
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/products/');
         /** @var Product $product */
         $product = Product::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
             'price' => Arr::get($data, 'price'),
@@ -55,9 +57,11 @@ class ProductService extends Service
     public function update(array $data, Product $product): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/products/', [public_path($product->image), public_path($product->thumb)], $product);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/products/', [public_path($product->video_image)], $product);
         $update = $product->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
             'price' => Arr::get($data, 'price'),
@@ -86,7 +90,7 @@ class ProductService extends Service
      */
     public function delete(Product $product): bool
     {
-        $this->deleteFiles([public_path($product->image), public_path($product->thumb)]);
+        $this->deleteFiles([public_path($product->image), public_path($product->thumb), public_path($product->video_image)]);
         foreach ($product->images as $image) {
             $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
         }

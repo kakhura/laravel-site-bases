@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
                 $table->unsignedBigInteger('ordering')->nullable()->index();
                 $table->string('image');
                 $table->string('thumb')->nullable();
+                $table->string('video_image')->nullable();
                 $table->text('video')->nullable();
                 $table->decimal('price', 28, 4)->nullable()->index();
                 $table->decimal('discounted_price', 28, 4)->nullable()->index();

@@ -20,6 +20,7 @@ class Product extends Base
         'image',
         'thumb',
         'video',
+        'video_image',
         'price',
         'discounted_price',
     ];

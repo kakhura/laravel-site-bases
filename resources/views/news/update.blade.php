@@ -83,6 +83,34 @@
                             </div>
 
                             <div class="form-group margin-top">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video_image">ვიდეოს სურათი</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <input type="file" name="video_image" class="form-control" id="video_image">
+                                </div>
+                            </div>
+
+                            @if($news->video_image)
+                                <div class="form-group" id="imgWrap">
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <div class="panel panel-default" style="border-radius:0">
+                                            <div class="panel-heading">ატვირთული სურათი</div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="thumbnail">
+                                                            <div class="image view view-first" style="height:260px">
+                                                                <img src="{{ asset($news->video_image) }}" >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="form-group margin-top">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="image">მთავარი სურათი</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
                                     <input type="file" name="image" class="form-control" id="image">
@@ -192,6 +220,7 @@
         $(document).ready(function() {
             $('input[name="image"]').fileuploader({addMore: false});
             $('input[name="images"]').fileuploader({addMore: true});
+            $('input[name="video_image"]').fileuploader({addMore: true});
 
             $('.delImg').click(function(e) {
                 var id = $(this).data('id');

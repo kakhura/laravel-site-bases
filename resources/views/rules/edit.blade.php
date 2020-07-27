@@ -67,6 +67,34 @@
                                 </div>
 
                                 <div class="form-group margin-top">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12" id="video_image">ვიდეოს სურათი</label>
+                                    <div class="col-md-10 col-sm-10  col-xs-12">
+                                        <input type="file" name="video_image" class="form-control">
+                                    </div>
+                                </div>
+
+                                @if(!empty($rules) && $rules->video_image)
+                                    <div class="form-group" id="imageCont">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="panel panel-default" style="border-radius:0">
+                                                <div class="panel-heading">ატვირთული სურათი</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4 " data-id="{{ $rules->id }}">
+                                                            <div class="thumbnail"  style="height:auto;">
+                                                                <div class="image view view-first">
+                                                                    <img style="width: 100%; display: block;" src="{{ asset($rules->video_image) }}" alt="image" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                <div class="form-group margin-top">
                                     <label class="control-label col-md-2 col-sm-2 col-xs-12" id="image">სურათი</label>
                                     <div class="col-md-10 col-sm-10  col-xs-12">
                                         <input type="file" name="image" class="form-control">
@@ -141,6 +169,7 @@
     <script>
         $(document).ready(function() {
             $('input[name="image"]').fileuploader({addMore: false});
+            $('input[name="video_image"]').fileuploader({addMore: false});
 
             $('textarea').redactor({
                 imageUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",

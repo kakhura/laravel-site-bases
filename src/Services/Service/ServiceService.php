@@ -16,9 +16,11 @@ class ServiceService extends BaseService
     public function create(array $data)
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/services/');
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/services/');
         $service = Service::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
         ]);
@@ -44,9 +46,11 @@ class ServiceService extends BaseService
     public function update(array $data, Service $service): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/services/', [public_path($service->image), public_path($service->thumb)], $service);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/services/', [public_path($service->video_image)], $service);
         $update = $service->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
         ]);
@@ -65,7 +69,7 @@ class ServiceService extends BaseService
      */
     public function delete(Service $service): bool
     {
-        $this->deleteFiles([public_path($service->image), public_path($service->thumb)]);
+        $this->deleteFiles([public_path($service->image), public_path($service->thumb), public_path($service->video_image)]);
         $service->detail()->delete();
         return $service->delete();
     }

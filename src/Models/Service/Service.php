@@ -19,6 +19,7 @@ class Service extends Base
         'image',
         'thumb',
         'video',
+        'video_image',
     ];
 
     protected $urlSegment = 'services';

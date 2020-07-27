@@ -15,14 +15,16 @@ class RuleService extends Service
      */
     public function create(array $data)
     {
-        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/about/');
-        $about = Rule::create([
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/rules/');
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/rules/');
+        $rules = Rule::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'video' => Arr::get($data, 'video'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
-            $about->detail()->create([
+            $rules->detail()->create([
                 'title' => Arr::get($data, 'title_' . $localeCode),
                 'description' => Arr::get($data, 'description_' . $localeCode),
                 'locale' => $localeCode,
@@ -32,19 +34,21 @@ class RuleService extends Service
 
     /**
      * @param array $data
-     * @param Rule $about
+     * @param Rule $rules
      * @return void
      */
-    public function update(array $data, Rule $about)
+    public function update(array $data, Rule $rules)
     {
-        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/about/', [public_path($about->image), public_path($about->thumb)], $about);
-        $about->update([
+        $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/rules/', [public_path($rules->image), public_path($rules->thumb)], $rules);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/rules/', [public_path($rules->video_image)], $rules);
+        $rules->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'video' => Arr::get($data, 'video'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
-            $about->detail()->where('locale', $localeCode)->first()->update([
+            $rules->detail()->where('locale', $localeCode)->first()->update([
                 'title' => Arr::get($data, 'title_' . $localeCode),
                 'description' => Arr::get($data, 'description_' . $localeCode),
             ]);

@@ -19,6 +19,7 @@ class Brand extends Base
         'image',
         'thumb',
         'video',
+        'video_image',
         'link',
     ];
 

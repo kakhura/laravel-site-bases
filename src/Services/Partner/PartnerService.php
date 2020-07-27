@@ -16,10 +16,12 @@ class PartnerService extends Service
     public function create(array $data)
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/partners/');
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/partners/');
         /** @var Partner $partner */
         $partner = Partner::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
             'link' => Arr::get($data, 'link'),
@@ -44,9 +46,11 @@ class PartnerService extends Service
     public function update(array $data, Partner $partner): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/partners/', [public_path($partner->image), public_path($partner->thumb)], $partner);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/partners/', [public_path($partner->video_image)], $partner);
         $update = $partner->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
             'link' => Arr::get($data, 'link'),
@@ -66,7 +70,7 @@ class PartnerService extends Service
      */
     public function delete(Partner $partner): bool
     {
-        $this->deleteFiles([public_path($partner->image), public_path($partner->thumb)]);
+        $this->deleteFiles([public_path($partner->image), public_path($partner->thumb), public_path($partner->video_image)]);
         $partner->detail()->delete();
         return $partner->delete();
     }

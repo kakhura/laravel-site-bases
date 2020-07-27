@@ -30,6 +30,7 @@ class UpdateRequest extends BaseRequest
             'discounted_price' => 'nullable|numeric|min:0',
             'published' => 'nullable|string',
             'video' => 'nullable|string',
+            'video_image' => 'array|string',
             'images' => 'array|min:1',
         ], $this->translationsValidation([
             'title' => 'required|string|max:255',

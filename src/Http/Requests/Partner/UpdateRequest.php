@@ -27,6 +27,7 @@ class UpdateRequest extends BaseRequest
             'image' => 'array|min:1',
             'published' => 'nullable|string',
             'video' => 'nullable|string',
+            'video_image' => 'array|string',
             'link' => 'nullable|string',
         ], $this->translationsValidation([
             'title' => 'required|string|max:255',

@@ -15,6 +15,7 @@ class About extends Base
         'image',
         'thumb',
         'video',
+        'video_image',
     ];
 
     public function detail()

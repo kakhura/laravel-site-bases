@@ -18,10 +18,12 @@ class NewsService extends Service
     public function create(array $data)
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/news/');
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/news/');
         /** @var News $news */
         $news = News::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
             'photo_id' => Arr::get($data, 'photo_id'),
@@ -53,9 +55,11 @@ class NewsService extends Service
     public function update(array $data, News $news): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/news/', [public_path($news->image), public_path($news->thumb)], $news);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/news/', [public_path($news->video_image)], $news);
         $update = $news->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
             'photo_id' => Arr::get($data, 'photo_id'),
@@ -82,7 +86,7 @@ class NewsService extends Service
      */
     public function delete(News $news): bool
     {
-        $this->deleteFiles([public_path($news->image), public_path($news->thumb)]);
+        $this->deleteFiles([public_path($news->image), public_path($news->thumb), public_path($news->video_image)]);
         foreach ($news->images as $image) {
             $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
         }

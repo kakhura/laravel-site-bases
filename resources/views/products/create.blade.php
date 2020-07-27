@@ -97,6 +97,13 @@
                             </div>
 
                             <div class="form-group margin-top">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video_image">ვიდეოს სურათი</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <input type="file" name="video_image" class="form-control" id="video_image">
+                                </div>
+                            </div>
+
+                            <div class="form-group margin-top">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="image">მთავარი სურათი</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
                                     <input type="file" name="image" class="form-control" id="image" required>
@@ -162,6 +169,7 @@
         $(document).ready(function() {
             $('input[name="image"]').fileuploader({addMore: false});
             $('input[name="images"]').fileuploader({addMore: true});
+            $('input[name="video_image"]').fileuploader({addMore: true});
         });
 
         $('textarea').redactor({

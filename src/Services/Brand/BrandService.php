@@ -16,10 +16,12 @@ class BrandService extends Service
     public function create(array $data)
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/brands/');
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/brands/');
         /** @var Brand $brand */
         $brand = Brand::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
             'link' => Arr::get($data, 'link'),
@@ -44,9 +46,11 @@ class BrandService extends Service
     public function update(array $data, Brand $brand): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/brands/', [public_path($brand->image), public_path($brand->thumb)], $brand);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/brands/', [public_path($brand->video_image)], $brand);
         $update = $brand->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
             'link' => Arr::get($data, 'link'),
@@ -66,7 +70,7 @@ class BrandService extends Service
      */
     public function delete(Brand $brand): bool
     {
-        $this->deleteFiles([public_path($brand->image), public_path($brand->thumb)]);
+        $this->deleteFiles([public_path($brand->image), public_path($brand->thumb), public_path($brand->video_image)]);
         $brand->detail()->delete();
         return $brand->delete();
     }

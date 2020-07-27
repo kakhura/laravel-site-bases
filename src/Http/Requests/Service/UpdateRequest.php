@@ -26,6 +26,7 @@ class UpdateRequest extends BaseRequest
         return array_merge([
             'image' => 'array|min:1',
             'video' => 'nullable|string',
+            'video_image' => 'array|string',
             'published' => 'nullable|string',
         ], $this->translationsValidation([
             'title' => 'nullable|string|max:255',

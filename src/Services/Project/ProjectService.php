@@ -18,10 +18,12 @@ class ProjectService extends Service
     public function create(array $data)
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/projects/');
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/projects/');
         /** @var Project $project */
         $project = Project::create([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
         ]);
@@ -52,9 +54,11 @@ class ProjectService extends Service
     public function update(array $data, Project $project): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/projects/', [public_path($project->image), public_path($project->thumb)], $project);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/projects/', [public_path($project->video_image)], $project);
         $update = $project->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),
+            'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
         ]);
@@ -80,7 +84,7 @@ class ProjectService extends Service
      */
     public function delete(Project $project): bool
     {
-        $this->deleteFiles([public_path($project->image), public_path($project->thumb)]);
+        $this->deleteFiles([public_path($project->image), public_path($project->thumb), public_path($project->video_image)]);
         foreach ($project->images as $image) {
             $this->deleteFiles([public_path($image->image), public_path($image->thumb)]);
         }

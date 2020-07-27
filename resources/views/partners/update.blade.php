@@ -76,6 +76,34 @@
                             </div>
 
                             <div class="form-group margin-top">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video_image">ვიდეოს სურათი</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <input type="file" name="video_image" class="form-control" id="video_image">
+                                </div>
+                            </div>
+
+                            @if($partner->video_image)
+                                <div class="form-group" id="imgWrap">
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <div class="panel panel-default" style="border-radius:0">
+                                            <div class="panel-heading">ატვირთული სურათი</div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="thumbnail">
+                                                            <div class="image view view-first" style="height:260px">
+                                                                <img src="{{ asset($partner->video_image) }}" >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="form-group margin-top">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="image">მთავარი სურათი</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
                                     <input type="file" name="image" class="form-control" id="image">
@@ -151,56 +179,7 @@
         $(document).ready(function() {
             $('input[name="image"]').fileuploader({addMore: false});
             $('input[name="images"]').fileuploader({addMore: true});
-
-            $('.delImg').click(function(e) {
-                var id = $(this).data('id');
-                var main_id = $(this).data('main');
-                var that = this;
-                var img = $(this).data('img');
-                $.confirm({
-                    title: 'დასტური',
-                    content: 'დარწმუნებული ხართ, რომ გსურთ სურათის წაშლა?',
-                    buttons: {
-                        confirm: {
-                            text: 'წაშლა',
-                            btnClass: 'btn-red',
-                            action: function(){
-                                $.ajax({
-                                    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                                    url: '{{ url("admin/partners/delete-partner-img") }}',
-                                    type: "post",
-                                    data: { id: id, main_id: main_id, img: img, _token: '{{ csrf_token() }}' },
-                                    success: function (response) {
-                                        var res = $.parseJSON(response);
-                                        if (res.status == 'success'){
-                                            new PNotify({
-                                                text: 'სურათი წარმატებით წაიშალა',
-                                                type: 'success',
-                                                styling: 'bootstrap3'
-                                            });
-                                            $(that).parent().parent().parent().remove();
-                                        } else {
-                                            new PNotify({
-                                                text: 'დაფიქსირდა შეცდომა',
-                                                type: 'error',
-                                                styling: 'bootstrap3'
-                                            });
-                                        }
-                                    },
-                                    error: function(jqXHR, textStatus, errorThrown) {
-                                        alert(2)
-                                    }
-                                });
-                            }
-                        },
-                        close: {
-                            text: 'დახურვა',
-                            action: function(){}
-                        }
-                    }
-                });
-
-            });
+            $('input[name="video_image"]').fileuploader({addMore: true});
 
             $('textarea').redactor({
                 imageUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",

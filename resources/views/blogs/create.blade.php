@@ -42,14 +42,12 @@
                             <div class="tab-content">
                                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                     <div class="tab-pane {{ $localeCode == config('kakhura.site-bases.admin_editors_default_locale') ? 'active' : '' }}" id="{{ $localeCode }}">
-
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title_{{ $localeCode }}">სათაური</label>
                                             <div class="col-md-10 col-sm-10  col-xs-12">
                                                 <input type="text" name="title_{{ $localeCode }}" class="form-control" id="title_{{ $localeCode }}" value="{{ old('title_' . $localeCode) }}" required>
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_{{ $localeCode }}">აღწერა</label>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
@@ -66,6 +64,13 @@
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video">ვიდეო</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
                                     <input type="text" name="video" class="form-control" id="video" value="{{ old('video') }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group margin-top">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video_image">ვიდეოს სურათი</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <input type="file" name="video_image" class="form-control" id="video_image">
                                 </div>
                             </div>
 
@@ -149,6 +154,7 @@
         $(document).ready(function() {
             $('input[name="image"]').fileuploader({addMore: false});
             $('input[name="images"]').fileuploader({addMore: true});
+            $('input[name="video_image"]').fileuploader({addMore: true});
         });
 
         $('textarea').redactor({
