@@ -26,7 +26,7 @@ class CreateRequest extends BaseRequest
         return array_merge([
             'image' => 'array|min:1',
             'video' => 'nullable|string',
-            'video_image' => 'array|string',
+            'video_image' => 'array|min:1',
             'published' => 'nullable|string',
         ], $this->translationsValidation([
             'title' => 'nullable|string|max:255',
