@@ -47,7 +47,11 @@ class UploadHelper
         if (config('kakhura.site-bases.images_watermark.add_watermark_to_images') && File::exists(public_path(config('kakhura.site-bases.images_watermark.watermark_path')))) {
             $file->insert(public_path(config('kakhura.site-bases.images_watermark.watermark_path'), config('kakhura.site-bases.images_watermark.watermark_position'), config('kakhura.site-bases.images_watermark.watermark_x'), config('kakhura.site-bases.images_watermark.watermark_y')));
         }
-        $file->save(public_path($fileName));
+        if (!is_null(config('kakhura.site-bases.quality_of_image'))) {
+            $file->save(public_path($fileName), config('kakhura.site-bases.quality_of_image'));
+        } else {
+            $file->save(public_path($fileName));
+        }
         if (config('kakhura.site-bases.images_thumbs.generate_thumb_for_images')) {
             $thumbFileName = self::generateThumb($getFile, $folder, $fileUniqName, $extension);
         }

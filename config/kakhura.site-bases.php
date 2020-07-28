@@ -181,6 +181,11 @@ return [
     ],
 
     /**
+     * Change quality of image.
+     */
+    'quality_of_image' => null,
+
+    /**
      * Admin languages active tab.
      */
     'admin_editors_default_locale' => 'ka',
