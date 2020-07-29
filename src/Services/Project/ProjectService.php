@@ -54,7 +54,7 @@ class ProjectService extends Service
     public function update(array $data, Project $project): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/projects/', [public_path($project->image), public_path($project->thumb)], $project);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/projects/', [public_path($project->video_image)], $project);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/projects/', [public_path($project->video_image)], $project, false, true, 'video_image');
         $update = $project->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

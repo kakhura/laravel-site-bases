@@ -55,7 +55,7 @@ class PageService extends Service
     public function update(array $data, Page $page): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/pages/', [public_path($page->image), public_path($page->thumb)], $page);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/pages/', [public_path($page->video_image)], $page);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/pages/', [public_path($page->video_image)], $page, false, true, 'video_image');
         $update = $page->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

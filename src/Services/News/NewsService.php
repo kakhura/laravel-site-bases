@@ -55,7 +55,7 @@ class NewsService extends Service
     public function update(array $data, News $news): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/news/', [public_path($news->image), public_path($news->thumb)], $news);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/news/', [public_path($news->video_image)], $news);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/news/', [public_path($news->video_image)], $news, false, true, 'video_image');
         $update = $news->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

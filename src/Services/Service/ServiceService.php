@@ -46,7 +46,7 @@ class ServiceService extends BaseService
     public function update(array $data, Service $service): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/services/', [public_path($service->image), public_path($service->thumb)], $service);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/services/', [public_path($service->video_image)], $service);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/services/', [public_path($service->video_image)], $service, false, true, 'video_image');
         $update = $service->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

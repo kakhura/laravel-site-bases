@@ -46,7 +46,7 @@ class PartnerService extends Service
     public function update(array $data, Partner $partner): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/partners/', [public_path($partner->image), public_path($partner->thumb)], $partner);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/partners/', [public_path($partner->video_image)], $partner);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/partners/', [public_path($partner->video_image)], $partner, false, true, 'video_image');
         $update = $partner->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

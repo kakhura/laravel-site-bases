@@ -57,7 +57,7 @@ class ProductService extends Service
     public function update(array $data, Product $product): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/products/', [public_path($product->image), public_path($product->thumb)], $product);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/products/', [public_path($product->video_image)], $product);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/products/', [public_path($product->video_image)], $product, false, true, 'video_image');
         $update = $product->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

@@ -25,7 +25,7 @@ class Service
      * @param Base $model
      * @return array
      */
-    public function uploadFile(UploadedFile $file = null, string $uploadPath = null, array $deletePathes = [], Base $model = null, bool $notUploaded = false, bool $isImage = true, string $fileName = null): array
+    public function uploadFile(UploadedFile $file = null, string $uploadPath = null, array $deletePathes = [], Base $model = null, bool $notUploaded = false, bool $isImage = true, string $fileName = null, string $thumbFileName = null): array
     {
         if ($notUploaded) {
             return [
@@ -41,8 +41,8 @@ class Service
         } elseif (!is_null($model)) {
             if ($isImage) {
                 $file = [
-                    'fileName' => $model->image,
-                    'thumbFileName' => $model->thumb,
+                    'fileName' => !is_null($fileName) ? $model->$fileName : $model->image,
+                    'thumbFileName' => !is_null($thumbFileName) ? $model->$thumbFileName : $model->thumb,
                 ];
             } else {
                 $file = [

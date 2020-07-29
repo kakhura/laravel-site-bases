@@ -46,7 +46,7 @@ class BrandService extends Service
     public function update(array $data, Brand $brand): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/brands/', [public_path($brand->image), public_path($brand->thumb)], $brand);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/brands/', [public_path($brand->video_image)], $brand);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/brands/', [public_path($brand->video_image)], $brand, false, true, 'video_image');
         $update = $brand->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

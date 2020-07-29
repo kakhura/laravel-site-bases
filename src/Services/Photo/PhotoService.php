@@ -54,7 +54,7 @@ class PhotoService extends Service
     public function update(array $data, Photo $photo): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/photos/', [public_path($photo->image), public_path($photo->thumb)], $photo);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/photos/', [public_path($photo->video_image)], $photo);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/photos/', [public_path($photo->video_image)], $photo, false, true, 'video_image');
         $update = $photo->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

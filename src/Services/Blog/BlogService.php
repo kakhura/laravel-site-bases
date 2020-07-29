@@ -55,7 +55,7 @@ class BlogService extends Service
     public function update(array $data, Blog $blog): bool
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/blogs/', [public_path($blog->image), public_path($blog->thumb)], $blog);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/blogs/', [public_path($blog->video_image)], $blog);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/blogs/', [public_path($blog->video_image)], $blog, false, true, 'video_image');
         $update = $blog->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

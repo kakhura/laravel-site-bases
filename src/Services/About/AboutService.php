@@ -40,7 +40,7 @@ class AboutService extends Service
     public function update(array $data, About $about)
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/about/', [public_path($about->image), public_path($about->thumb)], $about);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/about/', [public_path($about->video_image)], $about);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/about/', [public_path($about->video_image)], $about, false, true, 'video_image');
         $about->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

@@ -40,7 +40,7 @@ class RuleService extends Service
     public function update(array $data, Rule $rules)
     {
         $image = $this->uploadFile(Arr::get($data, 'image.0'), '/upload/rules/', [public_path($rules->image), public_path($rules->thumb)], $rules);
-        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/rules/', [public_path($rules->video_image)], $rules);
+        $videoImage = $this->uploadFile(Arr::get($data, 'video_image.0'), '/upload/rules/', [public_path($rules->video_image)], $rules, false, true, 'video_image');
         $rules->update([
             'image' => Arr::get($image, 'fileName'),
             'thumb' => Arr::get($image, 'thumbFileName'),

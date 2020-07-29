@@ -217,9 +217,9 @@ return [
     ],
 
     /**
-     * Change quality of image.
+     * Change width of image.
      */
-    'quality_of_image' => null,
+    'max_image_width' => 2000, // in px
 
     /**
      * Admin languages active tab.
