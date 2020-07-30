@@ -29,6 +29,7 @@ class CreateRequest extends BaseRequest
             'video' => 'nullable|string',
             'video_image' => 'array|min:1',
             'images' => 'array|min:1',
+            'published_at' => 'nullable|date',
         ], $this->translationsValidation([
             'title' => 'required|string|max:255',
             'description' => 'required|string',

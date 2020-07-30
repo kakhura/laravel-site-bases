@@ -25,6 +25,7 @@ class BlogService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
+            'published_at' => Arr::get($data, 'published_at', now()),
             'video' => Arr::get($data, 'video'),
             'photo_id' => Arr::get($data, 'photo_id'),
         ]);
@@ -61,6 +62,7 @@ class BlogService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
+            'published_at' => Arr::get($data, 'published_at', now()),
             'video' => Arr::get($data, 'video'),
             'photo_id' => Arr::get($data, 'photo_id'),
         ]);

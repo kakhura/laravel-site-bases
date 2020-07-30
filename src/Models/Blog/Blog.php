@@ -16,6 +16,7 @@ class Blog extends Base
     protected $fillable = [
         'photo_id',
         'published',
+        'published_at',
         'ordering',
         'image',
         'thumb',

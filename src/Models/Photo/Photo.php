@@ -15,6 +15,7 @@ class Photo extends Base
 
     protected $fillable = [
         'published',
+        'published_at',
         'ordering',
         'image',
         'thumb',

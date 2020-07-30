@@ -17,6 +17,7 @@ class CreatePhotosTable extends Migration
             Schema::create('photos', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->boolean('published')->default(true);
+                $table->timestamp('published_at');
                 $table->unsignedSmallInteger('ordering')->nullable()->index();
                 $table->string('image');
                 $table->string('thumb')->nullable();

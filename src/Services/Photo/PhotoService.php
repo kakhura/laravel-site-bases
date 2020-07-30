@@ -25,6 +25,7 @@ class PhotoService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
+            'published_at' => Arr::get($data, 'published_at', now()),
             'video' => Arr::get($data, 'video'),
         ]);
         $photo->update([
@@ -60,6 +61,7 @@ class PhotoService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
+            'published_at' => Arr::get($data, 'published_at', now()),
             'video' => Arr::get($data, 'video'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {

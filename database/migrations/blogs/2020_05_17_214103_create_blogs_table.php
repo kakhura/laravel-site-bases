@@ -18,6 +18,7 @@ class CreateBlogsTable extends Migration
                 $table->bigIncrements('id');
                 $table->unsignedBigInteger('photo_id')->nullable()->index();
                 $table->boolean('published')->default(true);
+                $table->timestamp('published_at');
                 $table->unsignedSmallInteger('ordering')->nullable()->index();
                 $table->string('image');
                 $table->string('thumb')->nullable();

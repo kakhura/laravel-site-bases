@@ -62,6 +62,13 @@
                             <hr>
 
                             <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="published_at">თარიღი</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <input type="text" name="published_at" class="form-control" id="published_at" value="{{ $news->published_at->format('Y-m-d') }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="video">ვიდეო</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
                                     <input type="text" name="video" class="form-control" id="video" value="{{ $news->video }}">
