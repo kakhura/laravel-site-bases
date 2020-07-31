@@ -14,8 +14,8 @@ class BlogController extends Controller
 {
     public function blogs()
     {
-        $blogs = Blog::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.blogs.items', compact('blogs', 'limit'));
+        $blogs = Blog::orderBy('ordering', 'asc')->paginate(15);
+        return view('vendor.admin.site-bases.blogs.items', compact('blogs'));
     }
 
     public function createBlog()

@@ -10,7 +10,7 @@ class PhotoController extends Controller
     public function photos()
     {
         $photos = Photo::where('published', true)
-            ->orderBy('ordering', 'asc')
+            ->orderBy('published_at', 'desc')
             ->with([
                 'detail' => function ($query) {
                     $query->where('locale', app()->getLocale());

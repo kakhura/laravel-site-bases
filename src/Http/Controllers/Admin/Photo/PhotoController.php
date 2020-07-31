@@ -13,8 +13,8 @@ class PhotoController extends Controller
 {
     public function photos()
     {
-        $photos = Photo::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.photos.items', compact('photos', 'limit'));
+        $photos = Photo::orderBy('ordering', 'asc')->paginate(15);
+        return view('vendor.admin.site-bases.photos.items', compact('photos'));
     }
 
     public function createPhoto()

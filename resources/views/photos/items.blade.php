@@ -18,7 +18,7 @@
                     </a>
                     <div class="clearfix"></div>
                 </div>
-                <div class="x_content admin_container">
+                <div class="x_content">
                     @if(count($photos))
                         <table class="table table-striped jambo_table bulk_action">
                             <thead>
@@ -32,9 +32,9 @@
                             </thead>
                             <tbody>
                                 @foreach($photos as $key => $photo)
-                                    <tr class="cursor-move">
-                                        <td class="text-center sort" id="sort{{ $key }}" data-id="{{ $photo->id }}" data-ordering ="{{ $photo->ordering }}">
-                                            {{ $photo->ordering }}
+                                    <tr>
+                                        <td class="text-center">
+                                            {{ $photo->id }}
                                         </td>
                                         <td class="text-center">
                                             <input type="checkbox" value="published" id="{{ $photo->id }}" class="js-switch publish" {{ $photo->published ? 'checked' : '' }} />
@@ -71,66 +71,6 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    @if(isset($limit))
-        <script>
-            $(document).ready(function () {
-
-                $page = "<?php echo ( isset($_REQUEST['page'])) ?  $_REQUEST['page'] :  "1" ?>";
-
-                $limit = "<?php echo  $limit  ?>";
-                $k = $limit * ($page-1);
-
-                $('.admin_container tbody').sortable({
-                    start: function(event, ui) {
-
-                        var start_pos = ui.item.index();
-                        ui.item.data('start_pos', start_pos);
-                    },
-                    update : function(event, ui) {
-                        var index = ui.item.index();
-                        var start_pos = ui.item.data('start_pos');
-
-                        //update the html of the moved item to the current index
-                        $('.admin_container tbody tr:nth-child(' + (index + 1) + ') .sort').html(index+$k+1).attr('data-ordering', index+$k+1);
-
-                        if (start_pos < index) {
-                            //update the items before the re-ordered item
-                            for(var i=index; i > 0; i--){
-                                $('.admin_container tbody tr:nth-child(' + i + ') .sort').html(i+ $k).attr('data-ordering', i+ $k);
-
-                            }
-                        }else {
-                            //update the items after the re-ordered item
-                            for(var i=index+2;i <= $(".admin_container tbody tr").length; i++){
-                                $('.admin_container tbody tr:nth-child(' + i + ') .sort').html(i+$k).attr('data-ordering', i+ $k);
-
-
-                            }
-                        }
-                        changeordering();
-                    },
-                });
-
-            });
-
-            function changeordering(){
-                var multi = $('.sort');
-                var arr = [];
-                for (var i = 0 ; i < multi.length ; i++){
-                    arr.push( [$('#sort'+i).attr('data-id') , $('#sort'+i).attr('data-ordering')] );
-                }
-
-                arr = JSON.stringify(arr);
-                $.ajax({
-                    url:"{{ url('admin/photos/ordering') }}",
-                    type:"POST",
-                    data:"_token={{ csrf_token() }}" + "&ordering=" + arr + "&className={{ addslashes(config('kakhura.site-bases.ordering_classes.photos')) }}",
-                }).done(function(data){})
-            }
-        </script>
-    @endif
-
     <script type="text/javascript">
         $(document).ready(function() {
             $('.delete').click(function(e) {

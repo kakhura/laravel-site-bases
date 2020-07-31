@@ -24,6 +24,10 @@ class News extends Base
         'video_image',
     ];
 
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
     protected $urlSegment = 'news';
 
     public function detail()

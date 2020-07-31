@@ -24,6 +24,10 @@ class Blog extends Base
         'video_image',
     ];
 
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
     protected $urlSegment = 'blogs';
 
     public function detail()

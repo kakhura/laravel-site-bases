@@ -10,7 +10,7 @@ class NewsController extends Controller
     public function news()
     {
         $news = News::where('published', true)
-            ->orderBy('ordering', 'asc')
+            ->orderBy('published_at', 'desc')
             ->with([
                 'detail' => function ($query) {
                     $query->where('locale', app()->getLocale());

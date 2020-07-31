@@ -14,8 +14,8 @@ class NewsController extends Controller
 {
     public function news()
     {
-        $news = News::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.news.items', compact('news', 'limit'));
+        $news = News::orderBy('ordering', 'asc')->paginate(15);
+        return view('vendor.admin.site-bases.news.items', compact('news'));
     }
 
     public function createNews()

@@ -23,6 +23,10 @@ class Photo extends Base
         'video_image',
     ];
 
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
     protected $urlSegment = 'photos';
 
     public function detail()
