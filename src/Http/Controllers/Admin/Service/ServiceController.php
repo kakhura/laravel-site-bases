@@ -14,12 +14,12 @@ class ServiceController extends Controller
     public function services()
     {
         $services = Service::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.services.items', compact('services', 'limit'));
+        return view('vendor.site-bases.admin.services.items', compact('services', 'limit'));
     }
 
     public function createService()
     {
-        return view('vendor.admin.site-bases.services.create');
+        return view('vendor.site-bases.admin.services.create');
     }
 
     public function storeService(CreateRequest $request, ServiceService $serviceService)
@@ -30,7 +30,7 @@ class ServiceController extends Controller
 
     public function editService(Service $service)
     {
-        return view('vendor.admin.site-bases.services.update', compact('service'));
+        return view('vendor.site-bases.admin.services.update', compact('service'));
     }
 
     public function updateService(UpdateRequest $request, ServiceService $serviceService, Service $service)

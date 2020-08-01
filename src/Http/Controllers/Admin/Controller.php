@@ -20,7 +20,7 @@ class Controller extends BaseController
      */
     public function index()
     {
-        return view('vendor.admin.site-bases.index');
+        return view('vendor.site-bases.admin.index');
     }
 
     /**

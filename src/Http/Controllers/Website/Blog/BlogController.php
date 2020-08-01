@@ -16,7 +16,7 @@ class BlogController extends Controller
                     $query->where('locale', app()->getLocale());
                 },
             ])->paginate(config('kakhura.site-bases.pagination_mapper.blogs'));
-        return view('vendor.website.site-bases.blogs.main', compact('blogs'));
+        return view('vendor.site-bases.website.blogs.main', compact('blogs'));
     }
 
     public function blog(Blog $blog)
@@ -26,6 +26,6 @@ class BlogController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ]);
-        return view('vendor.website.site-bases.blogs.item', compact('blog'));
+        return view('vendor.site-bases.website.blogs.item', compact('blog'));
     }
 }

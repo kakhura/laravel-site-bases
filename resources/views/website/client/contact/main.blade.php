@@ -1,4 +1,4 @@
-@extends('vendor.website.site-bases.layouts.master')
+@extends('vendor.site-bases.website.layouts.master')
 
 @section('title', trans('title.contact'))
 

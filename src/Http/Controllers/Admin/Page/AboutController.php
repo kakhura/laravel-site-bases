@@ -12,7 +12,7 @@ class AboutController extends Controller
     public function about()
     {
         $about = About::first();
-        return view('vendor.admin.site-bases.about.edit', compact('about'));
+        return view('vendor.site-bases.admin.about.edit', compact('about'));
     }
 
     public function storeAbout(Request $request, AboutService $aboutService)

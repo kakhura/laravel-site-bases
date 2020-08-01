@@ -16,7 +16,7 @@ class BrandController extends Controller
                     $query->where('locale', app()->getLocale());
                 },
             ])->paginate(config('kakhura.site-bases.pagination_mapper.brands'));
-        return view('vendor.website.site-bases.brands.main', compact('brands'));
+        return view('vendor.site-bases.website.brands.main', compact('brands'));
     }
 
     public function brand(Brand $brand)
@@ -26,6 +26,6 @@ class BrandController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ]);
-        return view('vendor.website.site-bases.brands.item', compact('brand'));
+        return view('vendor.site-bases.website.brands.item', compact('brand'));
     }
 }

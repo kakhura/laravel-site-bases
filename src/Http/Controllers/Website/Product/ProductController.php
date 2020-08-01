@@ -16,7 +16,7 @@ class ProductController extends Controller
                     $query->where('locale', app()->getLocale());
                 },
             ])->paginate(config('kakhura.site-bases.pagination_mapper.products'));
-        return view('vendor.website.site-bases.products.main', compact('products'));
+        return view('vendor.site-bases.website.products.main', compact('products'));
     }
 
     public function product(Product $product)
@@ -26,6 +26,6 @@ class ProductController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ]);
-        return view('vendor.website.site-bases.products.item', compact('product'));
+        return view('vendor.site-bases.website.products.item', compact('product'));
     }
 }

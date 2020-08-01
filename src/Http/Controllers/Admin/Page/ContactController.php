@@ -12,7 +12,7 @@ class ContactController extends Controller
     public function contact()
     {
         $contact = Contact::first();
-        return view('vendor.admin.site-bases.contact.edit', compact('contact'));
+        return view('vendor.site-bases.admin.contact.edit', compact('contact'));
     }
 
     public function storeContact(Request $request, ContactService $contactService)

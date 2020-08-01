@@ -1,4 +1,4 @@
-@extends('vendor.admin.site-bases.inc.layout')
+@extends('vendor.site-bases.admin.inc.layout')
 
 @section('title', 'თარგმნა')
 

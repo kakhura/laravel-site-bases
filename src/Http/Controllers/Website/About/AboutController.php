@@ -14,6 +14,6 @@ class AboutController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ])->first();
-        return view('vendor.website.site-bases.about.main', compact('about'));
+        return view('vendor.site-bases.website.about.main', compact('about'));
     }
 }

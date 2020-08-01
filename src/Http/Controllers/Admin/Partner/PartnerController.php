@@ -15,13 +15,13 @@ class PartnerController extends Controller
     public function partners()
     {
         $partners = Partner::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.partners.items', compact('partners', 'limit'));
+        return view('vendor.site-bases.admin.partners.items', compact('partners', 'limit'));
     }
 
     public function createPartner()
     {
         $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.partners.create', compact('photos'));
+        return view('vendor.site-bases.admin.partners.create', compact('photos'));
     }
 
     public function storePartner(CreateRequest $request, PartnerService $partnerService)
@@ -33,7 +33,7 @@ class PartnerController extends Controller
     public function editPartner(Partner $partner)
     {
         $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.partners.update', compact('partner', 'photos'));
+        return view('vendor.site-bases.admin.partners.update', compact('partner', 'photos'));
     }
 
     public function updatePartner(UpdateRequest $request, PartnerService $partnerService, Partner $partner)

@@ -14,12 +14,12 @@ class VideoController extends Controller
     public function videos()
     {
         $videos = Video::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.videos.items', compact('videos', 'limit'));
+        return view('vendor.site-bases.admin.videos.items', compact('videos', 'limit'));
     }
 
     public function createVideo()
     {
-        return view('vendor.admin.site-bases.videos.create');
+        return view('vendor.site-bases.admin.videos.create');
     }
 
     public function storeVideo(CreateRequest $request, VideoService $videoService)
@@ -30,7 +30,7 @@ class VideoController extends Controller
 
     public function editVideo(Video $video)
     {
-        return view('vendor.admin.site-bases.videos.update', compact('video'));
+        return view('vendor.site-bases.admin.videos.update', compact('video'));
     }
 
     public function updateVideo(UpdateRequest $request, VideoService $videoService, Video $video)

@@ -14,13 +14,13 @@ class CategoryController extends Controller
     public function categories()
     {
         $categories = Category::with('childrenRecursive')->whereNull('parent_id')->orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.categories.items', compact('categories'));
+        return view('vendor.site-bases.admin.categories.items', compact('categories'));
     }
 
     public function createCategory()
     {
         $categories = Category::with('childrenRecursive')->get();
-        return view('vendor.admin.site-bases.categories.create', compact('categories'));
+        return view('vendor.site-bases.admin.categories.create', compact('categories'));
     }
 
     public function storeCategory(CreateRequest $request, CategoryService $categoryService)
@@ -32,7 +32,7 @@ class CategoryController extends Controller
     public function editCategory(Category $category)
     {
         $categories = Category::with('childrenRecursive')->get();
-        return view('vendor.admin.site-bases.categories.update', compact('category', 'categories'));
+        return view('vendor.site-bases.admin.categories.update', compact('category', 'categories'));
     }
 
     public function updateCategory(UpdateRequest $request, CategoryService $categoryService, Category $category)

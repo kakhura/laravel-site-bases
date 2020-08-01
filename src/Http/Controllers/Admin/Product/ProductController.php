@@ -15,13 +15,13 @@ class ProductController extends Controller
     public function products()
     {
         $products = Product::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.products.items', compact('products', 'limit'));
+        return view('vendor.site-bases.admin.products.items', compact('products', 'limit'));
     }
 
     public function createProduct()
     {
         $categories = Category::where('published', true)->orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.products.create', compact('categories'));
+        return view('vendor.site-bases.admin.products.create', compact('categories'));
     }
 
     public function storeProduct(CreateRequest $request, ProductService $productService)
@@ -33,7 +33,7 @@ class ProductController extends Controller
     public function editProduct(Product $product)
     {
         $categories = Category::where('published', true)->orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.products.update', compact('product', 'categories'));
+        return view('vendor.site-bases.admin.products.update', compact('product', 'categories'));
     }
 
     public function updateProduct(UpdateRequest $request, ProductService $productService, Product $product)

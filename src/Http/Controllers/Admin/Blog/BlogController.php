@@ -15,13 +15,13 @@ class BlogController extends Controller
     public function blogs()
     {
         $blogs = Blog::orderBy('ordering', 'asc')->paginate(15);
-        return view('vendor.admin.site-bases.blogs.items', compact('blogs'));
+        return view('vendor.site-bases.admin.blogs.items', compact('blogs'));
     }
 
     public function createBlog()
     {
         $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.blogs.create', compact('photos'));
+        return view('vendor.site-bases.admin.blogs.create', compact('photos'));
     }
 
     public function storeBlog(CreateRequest $request, BlogService $blogService)
@@ -33,7 +33,7 @@ class BlogController extends Controller
     public function editBlog(Blog $blog)
     {
         $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.blogs.update', compact('blog', 'photos'));
+        return view('vendor.site-bases.admin.blogs.update', compact('blog', 'photos'));
     }
 
     public function updateBlog(UpdateRequest $request, BlogService $blogService, Blog $blog)

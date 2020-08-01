@@ -16,7 +16,7 @@ class ServiceController extends Controller
                     $query->where('locale', app()->getLocale());
                 },
             ])->paginate(config('kakhura.site-bases.pagination_mapper.services'));
-        return view('vendor.website.site-bases.services.main', compact('services'));
+        return view('vendor.site-bases.website.services.main', compact('services'));
     }
 
     public function service(Service $service)
@@ -26,6 +26,6 @@ class ServiceController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ]);
-        return view('vendor.website.site-bases.services.item', compact('service'));
+        return view('vendor.site-bases.website.services.item', compact('service'));
     }
 }

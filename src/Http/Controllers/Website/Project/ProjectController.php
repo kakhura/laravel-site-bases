@@ -16,7 +16,7 @@ class ProjectController extends Controller
                     $query->where('locale', app()->getLocale());
                 },
             ])->paginate(config('kakhura.site-bases.pagination_mapper.projects'));
-        return view('vendor.website.site-bases.projects.main', compact('projects'));
+        return view('vendor.site-bases.website.projects.main', compact('projects'));
     }
 
     public function project(Project $project)
@@ -26,6 +26,6 @@ class ProjectController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ]);
-        return view('vendor.website.site-bases.projects.item', compact('project'));
+        return view('vendor.site-bases.website.projects.item', compact('project'));
     }
 }

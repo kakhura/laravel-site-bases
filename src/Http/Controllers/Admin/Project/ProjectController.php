@@ -14,12 +14,12 @@ class ProjectController extends Controller
     public function projects()
     {
         $projects = Project::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.projects.items', compact('projects', 'limit'));
+        return view('vendor.site-bases.admin.projects.items', compact('projects', 'limit'));
     }
 
     public function createProject()
     {
-        return view('vendor.admin.site-bases.projects.create');
+        return view('vendor.site-bases.admin.projects.create');
     }
 
     public function storeProject(CreateRequest $request, ProjectService $projectService)
@@ -30,7 +30,7 @@ class ProjectController extends Controller
 
     public function editProject(Project $project)
     {
-        return view('vendor.admin.site-bases.projects.update', compact('project'));
+        return view('vendor.site-bases.admin.projects.update', compact('project'));
     }
 
     public function updateProject(UpdateRequest $request, ProjectService $projectService, Project $project)

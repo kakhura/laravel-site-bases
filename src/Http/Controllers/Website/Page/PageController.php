@@ -16,7 +16,7 @@ class PageController extends Controller
                     $query->where('locale', app()->getLocale());
                 },
             ])->paginate(config('kakhura.site-bases.pagination_mapper.pages'));
-        return view('vendor.website.site-bases.pages.main', compact('pages'));
+        return view('vendor.site-bases.website.pages.main', compact('pages'));
     }
 
     public function page(Page $page)
@@ -26,6 +26,6 @@ class PageController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ]);
-        return view('vendor.website.site-bases.pages.item', compact('page'));
+        return view('vendor.site-bases.website.pages.item', compact('page'));
     }
 }

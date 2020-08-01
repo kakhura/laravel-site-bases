@@ -14,12 +14,12 @@ class PageController extends Controller
     public function pages()
     {
         $pages = Page::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.pages.items', compact('pages', 'limit'));
+        return view('vendor.site-bases.admin.pages.items', compact('pages', 'limit'));
     }
 
     public function createPage()
     {
-        return view('vendor.admin.site-bases.pages.create');
+        return view('vendor.site-bases.admin.pages.create');
     }
 
     public function storePage(CreateRequest $request, PageService $pageService)
@@ -30,7 +30,7 @@ class PageController extends Controller
 
     public function editPage(Page $page)
     {
-        return view('vendor.admin.site-bases.pages.update', compact('page'));
+        return view('vendor.site-bases.admin.pages.update', compact('page'));
     }
 
     public function updatePage(UpdateRequest $request, PageService $pageService, Page $page)

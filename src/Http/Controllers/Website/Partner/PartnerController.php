@@ -16,7 +16,7 @@ class PartnerController extends Controller
                     $query->where('locale', app()->getLocale());
                 },
             ])->paginate(config('kakhura.site-bases.pagination_mapper.partners'));
-        return view('vendor.website.site-bases.partners.main', compact('partners'));
+        return view('vendor.site-bases.website.partners.main', compact('partners'));
     }
 
     public function partner(Partner $partner)
@@ -26,6 +26,6 @@ class PartnerController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ]);
-        return view('vendor.website.site-bases.partners.item', compact('partner'));
+        return view('vendor.site-bases.website.partners.item', compact('partner'));
     }
 }

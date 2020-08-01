@@ -50,11 +50,11 @@ class SiteBasesServiceProvider extends ServiceProvider
     protected function publishAdminViews()
     {
         foreach (config('kakhura.site-bases.modules_publish_mapper') as $module) {
-            $viewPath = __DIR__ . sprintf('/../resources/views/%s', $module);
+            $viewPath = __DIR__ . sprintf('/../resources/views/admin/%s', $module);
             if (File::exists($viewPath)) {
                 $this->loadViewsFrom($viewPath, 'site-bases');
                 $this->publishes([
-                    $viewPath => base_path(sprintf('resources/views/vendor/admin/site-bases/%s', $module)),
+                    $viewPath => base_path(sprintf('resources/views/vendor/site-bases/admin/%s', $module)),
                 ], 'kakhura-site-bases-views');
             }
         }
@@ -67,7 +67,7 @@ class SiteBasesServiceProvider extends ServiceProvider
             if (File::exists($viewPath)) {
                 $this->loadViewsFrom($viewPath, 'site-bases');
                 $this->publishes([
-                    $viewPath => base_path(sprintf('resources/views/vendor/website/site-bases/%s', $module)),
+                    $viewPath => base_path(sprintf('resources/views/vendor/site-bases/website/%s', $module)),
                 ], 'kakhura-site-bases-views');
             }
         }
@@ -75,14 +75,14 @@ class SiteBasesServiceProvider extends ServiceProvider
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
             $this->publishes([
-                $viewPath => base_path('resources/views/vendor/website/site-bases/main'),
+                $viewPath => base_path('resources/views/vendor/site-bases/website/main'),
             ], 'kakhura-site-bases-views');
         }
         $viewPath = __DIR__ . '/../resources/views/website/layouts';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
             $this->publishes([
-                $viewPath => base_path(sprintf('resources/views/vendor/website/site-bases/layouts', $module)),
+                $viewPath => base_path(sprintf('resources/views/vendor/site-bases/website/layouts', $module)),
             ], 'kakhura-site-bases-views');
         }
     }
@@ -96,18 +96,18 @@ class SiteBasesServiceProvider extends ServiceProvider
                 $viewPath => base_path('resources/views/vendor/translation-manager'),
             ], 'kakhura-site-bases-views');
         }
-        $viewPath = __DIR__ . '/../resources/views/inc';
+        $viewPath = __DIR__ . '/../resources/views/admin/inc';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
             $this->publishes([
-                $viewPath => base_path('resources/views/vendor/admin/site-bases/inc'),
+                $viewPath => base_path('resources/views/vendor/site-bases/admin/inc'),
             ], 'kakhura-site-bases-views');
         }
         $viewPath = __DIR__ . '/../resources/views/index.blade.php';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
             $this->publishes([
-                $viewPath => base_path('resources/views/vendor/admin/site-bases/index.blade.php'),
+                $viewPath => base_path('resources/views/vendor/site-bases/admin/index.blade.php'),
             ], 'kakhura-site-bases-views');
         }
     }

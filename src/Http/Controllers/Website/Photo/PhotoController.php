@@ -16,7 +16,7 @@ class PhotoController extends Controller
                     $query->where('locale', app()->getLocale());
                 },
             ])->paginate(config('kakhura.site-bases.pagination_mapper.photos'));
-        return view('vendor.website.site-bases.photos.main', compact('photos'));
+        return view('vendor.site-bases.website.photos.main', compact('photos'));
     }
 
     public function photo(Photo $photo)
@@ -26,6 +26,6 @@ class PhotoController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ]);
-        return view('vendor.website.site-bases.photos.item', compact('photo'));
+        return view('vendor.site-bases.website.photos.item', compact('photo'));
     }
 }

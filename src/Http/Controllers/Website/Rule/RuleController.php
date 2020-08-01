@@ -14,6 +14,6 @@ class RuleController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ])->first();
-        return view('vendor.website.site-bases.rules.main', compact('rules'));
+        return view('vendor.site-bases.website.rules.main', compact('rules'));
     }
 }

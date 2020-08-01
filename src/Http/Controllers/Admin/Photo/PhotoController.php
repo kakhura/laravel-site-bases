@@ -14,12 +14,12 @@ class PhotoController extends Controller
     public function photos()
     {
         $photos = Photo::orderBy('ordering', 'asc')->paginate(15);
-        return view('vendor.admin.site-bases.photos.items', compact('photos'));
+        return view('vendor.site-bases.admin.photos.items', compact('photos'));
     }
 
     public function createPhoto()
     {
-        return view('vendor.admin.site-bases.photos.create');
+        return view('vendor.site-bases.admin.photos.create');
     }
 
     public function storePhoto(CreateRequest $request, PhotoService $photoService)
@@ -30,7 +30,7 @@ class PhotoController extends Controller
 
     public function editPhoto(Photo $photo)
     {
-        return view('vendor.admin.site-bases.photos.update', compact('photo'));
+        return view('vendor.site-bases.admin.photos.update', compact('photo'));
     }
 
     public function updatePhoto(UpdateRequest $request, PhotoService $photoService, Photo $photo)

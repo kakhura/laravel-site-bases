@@ -14,12 +14,12 @@ class SlideController extends Controller
     public function slides()
     {
         $slides = Slide::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.slides.items', compact('slides', 'limit'));
+        return view('vendor.site-bases.admin.slides.items', compact('slides', 'limit'));
     }
 
     public function createSlide()
     {
-        return view('vendor.admin.site-bases.slides.create');
+        return view('vendor.site-bases.admin.slides.create');
     }
 
     public function storeSlide(CreateRequest $request, SlideService $slideService)
@@ -30,7 +30,7 @@ class SlideController extends Controller
 
     public function editSlide(Slide $slide)
     {
-        return view('vendor.admin.site-bases.slides.update', compact('slide'));
+        return view('vendor.site-bases.admin.slides.update', compact('slide'));
     }
 
     public function updateSlide(UpdateRequest $request, SlideService $slideService, Slide $slide)

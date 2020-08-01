@@ -16,7 +16,7 @@ class NewsController extends Controller
                     $query->where('locale', app()->getLocale());
                 },
             ])->paginate(config('kakhura.site-bases.pagination_mapper.news'));
-        return view('vendor.website.site-bases.news.main', compact('news'));
+        return view('vendor.site-bases.website.news.main', compact('news'));
     }
 
     public function news_in(News $news)
@@ -26,6 +26,6 @@ class NewsController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ]);
-        return view('vendor.website.site-bases.news.item', compact('news'));
+        return view('vendor.site-bases.website.news.item', compact('news'));
     }
 }

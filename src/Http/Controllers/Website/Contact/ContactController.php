@@ -14,6 +14,6 @@ class ContactController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ])->first();
-        return view('vendor.website.site-bases.contact.main', compact('contact'));
+        return view('vendor.site-bases.website.contact.main', compact('contact'));
     }
 }

@@ -16,7 +16,7 @@ class VideoController extends Controller
                     $query->where('locale', app()->getLocale());
                 },
             ])->paginate(config('kakhura.site-bases.pagination_mapper.videos'));
-        return view('vendor.website.site-bases.videos.main', compact('videos'));
+        return view('vendor.site-bases.website.videos.main', compact('videos'));
     }
 
     public function video(Video $video)
@@ -26,6 +26,6 @@ class VideoController extends Controller
                 $query->where('locale', app()->getLocale());
             },
         ]);
-        return view('vendor.website.site-bases.videos.item', compact('video'));
+        return view('vendor.site-bases.website.videos.item', compact('video'));
     }
 }

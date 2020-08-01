@@ -14,12 +14,12 @@ class AdminController extends Controller
     public function admins()
     {
         $admins = User::latest()->paginate(10);
-        return view('vendor.admin.site-bases.admins.items', compact('admins'));
+        return view('vendor.site-bases.admin.admins.items', compact('admins'));
     }
 
     public function createAdmin()
     {
-        return view('vendor.admin.site-bases.admins.create');
+        return view('vendor.site-bases.admin.admins.create');
     }
 
     public function storeAdmin(CreateRequest $request, AdminService $adminService)
@@ -30,7 +30,7 @@ class AdminController extends Controller
 
     public function editAdmin(User $admin)
     {
-        return view('vendor.admin.site-bases.admins.update', compact('admin'));
+        return view('vendor.site-bases.admin.admins.update', compact('admin'));
     }
 
     public function updateAdmin(UpdateRequest $request, AdminService $adminService, User $admin)

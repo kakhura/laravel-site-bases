@@ -15,13 +15,13 @@ class NewsController extends Controller
     public function news()
     {
         $news = News::orderBy('ordering', 'asc')->paginate(15);
-        return view('vendor.admin.site-bases.news.items', compact('news'));
+        return view('vendor.site-bases.admin.news.items', compact('news'));
     }
 
     public function createNews()
     {
         $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.news.create', compact('photos'));
+        return view('vendor.site-bases.admin.news.create', compact('photos'));
     }
 
     public function storeNews(CreateRequest $request, NewsService $newsService)
@@ -33,7 +33,7 @@ class NewsController extends Controller
     public function editNews(News $news)
     {
         $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.news.update', compact('news', 'photos'));
+        return view('vendor.site-bases.admin.news.update', compact('news', 'photos'));
     }
 
     public function updateNews(UpdateRequest $request, NewsService $newsService, News $news)

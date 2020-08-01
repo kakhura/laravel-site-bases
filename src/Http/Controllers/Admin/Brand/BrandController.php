@@ -15,13 +15,13 @@ class BrandController extends Controller
     public function brands()
     {
         $brands = Brand::orderBy('ordering', 'asc')->paginate($limit = 100000);
-        return view('vendor.admin.site-bases.brands.items', compact('brands', 'limit'));
+        return view('vendor.site-bases.admin.brands.items', compact('brands', 'limit'));
     }
 
     public function createBrand()
     {
         $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.brands.create', compact('photos'));
+        return view('vendor.site-bases.admin.brands.create', compact('photos'));
     }
 
     public function storeBrand(CreateRequest $request, BrandService $brandService)
@@ -33,7 +33,7 @@ class BrandController extends Controller
     public function editBrand(Brand $brand)
     {
         $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.admin.site-bases.brands.update', compact('brand', 'photos'));
+        return view('vendor.site-bases.admin.brands.update', compact('brand', 'photos'));
     }
 
     public function updateBrand(UpdateRequest $request, BrandService $brandService, Brand $brand)
