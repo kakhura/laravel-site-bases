@@ -103,7 +103,7 @@ class SiteBasesServiceProvider extends ServiceProvider
                 $viewPath => base_path('resources/views/vendor/site-bases/admin/inc'),
             ], 'kakhura-site-bases-views');
         }
-        $viewPath = __DIR__ . '/../resources/views/index.blade.php';
+        $viewPath = __DIR__ . '/../resources/views/admin/index.blade.php';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
             $this->publishes([
