@@ -41,7 +41,7 @@
                                         </td>
                                         <td>
                                             @if($page->image)
-                                                <img class="post" src="{{asset($page->image)}}" alt="" />
+                                                <img class="post" src="{{ asset($page->image) }}" alt="" />
                                             @endif
                                             <a href="{{ url('admin/pages/edit/' . $page->id) }}">
                                                 {{ Str::limit($page->detail()->where('locale', 'ka')->first()->title, 35) }}

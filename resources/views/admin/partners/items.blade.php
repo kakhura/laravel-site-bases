@@ -41,7 +41,7 @@
                                         </td>
                                         <td>
                                             @if($partner->image)
-                                                <img class="post" src="{{asset($partner->image)}}" alt="" />
+                                                <img class="post" src="{{ asset($partner->image) }}" alt="" />
                                             @endif
                                             <a href="{{ url('admin/partners/edit/' . $partner->id) }}">
                                                 {{ Str::limit($partner->detail()->where('locale', 'ka')->first()->title, 35) }}

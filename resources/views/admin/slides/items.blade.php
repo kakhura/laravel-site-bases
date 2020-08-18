@@ -41,7 +41,7 @@
                                         </td>
                                         <td>
                                             @if($slide->image)
-                                                <img class="post" src="{{asset($slide->image)}}" alt="" />
+                                                <img class="post" src="{{ asset($slide->image) }}" alt="" />
                                             @endif
                                             <a href="{{ url('admin/slides/edit/' . $slide->id) }}">
                                                 {{ Str::limit($slide->detail()->where('locale', 'ka')->first()->title, 35) }}

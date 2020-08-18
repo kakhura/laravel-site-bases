@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http\Controllers\Admin', 'middleware' => ['web', 'auth', 'with_db_transactions']], function () {
-    Route::post('/admin/upload', 'Controller@uploadFromRedactor');
+    Route::post('/upload', 'Controller@uploadFromRedactor');
 
     Route::get('/', 'Controller@index');
 

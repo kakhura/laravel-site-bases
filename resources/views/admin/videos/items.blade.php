@@ -41,7 +41,7 @@
                                         </td>
                                         <td>
                                             @if($video->image)
-                                                <img class="post" src="{{asset($video->image)}}" alt="" />
+                                                <img class="post" src="{{ asset($video->image) }}" alt="" />
                                             @endif
                                             <a href="{{ url('admin/videos/edit/' . $video->id) }}">
                                                 {{ Str::limit($video->detail()->where('locale', 'ka')->first()->title, 35) }}

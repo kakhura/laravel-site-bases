@@ -163,7 +163,7 @@
                                                         <div class="col-md-4">
                                                             <div class="thumbnail">
                                                                 <div class="image view view-first" data-id="{{ $image->id }}" data-main="{{ $news->id }}">
-                                                                    <img src="{{asset($image->image)}}">
+                                                                    <img src="{{ asset($image->image) }}">
                                                                 </div>
                                                                 <div class="caption">
                                                                     <div class="btn btn-danger delImg" data-img="{{ asset($image->image) }}" data-id="{{ $image->id }}" data-main="{{ $news->id }}"><i class="fa fa-close"></i> სურათის წაშლა</div>
