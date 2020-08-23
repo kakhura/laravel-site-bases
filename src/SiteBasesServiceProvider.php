@@ -2,6 +2,7 @@
 
 namespace Kakhura\LaravelSiteBases;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Kakhura\LaravelSiteBases\Console\Commands\RunCommands;
@@ -24,9 +25,9 @@ class SiteBasesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
-        $this->app['router']->middleware('admin', AdminMiddleware::class);
+        $router->middlewareGroup('admin', [AdminMiddleware::class]);
         $this->publishConfigs();
         $this->publishViews();
         $this->publishMigrations();
