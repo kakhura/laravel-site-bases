@@ -5,6 +5,7 @@ namespace Kakhura\LaravelSiteBases;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Kakhura\LaravelSiteBases\Console\Commands\RunCommands;
+use Kakhura\LaravelSiteBases\Http\Middleware\AdminMiddleware;
 
 class SiteBasesServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,7 @@ class SiteBasesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app['router']->middleware('admin', AdminMiddleware::class);
         $this->publishConfigs();
         $this->publishViews();
         $this->publishMigrations();

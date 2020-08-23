@@ -331,4 +331,9 @@ return [
     'contact_socials' => [
         'facebook',
     ],
+
+    /**
+     * Use two type users
+     */
+    'use_two_type_users' => true,
 ];

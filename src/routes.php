@@ -4,7 +4,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http\Controllers\Admin', 'middleware' => ['web', 'auth', 'with_db_transactions']], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http\Controllers\Admin', 'middleware' => array_merge(['web', 'auth', 'with_db_transactions'], config('kakhura.site-bases.use_two_type_users') ? ['admin'] : [])], function () {
     Route::post('/upload', 'Controller@uploadFromRedactor');
 
     Route::get('/', 'Controller@index');
