@@ -76,6 +76,20 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" for="photo_position">ფოტოს პოზიცია</label>
+                                <div class="col-md-10 col-sm-10  col-xs-12">
+                                    <select name="photo_position" class="form-control" id="photo_position">
+                                        <option value="">აირჩიეთ</option>
+                                        @foreach (config('kakhura.site-bases.modules_photo_positions') as $position)
+                                            <option {{ $news->photo_position == $position ? 'selected' : '' }} value="{{ $position }}">
+                                                {{ $position }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" for="photo_id">ფოტო გალერეა</label>
                                 <div class="col-md-10 col-sm-10  col-xs-12">
                                     <select name="photo_id" class="form-control" id="photo_id">

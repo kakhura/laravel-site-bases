@@ -28,6 +28,7 @@ class NewsService extends Service
             'published_at' => Arr::get($data, 'published_at', now()),
             'video' => Arr::get($data, 'video'),
             'photo_id' => Arr::get($data, 'photo_id'),
+            'photo_position' => Arr::get($data, 'photo_position'),
         ]);
         $news->update([
             'ordering' => $news->id,
@@ -65,6 +66,7 @@ class NewsService extends Service
             'published_at' => Arr::get($data, 'published_at', now()),
             'video' => Arr::get($data, 'video'),
             'photo_id' => Arr::get($data, 'photo_id'),
+            'photo_position' => Arr::get($data, 'photo_position'),
         ]);
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
             $news->detail()->where('locale', $localeCode)->first()->update([

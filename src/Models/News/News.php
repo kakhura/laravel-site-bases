@@ -22,6 +22,7 @@ class News extends Base
         'thumb',
         'video',
         'video_image',
+        'photo_position',
     ];
 
     protected $casts = [

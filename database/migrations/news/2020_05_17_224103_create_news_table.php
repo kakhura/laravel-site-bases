@@ -24,6 +24,7 @@ class CreateNewsTable extends Migration
                 $table->string('thumb')->nullable();
                 $table->string('video_image')->nullable();
                 $table->text('video')->nullable();
+                $table->string('photo_position')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();

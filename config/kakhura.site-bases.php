@@ -336,4 +336,15 @@ return [
      * Use two type users
      */
     'use_two_type_users' => true,
+
+    /**
+     * Modules photo positions
+     */
+    'modules_photo_positions' => [
+        'news' => [
+            'top',
+            'middle',
+            'bottom',
+        ],
+    ],
 ];
