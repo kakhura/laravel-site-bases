@@ -29,7 +29,7 @@ class CreateRequest extends BaseRequest
             'published' => 'nullable|string',
             'video' => 'nullable|string',
             'video_image' => 'array|min:1',
-            'photo_position' => 'nullable|string',
+            'photo_position' => 'nullable|string|in:' . implode(',', config('kakhura.site-bases.modules_photo_positions.news')),
             'images' => 'array|min:1',
             'published_at' => 'nullable|date',
         ], $this->translationsValidation([

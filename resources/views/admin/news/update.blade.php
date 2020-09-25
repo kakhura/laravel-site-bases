@@ -80,7 +80,7 @@
                                 <div class="col-md-10 col-sm-10  col-xs-12">
                                     <select name="photo_position" class="form-control" id="photo_position">
                                         <option value="">აირჩიეთ</option>
-                                        @foreach (config('kakhura.site-bases.modules_photo_positions') as $position)
+                                        @foreach (config('kakhura.site-bases.modules_photo_positions.news') as $position)
                                             <option {{ $news->photo_position == $position ? 'selected' : '' }} value="{{ $position }}">
                                                 {{ $position }}
                                             </option>
