@@ -17,6 +17,7 @@ class CreateBrandsTable extends Migration
             Schema::create('brands', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->boolean('published')->default(true);
+                $table->boolean('show_on_brands')->default(true);
                 $table->unsignedSmallInteger('ordering')->nullable()->index();
                 $table->string('image');
                 $table->string('thumb')->nullable();

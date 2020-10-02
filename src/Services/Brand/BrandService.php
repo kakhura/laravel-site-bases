@@ -23,6 +23,7 @@ class BrandService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
+            'show_on_brands' => Arr::get($data, 'show_on_brands') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
             'link' => Arr::get($data, 'link'),
         ]);
@@ -52,6 +53,7 @@ class BrandService extends Service
             'thumb' => Arr::get($image, 'thumbFileName'),
             'video_image' => Arr::get($videoImage, 'fileName'),
             'published' => Arr::get($data, 'published') == 'on' ? true : false,
+            'show_on_brands' => Arr::get($data, 'show_on_brands') == 'on' ? true : false,
             'video' => Arr::get($data, 'video'),
             'link' => Arr::get($data, 'link'),
         ]);

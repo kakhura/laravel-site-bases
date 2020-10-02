@@ -10,6 +10,7 @@ class BrandController extends Controller
     public function brands()
     {
         $brands = Brand::where('published', true)
+            ->where('show_on_brands', true)
             ->orderBy('ordering', 'asc')
             ->with([
                 'detail' => function ($query) {

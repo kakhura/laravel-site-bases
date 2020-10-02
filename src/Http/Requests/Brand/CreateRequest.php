@@ -26,6 +26,7 @@ class CreateRequest extends BaseRequest
         return array_merge([
             'image' => 'required|array|min:1',
             'published' => 'nullable|string',
+            'show_on_brands' => 'nullable|string',
             'video' => 'nullable|string',
             'video_image' => 'array|min:1',
             'link' => 'nullable|string',

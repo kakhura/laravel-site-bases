@@ -141,6 +141,15 @@
                             </div>
 
                             <div class="form-group">
+                                <div class="col-md-offset-2 col-md-3 col-sm-4 col-xs-12">
+                                    <label>
+                                        <input type="checkbox" name="show_on_brands" class="js-switch" {{ $brand->show_on_brands ? 'checked' : '' }} />
+                                        გამოჩნდეს ბრენდებში
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="col-md-10 col-md-offset-2">
                                     <button type="submit" class="btn btn-success btn-add">განახლება</button>
                                 </div>

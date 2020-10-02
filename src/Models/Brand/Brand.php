@@ -20,6 +20,7 @@ class Brand extends Base
         'thumb',
         'video',
         'video_image',
+        'show_on_brands',
         'link',
     ];
 
