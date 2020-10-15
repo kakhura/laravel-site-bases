@@ -2,7 +2,9 @@
 
 namespace Kakhura\LaravelSiteBases\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
 
 class RunCommands extends Command
 {
@@ -38,6 +40,7 @@ class RunCommands extends Command
     public function handle()
     {
         $this->runCommands();
+        $this->createUser();
     }
 
     protected function runCommands()
@@ -46,6 +49,7 @@ class RunCommands extends Command
         $this->ui();
         $this->localization();
         $this->translations();
+        $this->lfm();
     }
 
     protected function migrate()
@@ -84,7 +88,7 @@ class RunCommands extends Command
         $this->info('Translation manager published succsesfully');
     }
 
-    protected function fileManager()
+    protected function lfm()
     {
         $this->call('vendor:publish', [
             '--tag' => 'lfm_config',
@@ -94,5 +98,14 @@ class RunCommands extends Command
         ]);
         $this->call('storage:link');
         $this->info('File manager published succsesfully');
+    }
+
+    protected function createUser()
+    {
+        User::create(array_merge([
+            'name' => 'admin',
+            'email' => 'info@unicode.ge',
+            'password' => Hash::make('admin123'),
+        ], config('kakhura.site-bases.use_two_type_users') ? ['is_admin' => true] : []));
     }
 }
