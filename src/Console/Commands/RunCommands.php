@@ -83,4 +83,16 @@ class RunCommands extends Command
         ]);
         $this->info('Translation manager published succsesfully');
     }
+
+    protected function fileManager()
+    {
+        $this->call('vendor:publish', [
+            '--tag' => 'lfm_config',
+        ]);
+        $this->call('vendor:publish', [
+            '--tag' => 'lfm_public',
+        ]);
+        $this->call('storage:link');
+        $this->info('File manager published succsesfully');
+    }
 }

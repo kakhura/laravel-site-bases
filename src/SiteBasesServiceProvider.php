@@ -113,6 +113,14 @@ class SiteBasesServiceProvider extends ServiceProvider
                 $viewPath => base_path('resources/views/vendor/site-bases/admin/index.blade.php'),
             ], 'kakhura-site-bases-views');
         }
+
+        $viewPath = __DIR__ . '/../resources/lang/vendor/laravel-filemanager/ka/lfm.php';
+        if (File::exists($viewPath)) {
+            $this->loadViewsFrom($viewPath, 'site-bases');
+            $this->publishes([
+                $viewPath => base_path('resources/lang/vendor/laravel-filemanager/ka/lfm.php'),
+            ], 'kakhura-site-bases-views');
+        }
     }
 
     protected function publishMigrations()

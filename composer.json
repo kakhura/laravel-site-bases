@@ -17,7 +17,8 @@
         "mcamara/laravel-localization": "^1.5",
         "waska14/laravel-with-db-transactions": "^2.0",
         "intervention/image": "^2.5",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "unisharp/laravel-filemanager": "^2.1"
     },
     "autoload": {
         "psr-4": {

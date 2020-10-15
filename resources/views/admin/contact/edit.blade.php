@@ -145,14 +145,6 @@
     <script>
         $(document).ready(function() {
             $('input[name="image"]').fileuploader({addMore: false});
-
-            $('textarea').redactor({
-                imageUpload: "{{ url('admin/upload') }}?_token=" + "{{csrf_token()}}",
-                fileUpload: "{{ url('admin/upload') }}?_token=" + "{{csrf_token()}}",
-                lang: 'ka',
-                autoresize: true,
-                minHeight: 300
-            });
         });
     </script>
 @endsection

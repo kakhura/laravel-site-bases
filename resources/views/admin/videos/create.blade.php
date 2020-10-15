@@ -121,13 +121,5 @@
             $('input[name="image"]').fileuploader({addMore: false});
             $('input[name="images"]').fileuploader({addMore: true});
         });
-
-        $('textarea').redactor({
-            imageUpload: "{{url('admin/upload')}}?_token=" + "{{csrf_token()}}",
-            fileUpload: "{{url('admin/upload')}}?_token=" + "{{csrf_token()}}",
-            lang: 'ka',
-            autoresize: true,
-            minHeight: 500
-        });
     </script>
 @endsection

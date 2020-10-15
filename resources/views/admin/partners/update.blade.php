@@ -180,14 +180,6 @@
             $('input[name="image"]').fileuploader({addMore: false});
             $('input[name="images"]').fileuploader({addMore: true});
             $('input[name="video_image"]').fileuploader({addMore: true});
-
-            $('textarea').redactor({
-                imageUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",
-                fileUpload: "{{ url('admin/upload') }}?_token=" + "{{ csrf_token() }}",
-                lang: 'en',
-                autoresize: true,
-                minHeight: 200,
-            });
         });
     </script>
 @endsection
