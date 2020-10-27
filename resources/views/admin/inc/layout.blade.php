@@ -94,6 +94,11 @@
                     resizable : "yes",
                     close_previous : "no"
                 });
+            },
+            setup: function (editor) {
+                editor.on('change', function (e) {
+                    editor.save();
+                });
             }
         };
 
