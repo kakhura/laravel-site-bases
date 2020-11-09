@@ -72,7 +72,9 @@
                 "insertdatetime media nonbreaking save table contextmenu directionality",
                 "emoticons template paste textcolor colorpicker textpattern"
             ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+            height: 500,
+            toolbar: "insertfile undo redo | styleselect | fontsizeselect bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+            fontsize_formats: "8pt 10pt 11pt 12pt 14pt 18pt 24pt 36pt 48pt",
             relative_urls: false,
             height: 500,
             file_browser_callback : function(field_name, url, type, win) {
