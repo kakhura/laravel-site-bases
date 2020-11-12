@@ -338,6 +338,11 @@ return [
     'use_two_type_users' => true,
 
     /**
+     * Use Georgian letter into category url
+     */
+    'use_georgian_letters_into_category_url' => false,
+
+    /**
      * Modules photo positions
      */
     'modules_photo_positions' => [
