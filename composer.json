@@ -12,7 +12,13 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0"
+        "php": ">=7.0.0",
+        "barryvdh/laravel-translation-manager": "^0.5.9",
+        "mcamara/laravel-localization": "^1.6",
+        "waska14/laravel-with-db-transactions": "^2.0",
+        "intervention/image": "^2.5",
+        "laravel/ui": "^3.0",
+        "unisharp/laravel-filemanager": "^2.1"
     },
     "autoload": {
         "psr-4": {
