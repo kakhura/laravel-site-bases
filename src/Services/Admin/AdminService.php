@@ -15,11 +15,11 @@ class AdminService extends Service
      */
     public function create(array $data)
     {
-        User::create([
+        User::create(array_merge([
             'name' => Arr::get($data, 'name'),
             'email' => Arr::get($data, 'email'),
             'password' => Hash::make(Arr::get($data, 'password')),
-        ]);
+        ], config('kakhura.site-bases.use_two_type_users') ? ['is_admin' => true] : []));
     }
 
     /**
