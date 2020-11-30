@@ -36,6 +36,7 @@ class BlogService extends Service
             $blog->detail()->create([
                 'title' => Arr::get($data, 'title_' . $localeCode),
                 'description' => Arr::get($data, 'description_' . $localeCode),
+                'description_min' => Arr::get($data, 'description_min_' . $localeCode),
                 'locale' => $localeCode,
             ]);
         }
@@ -70,6 +71,7 @@ class BlogService extends Service
             $blog->detail()->where('locale', $localeCode)->first()->update([
                 'title' => Arr::get($data, 'title_' . $localeCode),
                 'description' => Arr::get($data, 'description_' . $localeCode),
+                'description_min' => Arr::get($data, 'description_min_' . $localeCode),
             ]);
         }
         foreach (Arr::get($data, 'images', []) as $image) {

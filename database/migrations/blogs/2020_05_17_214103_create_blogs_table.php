@@ -38,6 +38,7 @@ class CreateBlogsTable extends Migration
                 $table->unsignedBigInteger('blog_id')->index();
                 $table->string('title');
                 $table->text('description');
+                $table->text('description_min')->nullable();
                 $table->string('locale')->index();
 
                 $table->timestamps();

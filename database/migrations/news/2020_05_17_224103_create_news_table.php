@@ -39,6 +39,7 @@ class CreateNewsTable extends Migration
                 $table->unsignedBigInteger('news_id')->index();
                 $table->string('title');
                 $table->text('description');
+                $table->text('description_min')->nullable();
                 $table->string('locale')->index();
 
                 $table->timestamps();

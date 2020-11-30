@@ -55,6 +55,13 @@
                                                 <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}" required>{{ $blog->detail()->where('locale', $localeCode)->first()->description }}</textarea>
                                             </div>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_min_{{ $localeCode }}">მოკლე აღწერა</label>
+                                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                                <textarea id="description_min_{{ $localeCode }}" class="textarea" name="description_min_{{ $localeCode }}">{{ $blog->detail()->where('locale', $localeCode)->first()->description_min }}</textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>

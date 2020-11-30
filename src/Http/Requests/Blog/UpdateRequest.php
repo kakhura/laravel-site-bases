@@ -34,6 +34,7 @@ class UpdateRequest extends BaseRequest
         ], $this->translationsValidation([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'description_min' => 'nullable|string',
         ]));
     }
 }

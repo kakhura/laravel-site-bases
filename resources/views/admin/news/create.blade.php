@@ -56,6 +56,13 @@
                                                 <textarea id="description_{{ $localeCode }}" class="textarea" name="description_{{ $localeCode }}" required>{{ old('description_' . $localeCode) }}</textarea>
                                             </div>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description_min_{{ $localeCode }}">მოკლე აღწერა</label>
+                                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                                <textarea id="description_min_{{ $localeCode }}" class="textarea" name="description_min_{{ $localeCode }}">{{ old('description_min_' . $localeCode) }}</textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>

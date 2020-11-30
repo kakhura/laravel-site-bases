@@ -14,6 +14,11 @@ trait ForDetail
         return $this->detail->first()->description;
     }
 
+    public function getDescriptionMinAttribute()
+    {
+        return $this->detail->first()->description_min;
+    }
+
     public function getAddressAttribute()
     {
         return $this->detail->first()->address;
