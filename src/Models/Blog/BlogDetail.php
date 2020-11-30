@@ -12,6 +12,7 @@ class BlogDetail extends Base
         'blog_id',
         'title',
         'description',
+        'description_min',
         'locale',
     ];
 

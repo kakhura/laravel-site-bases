@@ -12,6 +12,7 @@ class NewsDetail extends Base
         'news_id',
         'title',
         'description',
+        'description_min',
         'locale',
     ];
 
