@@ -60,7 +60,7 @@
 
     @include('vendor.site-bases.admin.inc.footer')
 
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/nmbw9il6ra7d9bu30i2cu2h04ehbu2kepuif681a8luhufj5/tinymce/4/tinymce.min.js"></script>
 
     <script>
         var editor_config = {
