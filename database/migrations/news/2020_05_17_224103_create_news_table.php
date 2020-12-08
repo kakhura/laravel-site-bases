@@ -29,7 +29,9 @@ class CreateNewsTable extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->foreign('photo_id')->on('photos')->references('id')->onDelete('cascade')->onUpdate('cascade');
+                if (in_array('photos', config('kakhura.site-bases.modules_publish_mapper'))) {
+                    $table->foreign('photo_id')->on('photos')->references('id')->onDelete('cascade')->onUpdate('cascade');
+                }
             });
         }
 
