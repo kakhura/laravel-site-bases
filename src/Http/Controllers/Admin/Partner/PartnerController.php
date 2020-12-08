@@ -7,7 +7,6 @@ use Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller;
 use Kakhura\LaravelSiteBases\Http\Requests\Partner\CreateRequest;
 use Kakhura\LaravelSiteBases\Http\Requests\Partner\UpdateRequest;
 use Kakhura\LaravelSiteBases\Models\Partner\Partner;
-use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Services\Partner\PartnerService;
 
 class PartnerController extends Controller
@@ -20,8 +19,7 @@ class PartnerController extends Controller
 
     public function createPartner()
     {
-        $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.site-bases.admin.partners.create', compact('photos'));
+        return view('vendor.site-bases.admin.partners.create');
     }
 
     public function storePartner(CreateRequest $request, PartnerService $partnerService)
@@ -32,8 +30,7 @@ class PartnerController extends Controller
 
     public function editPartner(Partner $partner)
     {
-        $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.site-bases.admin.partners.update', compact('partner', 'photos'));
+        return view('vendor.site-bases.admin.partners.update', compact('partner'));
     }
 
     public function updatePartner(UpdateRequest $request, PartnerService $partnerService, Partner $partner)

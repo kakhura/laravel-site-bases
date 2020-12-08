@@ -7,7 +7,6 @@ use Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller;
 use Kakhura\LaravelSiteBases\Http\Requests\Brand\CreateRequest;
 use Kakhura\LaravelSiteBases\Http\Requests\Brand\UpdateRequest;
 use Kakhura\LaravelSiteBases\Models\Brand\Brand;
-use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Services\Brand\BrandService;
 
 class BrandController extends Controller
@@ -20,8 +19,7 @@ class BrandController extends Controller
 
     public function createBrand()
     {
-        $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.site-bases.admin.brands.create', compact('photos'));
+        return view('vendor.site-bases.admin.brands.create');
     }
 
     public function storeBrand(CreateRequest $request, BrandService $brandService)
@@ -32,8 +30,7 @@ class BrandController extends Controller
 
     public function editBrand(Brand $brand)
     {
-        $photos = Photo::orderBy('ordering', 'asc')->get();
-        return view('vendor.site-bases.admin.brands.update', compact('brand', 'photos'));
+        return view('vendor.site-bases.admin.brands.update', compact('brand'));
     }
 
     public function updateBrand(UpdateRequest $request, BrandService $brandService, Brand $brand)
