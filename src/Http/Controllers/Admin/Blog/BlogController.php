@@ -20,7 +20,10 @@ class BlogController extends Controller
 
     public function createBlog()
     {
-        $photos = Photo::orderBy('ordering', 'asc')->get();
+        $photos = collect();
+        if (in_array('photos', config('kakhura.site-bases.modules_publish_mapper'))) {
+            $photos = Photo::orderBy('ordering', 'asc')->get();
+        }
         return view('vendor.site-bases.admin.blogs.create', compact('photos'));
     }
 
@@ -32,7 +35,10 @@ class BlogController extends Controller
 
     public function editBlog(Blog $blog)
     {
-        $photos = Photo::orderBy('ordering', 'asc')->get();
+        $photos = collect();
+        if (in_array('photos', config('kakhura.site-bases.modules_publish_mapper'))) {
+            $photos = Photo::orderBy('ordering', 'asc')->get();
+        }
         return view('vendor.site-bases.admin.blogs.update', compact('blog', 'photos'));
     }
 

@@ -20,7 +20,10 @@ class NewsController extends Controller
 
     public function createNews()
     {
-        $photos = Photo::orderBy('ordering', 'asc')->get();
+        $photos = collect();
+        if (in_array('photos', config('kakhura.site-bases.modules_publish_mapper'))) {
+            $photos = Photo::orderBy('ordering', 'asc')->get();
+        }
         return view('vendor.site-bases.admin.news.create', compact('photos'));
     }
 
@@ -32,7 +35,10 @@ class NewsController extends Controller
 
     public function editNews(News $news)
     {
-        $photos = Photo::orderBy('ordering', 'asc')->get();
+        $photos = collect();
+        if (in_array('photos', config('kakhura.site-bases.modules_publish_mapper'))) {
+            $photos = Photo::orderBy('ordering', 'asc')->get();
+        }
         return view('vendor.site-bases.admin.news.update', compact('news', 'photos'));
     }
 
