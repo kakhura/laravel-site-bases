@@ -1,18 +1,41 @@
 <?php
 
 use Kakhura\LaravelSiteBases\Models\About\About;
+use Kakhura\LaravelSiteBases\Models\About\AboutDetail;
 use Kakhura\LaravelSiteBases\Models\Blog\Blog;
+use Kakhura\LaravelSiteBases\Models\Blog\BlogDetail;
+use Kakhura\LaravelSiteBases\Models\Blog\BlogImage;
 use Kakhura\LaravelSiteBases\Models\Brand\Brand;
+use Kakhura\LaravelSiteBases\Models\Brand\BrandDetail;
 use Kakhura\LaravelSiteBases\Models\Category\Category;
+use Kakhura\LaravelSiteBases\Models\Category\CategoryDetail;
+use Kakhura\LaravelSiteBases\Models\Contact\Contact;
+use Kakhura\LaravelSiteBases\Models\Contact\ContactDetail;
 use Kakhura\LaravelSiteBases\Models\News\News;
+use Kakhura\LaravelSiteBases\Models\News\NewsDetail;
+use Kakhura\LaravelSiteBases\Models\News\NewsImage;
 use Kakhura\LaravelSiteBases\Models\Page\Page;
+use Kakhura\LaravelSiteBases\Models\Page\PageDetail;
+use Kakhura\LaravelSiteBases\Models\Page\PageImage;
 use Kakhura\LaravelSiteBases\Models\Partner\Partner;
+use Kakhura\LaravelSiteBases\Models\Partner\PartnerDetail;
 use Kakhura\LaravelSiteBases\Models\Photo\Photo;
+use Kakhura\LaravelSiteBases\Models\Photo\PhotoDetail;
+use Kakhura\LaravelSiteBases\Models\Photo\PhotoImage;
 use Kakhura\LaravelSiteBases\Models\Product\Product;
+use Kakhura\LaravelSiteBases\Models\Product\ProductDetail;
+use Kakhura\LaravelSiteBases\Models\Product\ProductImage;
 use Kakhura\LaravelSiteBases\Models\Project\Project;
+use Kakhura\LaravelSiteBases\Models\Project\ProjectDetail;
+use Kakhura\LaravelSiteBases\Models\Project\ProjectImage;
+use Kakhura\LaravelSiteBases\Models\Rule\Rule;
+use Kakhura\LaravelSiteBases\Models\Rule\RuleDetail;
 use Kakhura\LaravelSiteBases\Models\Service\Service;
+use Kakhura\LaravelSiteBases\Models\Service\ServiceDetail;
 use Kakhura\LaravelSiteBases\Models\Slide\Slide;
+use Kakhura\LaravelSiteBases\Models\Slide\SlideDetail;
 use Kakhura\LaravelSiteBases\Models\Video\Video;
+use Kakhura\LaravelSiteBases\Models\Video\VideoDetail;
 
 return [
     /**
@@ -42,21 +65,41 @@ return [
      */
     'models_connection_mapper' => [
         About::class => 'mysql',
-        'rules' => 'mysql',
-        'contact' => 'mysql',
-        'blogs' => 'mysql',
-        'slides' => 'mysql',
-        'projects' => 'mysql',
-        'services' => 'mysql',
-        'news' => 'mysql',
-        'admins' => 'mysql',
-        'videos' => 'mysql',
-        'products' => 'mysql',
-        'categories' => 'mysql',
-        'photos' => 'mysql',
-        'pages' => 'mysql',
-        'partners' => 'mysql',
-        'brands' => 'mysql',
+        AboutDetail::class => 'mysql',
+        Blog::class => 'mysql',
+        BlogDetail::class => 'mysql',
+        BlogImage::class => 'mysql',
+        Brand::class => 'mysql',
+        BrandDetail::class => 'mysql',
+        Category::class => 'mysql',
+        CategoryDetail::class => 'mysql',
+        Contact::class => 'mysql',
+        ContactDetail::class => 'mysql',
+        News::class => 'mysql',
+        NewsDetail::class => 'mysql',
+        NewsImage::class => 'mysql',
+        Page::class => 'mysql',
+        PageDetail::class => 'mysql',
+        PageImage::class => 'mysql',
+        Partner::class => 'mysql',
+        PartnerDetail::class => 'mysql',
+        Photo::class => 'mysql',
+        PhotoDetail::class => 'mysql',
+        PhotoImage::class => 'mysql',
+        Product::class => 'mysql',
+        ProductDetail::class => 'mysql',
+        ProductImage::class => 'mysql',
+        Project::class => 'mysql',
+        ProjectDetail::class => 'mysql',
+        ProjectImage::class => 'mysql',
+        Rule::class => 'mysql',
+        RuleDetail::class => 'mysql',
+        Service::class => 'mysql',
+        ServiceDetail::class => 'mysql',
+        Slide::class => 'mysql',
+        SlideDetail::class => 'mysql',
+        Video::class => 'mysql',
+        VideoDetail::class => 'mysql',
     ],
 
     /**
