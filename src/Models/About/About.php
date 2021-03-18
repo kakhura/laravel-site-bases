@@ -9,6 +9,11 @@ class About extends Base
 {
     use ForDetail;
 
+    public function __construct()
+    {
+        $this->connection = config(sprintf('kakhura.site-bases.models_connection_mapper.%s', self::class));
+    }
+
     protected $table = 'abouts';
 
     protected $fillable = [

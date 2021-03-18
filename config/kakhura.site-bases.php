@@ -1,5 +1,6 @@
 <?php
 
+use Kakhura\LaravelSiteBases\Models\About\About;
 use Kakhura\LaravelSiteBases\Models\Blog\Blog;
 use Kakhura\LaravelSiteBases\Models\Brand\Brand;
 use Kakhura\LaravelSiteBases\Models\Category\Category;
@@ -34,6 +35,28 @@ return [
         'pages',
         'partners',
         'brands',
+    ],
+
+    /**
+     * Which module's views and migrations do you want to publish.
+     */
+    'models_connection_mapper' => [
+        About::class => 'mysql',
+        'rules' => 'mysql',
+        'contact' => 'mysql',
+        'blogs' => 'mysql',
+        'slides' => 'mysql',
+        'projects' => 'mysql',
+        'services' => 'mysql',
+        'news' => 'mysql',
+        'admins' => 'mysql',
+        'videos' => 'mysql',
+        'products' => 'mysql',
+        'categories' => 'mysql',
+        'photos' => 'mysql',
+        'pages' => 'mysql',
+        'partners' => 'mysql',
+        'brands' => 'mysql',
     ],
 
     /**
