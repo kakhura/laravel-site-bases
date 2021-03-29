@@ -3,6 +3,7 @@
 namespace Kakhura\LaravelSiteBases\Http\Requests\Category;
 
 use Kakhura\LaravelSiteBases\Http\Requests\Request as BaseRequest;
+use Kakhura\LaravelSiteBases\Models\Category\Category;
 
 class CreateRequest extends BaseRequest
 {
@@ -25,7 +26,7 @@ class CreateRequest extends BaseRequest
     {
         return array_merge([
             'image' => 'nullable|array|min:1',
-            'parent_id' => 'nullable|integer|exists:categories,id,deleted_at,NULL',
+            'parent_id' => sprintf('nullable|integer|exists:%s.categories,id,deleted_at,NULL', config(sprintf('kakhura.site-bases.models_connection_mapper.%s', Category::class))),
             'published' => 'nullable|string',
         ], $this->translationsValidation([
             'title' => 'required|string|max:255',
