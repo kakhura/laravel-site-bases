@@ -3,6 +3,7 @@
 namespace Kakhura\LaravelSiteBases\Http\Requests\Product;
 
 use Kakhura\LaravelSiteBases\Http\Requests\Request as BaseRequest;
+use Kakhura\LaravelSiteBases\Models\Category\Category;
 
 class UpdateRequest extends BaseRequest
 {
@@ -25,7 +26,7 @@ class UpdateRequest extends BaseRequest
     {
         return array_merge([
             'image' => 'array|min:1',
-            'category_id' => 'nullable|integer|exists:categories,id,deleted_at,NULL',
+            'category_id' => sprintf('nullable|integer|exists:%s.categories,id,deleted_at,NULL', config(sprintf('kakhura.site-bases.models_connection_mapper.%s', Category::class))),
             'price' => 'nullable|numeric|min:0',
             'discounted_price' => 'nullable|numeric|min:0',
             'published' => 'nullable|string',

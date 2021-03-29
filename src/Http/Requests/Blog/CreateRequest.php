@@ -3,6 +3,7 @@
 namespace Kakhura\LaravelSiteBases\Http\Requests\Blog;
 
 use Kakhura\LaravelSiteBases\Http\Requests\Request as BaseRequest;
+use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 
 class CreateRequest extends BaseRequest
 {
@@ -25,7 +26,7 @@ class CreateRequest extends BaseRequest
     {
         return array_merge([
             'image' => 'required|array|min:1',
-            'photo_id' => 'nullable|integer|exists:photos,id,deleted_at,NULL',
+            'photo_id' => sprintf('nullable|integer|exists:%s.photos,id,deleted_at,NULL', config(sprintf('kakhura.site-bases.models_connection_mapper.%s', Photo::class))),
             'published' => 'nullable|string',
             'video' => 'nullable|string',
             'video_image' => 'array|min:1',
