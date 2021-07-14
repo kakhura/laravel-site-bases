@@ -2,18 +2,22 @@
 
 namespace Kakhura\LaravelSiteBases\Http\Controllers\Admin\Admin;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Kakhura\LaravelSiteBases\Http\Controllers\Admin\Controller;
 use Kakhura\LaravelSiteBases\Http\Requests\Admin\CreateRequest;
 use Kakhura\LaravelSiteBases\Http\Requests\Admin\UpdateRequest;
-use App\Models\User;
 use Kakhura\LaravelSiteBases\Services\Admin\AdminService;
 
 class AdminController extends Controller
 {
     public function admins()
     {
-        $admins = User::latest()->paginate(10);
+        $admins = User::query()
+            ->when(config('kakhura.site-bases.use_two_type_users'), function ($query) {
+                $query->where('is_admin', true);
+            })->latest()
+            ->paginate(10);
         return view('vendor.site-bases.admin.admins.items', compact('admins'));
     }
 
