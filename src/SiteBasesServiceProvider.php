@@ -31,7 +31,11 @@ class SiteBasesServiceProvider extends ServiceProvider
         $this->publishConfigs();
         $this->publishViews();
         $this->publishMigrations();
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        if (config('kakhura.site-bases.use_roles_and_permissions')) {
+            $this->loadRoutesFrom(__DIR__ . '/role_routes.php');
+        } else {
+            $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        }
     }
 
     protected function publishConfigs()

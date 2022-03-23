@@ -418,4 +418,9 @@ return [
             'bottom',
         ],
     ],
+
+    /**
+     * Use roles and permissions
+     */
+    'use_roles_and_permissions' => false,
 ];
