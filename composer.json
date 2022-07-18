@@ -5,20 +5,18 @@
     "type": "library",
     "homepage": "https://github.com/kakhura/laravel-site-bases",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "kakhura",
-            "email": "giokaxura@gmail.com"
-        }
-    ],
+    "authors": [{
+        "name": "kakhura",
+        "email": "giokaxura@gmail.com"
+    }],
     "require": {
         "php": ">=7.0.0",
-        "barryvdh/laravel-translation-manager": "^0.6.2",
-        "mcamara/laravel-localization": "^1.6",
-        "waska14/laravel-with-db-transactions": "^2.0",
+        "barryvdh/laravel-translation-manager": "^0.6.3",
+        "mcamara/laravel-localization": "^1.7",
+        "waska14/laravel-with-db-transactions": "^3.0",
         "intervention/image": "^2.5",
-        "laravel/ui": "^3.0",
-        "unisharp/laravel-filemanager": "master"
+        "laravel/ui": "^3.4",
+        "unisharp/laravel-filemanager": "^2.5"
     },
     "autoload": {
         "psr-4": {
