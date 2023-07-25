@@ -48,6 +48,7 @@ class RunCommands extends Command
         $this->migrate();
         $this->ui();
         $this->localization();
+        $this->audits();
         $this->translations();
         $this->lfm();
     }
@@ -72,6 +73,15 @@ class RunCommands extends Command
             '--provider' => 'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
         ]);
         $this->info('Localization config published succsesfully');
+    }
+
+    protected function audits()
+    {
+        $this->call('vendor:publish', [
+            '--provider' => 'OwenIt\Auditing\AuditingServiceProvider',
+        ]);
+        $this->migrate();
+        $this->info('Audits published succsesfully');
     }
 
     protected function translations()
