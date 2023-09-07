@@ -49,7 +49,7 @@
                                         </td>
                                         <td class="text-center">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                            {{ $item->created_at }}
+                                            {{ $item->published_at }}
                                         </td>
                                         <td align="right">
                                             <a href="{{ url('admin/news/edit/' . $item->id) }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> </a>
