@@ -14,7 +14,7 @@ class NewsController extends Controller
 {
     public function news()
     {
-        $news = News::orderBy('ordering', 'asc')->paginate(15);
+        $news = News::orderBy('published_at', 'desc')->paginate(15);
         return view('vendor.site-bases.admin.news.items', compact('news'));
     }
 

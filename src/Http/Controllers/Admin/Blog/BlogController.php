@@ -14,7 +14,7 @@ class BlogController extends Controller
 {
     public function blogs()
     {
-        $blogs = Blog::orderBy('ordering', 'asc')->paginate(15);
+        $blogs = Blog::orderBy('published_at', 'desc')->paginate(15);
         return view('vendor.site-bases.admin.blogs.items', compact('blogs'));
     }
 

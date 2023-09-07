@@ -13,7 +13,7 @@ class PhotoController extends Controller
 {
     public function photos()
     {
-        $photos = Photo::orderBy('ordering', 'asc')->paginate(15);
+        $photos = Photo::orderBy('published_at', 'desc')->paginate(15);
         return view('vendor.site-bases.admin.photos.items', compact('photos'));
     }
 
