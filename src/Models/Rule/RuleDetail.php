@@ -15,6 +15,15 @@ class RuleDetail extends Base
         'locale',
     ];
 
+    /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'description',
+    ];
+
     public function rule()
     {
         return $this->belongsTo(Rule::class);

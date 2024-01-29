@@ -15,6 +15,15 @@ class AboutDetail extends Base
         'locale',
     ];
 
+    /**
+     * Attributes to exclude from the Audit.
+     *
+     * @var array
+     */
+    protected $auditExclude = [
+        'description',
+    ];
+
     public function about()
     {
         return $this->belongsTo(About::class);
