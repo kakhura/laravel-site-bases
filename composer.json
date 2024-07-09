@@ -11,13 +11,13 @@
     }],
     "require": {
         "php": ">=7.0.0",
-        "barryvdh/laravel-translation-manager": "^0.6.4",
-        "mcamara/laravel-localization": "^1.8",
-        "waska14/laravel-with-db-transactions": "^3.0",
-        "intervention/image": "^2.7",
-        "laravel/ui": "^4.2",
-        "unisharp/laravel-filemanager": "^2.6",
-        "owen-it/laravel-auditing": "^13.5"
+        "barryvdh/laravel-translation-manager": "^0.6.6",
+        "mcamara/laravel-localization": "^2.0.1",
+        "waska14/laravel-with-db-transactions": "^4.0",
+        "intervention/image": "^3.7.2",
+        "laravel/ui": "^4.5.2",
+        "unisharp/laravel-filemanager": "^2.9.0",
+        "owen-it/laravel-auditing": "^13.6.8"
     },
     "autoload": {
         "psr-4": {
