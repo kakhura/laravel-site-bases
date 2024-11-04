@@ -6,7 +6,8 @@ use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class UploadHelper
 {
@@ -43,18 +44,17 @@ class UploadHelper
      */
     protected static function uploadImage(UploadedFile $getFile, string $fileName, string $folder, string $fileUniqName, string $extension): array
     {
-        $file = Image::make($getFile);
+        $manager = new ImageManager(new Driver());
+        $file = $manager->read($getFile);
         if (config('kakhura.site-bases.images_watermark.add_watermark_to_images') && File::exists(public_path(config('kakhura.site-bases.images_watermark.watermark_path')))) {
-            $file->insert(public_path(config('kakhura.site-bases.images_watermark.watermark_path'), config('kakhura.site-bases.images_watermark.watermark_position'), config('kakhura.site-bases.images_watermark.watermark_x'), config('kakhura.site-bases.images_watermark.watermark_y')));
+            $file->place(public_path(config('kakhura.site-bases.images_watermark.watermark_path'), config('kakhura.site-bases.images_watermark.watermark_position'), config('kakhura.site-bases.images_watermark.watermark_x'), config('kakhura.site-bases.images_watermark.watermark_y')));
         }
         if (!is_null(config('kakhura.site-bases.max_image_width')) && $file->width() > config('kakhura.site-bases.max_image_width')) {
-            $file->resize(config('kakhura.site-bases.max_image_width'), null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
+            $file->scale(config('kakhura.site-bases.max_image_width'));
         }
         $file->save(public_path($fileName));
         if (config('kakhura.site-bases.images_thumbs.generate_thumb_for_images')) {
-            $thumbFileName = self::generateThumb($getFile, $folder, $fileUniqName, $extension);
+            $thumbFileName = self::generateThumb($getFile, $folder, $fileUniqName, $extension, $manager);
         }
         return [
             'fileName' => $fileName,
@@ -69,13 +69,11 @@ class UploadHelper
      * @param string $extension
      * @return string
      */
-    protected static function generateThumb(UploadedFile $getFile, string $folder, string $fileUniqName, string $extension): string
+    protected static function generateThumb(UploadedFile $getFile, string $folder, string $fileUniqName, string $extension, ImageManager $manager): string
     {
-        $file = Image::make($getFile);
+        $file = $manager->read($getFile);
         $fileName = sprintf('%s%s%s.%s', trim($folder, '/\\'), DIRECTORY_SEPARATOR, $fileUniqName . '_thumb', $extension);
-        $file->resize(config('kakhura.site-bases.images_thumbs.thumb_width'), config('kakhura.site-bases.images_thumbs.thumb_height'), function ($constraint) {
-            $constraint->aspectRatio();
-        });
+        $file->scale(config('kakhura.site-bases.images_thumbs.thumb_width'));
         $file->save(public_path($fileName));
         return $fileName;
     }
