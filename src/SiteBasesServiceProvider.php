@@ -42,7 +42,9 @@ class SiteBasesServiceProvider extends ServiceProvider
     {
         $configPath = __DIR__ . '/../config/kakhura.site-bases.php';
         $this->mergeConfigFrom($configPath, 'kakhura.site-bases');
-        $this->publishes([$configPath => config_path('kakhura.site-bases.php')], 'kakhura-site-bases-config');
+        if (!File::exists(config_path('kakhura.site-bases.php'))) {
+            $this->publishes([$configPath => config_path('kakhura.site-bases.php')], 'kakhura-site-bases-config');
+        }
     }
 
     protected function publishViews()
@@ -60,9 +62,11 @@ class SiteBasesServiceProvider extends ServiceProvider
             $viewPath = __DIR__ . sprintf('/../resources/views/admin/%s', $module);
             if (File::exists($viewPath)) {
                 $this->loadViewsFrom($viewPath, 'site-bases');
-                $this->publishes([
-                    $viewPath => base_path(sprintf('resources/views/vendor/site-bases/admin/%s', $module)),
-                ], 'kakhura-site-bases-views');
+                if (!File::exists(base_path(sprintf('resources/views/vendor/site-bases/admin/%s', $module)))) {
+                    $this->publishes([
+                        $viewPath => base_path(sprintf('resources/views/vendor/site-bases/admin/%s', $module)),
+                    ], 'kakhura-site-bases-views');
+                }
             }
         }
     }
@@ -73,9 +77,11 @@ class SiteBasesServiceProvider extends ServiceProvider
             $viewPath = __DIR__ . sprintf('/../resources/views/website/client/%s', $module);
             if (File::exists($viewPath)) {
                 $this->loadViewsFrom($viewPath, 'site-bases');
-                $this->publishes([
-                    $viewPath => base_path(sprintf('resources/views/vendor/site-bases/website/%s', $module)),
-                ], 'kakhura-site-bases-views');
+                if (!File::exists(base_path(sprintf('resources/views/vendor/site-bases/website/%s', $module)))) {
+                    $this->publishes([
+                        $viewPath => base_path(sprintf('resources/views/vendor/site-bases/website/%s', $module)),
+                    ], 'kakhura-site-bases-views');
+                }
             }
         }
         $viewPath = __DIR__ . '/../resources/views/website/client/main';
@@ -88,9 +94,11 @@ class SiteBasesServiceProvider extends ServiceProvider
         $viewPath = __DIR__ . '/../resources/views/website/layouts';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
-            $this->publishes([
-                $viewPath => base_path(sprintf('resources/views/vendor/site-bases/website/layouts', $module)),
-            ], 'kakhura-site-bases-views');
+            if (!File::exists(base_path(sprintf('resources/views/vendor/site-bases/website/layouts')))) {
+                $this->publishes([
+                    $viewPath => base_path(sprintf('resources/views/vendor/site-bases/website/layouts')),
+                ], 'kakhura-site-bases-views');
+            }
         }
     }
 
@@ -99,31 +107,39 @@ class SiteBasesServiceProvider extends ServiceProvider
         $viewPath = __DIR__ . '/../resources/views/translation-manager';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
-            $this->publishes([
-                $viewPath => base_path('resources/views/vendor/translation-manager'),
-            ], 'kakhura-site-bases-views');
+            if (!File::exists(base_path('resources/views/vendor/translation-manager'))) {
+                $this->publishes([
+                    $viewPath => base_path('resources/views/vendor/translation-manager'),
+                ], 'kakhura-site-bases-views');
+            }
         }
         $viewPath = __DIR__ . '/../resources/views/admin/inc';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
-            $this->publishes([
-                $viewPath => base_path('resources/views/vendor/site-bases/admin/inc'),
-            ], 'kakhura-site-bases-views');
+            if (!File::exists(base_path('resources/views/vendor/site-bases/admin/inc'))) {
+                $this->publishes([
+                    $viewPath => base_path('resources/views/vendor/site-bases/admin/inc'),
+                ], 'kakhura-site-bases-views');
+            }
         }
         $viewPath = __DIR__ . '/../resources/views/admin/index.blade.php';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
-            $this->publishes([
-                $viewPath => base_path('resources/views/vendor/site-bases/admin/index.blade.php'),
-            ], 'kakhura-site-bases-views');
+            if (!File::exists(base_path('resources/views/vendor/site-bases/admin/index.blade.php'))) {
+                $this->publishes([
+                    $viewPath => base_path('resources/views/vendor/site-bases/admin/index.blade.php'),
+                ], 'kakhura-site-bases-views');
+            }
         }
 
         $viewPath = __DIR__ . '/../resources/lang/vendor/laravel-filemanager/ka/lfm.php';
         if (File::exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'site-bases');
-            $this->publishes([
-                $viewPath => base_path('resources/lang/vendor/laravel-filemanager/ka/lfm.php'),
-            ], 'kakhura-site-bases-views');
+            if (!File::exists(base_path('resources/lang/vendor/laravel-filemanager/ka/lfm.php'))) {
+                $this->publishes([
+                    $viewPath => base_path('resources/lang/vendor/laravel-filemanager/ka/lfm.php'),
+                ], 'kakhura-site-bases-views');
+            }
         }
     }
 
@@ -131,7 +147,7 @@ class SiteBasesServiceProvider extends ServiceProvider
     {
         foreach (config('kakhura.site-bases.modules_publish_mapper') as $module) {
             $migrationPath = __DIR__ . sprintf('/../database/migrations/%s', $module);
-            if (File::exists($migrationPath)) {
+            if (File::exists($migrationPath) && count(glob(sprintf('database/migrations/*%s*.php', $module))) == 0) {
                 $this->publishes([
                     $migrationPath => base_path('database/migrations'),
                 ], 'kakhura-site-bases-migrations');
