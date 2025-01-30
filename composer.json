@@ -16,7 +16,7 @@
         "waska14/laravel-with-db-transactions": "^4.0",
         "intervention/image": "^3.7.2",
         "laravel/ui": "^4.5.2",
-        "unisharp/laravel-filemanager": "^2.9.0",
+        "unisharp/laravel-filemanager": "^2.9.1",
         "owen-it/laravel-auditing": "^13.6.8"
     },
     "autoload": {
