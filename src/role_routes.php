@@ -8,7 +8,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http\Controllers\Admin', 'middleware' => array_merge(['web', 'auth', 'with_db_transactions', 'permission:view-pages'], config('kakhura.site-bases.use_two_type_users') ? ['admin'] : [])], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Kakhura\LaravelSiteBases\Http\Controllers\Admin', 'middleware' => array_merge(['web', 'auth', 'with_db_transactions'], config('kakhura.site-bases.use_two_type_users') ? ['admin'] : [])], function () {
     Route::post('/upload', 'Controller@uploadFromRedactor');
 
     Route::get('/', 'Controller@index');
