@@ -24,7 +24,7 @@ trait ForDetail
         return $this->detail->first() ? $this->detail->first()->address : '';
     }
 
-    public function scopeWithTranslations($query, string $locale = null)
+    public function scopeWithTranslations($query, ?string $locale = null)
     {
         $locale = $locale ?: app()->getLocale();
         $query->with([
