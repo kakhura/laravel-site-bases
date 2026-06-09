@@ -4,6 +4,7 @@ namespace Kakhura\LaravelSiteBases\Models\News;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kakhura\LaravelSiteBases\Models\Base;
+use Kakhura\LaravelSiteBases\Models\Photo\Photo;
 use Kakhura\LaravelSiteBases\Traits\Models\ForDetail;
 use Kakhura\LaravelSiteBases\Traits\Models\ForUrl;
 
@@ -39,5 +40,10 @@ class News extends Base
     public function images()
     {
         return $this->hasMany(NewsImage::class);
+    }
+
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class, 'photo_id');
     }
 }
