@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -20,18 +21,51 @@ class UploadHelper
      */
     public static function uploadFile(UploadedFile $getFile, string $folder, bool $isImage = true): array
     {
+        $extension = self::resolveSafeExtension($getFile, $isImage);
         $folder = self::getFileTypeFolder($folder);
-        $extension = Str::lower($getFile->getClientOriginalExtension());
         $fileUniqName = Str::random();
         $fileName = sprintf('%s%s%s.%s', trim($folder, '/\\'), DIRECTORY_SEPARATOR, $fileUniqName, $extension);
         if ($isImage) {
             return self::uploadImage($getFile, $fileName, $folder, $fileUniqName, $extension);
         } else {
-            file_put_contents($fileName, file_get_contents($getFile));
+            File::put(public_path($fileName), file_get_contents($getFile->getRealPath()));
             return [
                 'fileName' => $fileName,
             ];
         }
+    }
+
+    /**
+     * Returns a lower-case extension that is on the allow list and can never be
+     * executed by the web server. Throws a ValidationException otherwise.
+     *
+     * @param UploadedFile $file
+     * @param bool $isImage
+     * @return string
+     * @throws ValidationException
+     */
+    public static function resolveSafeExtension(UploadedFile $file, bool $isImage = true): string
+    {
+        $extension = Str::lower(trim($file->getClientOriginalExtension(), " .\t\n\r\0\x0B"));
+        if ($extension === '' && $isImage) {
+            $extension = Str::lower((string) $file->guessExtension());
+        }
+        $allowed = $isImage ? FileSecurity::allowedImageExtensions() : FileSecurity::allowedFileExtensions();
+
+        if (
+            !$file->isValid()
+            || !preg_match('/^[a-z0-9]{1,10}$/', $extension)
+            || FileSecurity::isForbiddenExtension($extension)
+            || FileSecurity::isDangerousFileName($file->getClientOriginalName())
+            || !in_array($extension, $allowed, true)
+            || FileSecurity::isForbiddenMimeType($file->getMimeType())
+        ) {
+            throw ValidationException::withMessages([
+                'file' => sprintf('File type is not allowed. Allowed types: %s', implode(', ', $allowed)),
+            ]);
+        }
+
+        return $extension;
     }
 
     /**

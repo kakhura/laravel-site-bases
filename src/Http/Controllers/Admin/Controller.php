@@ -8,7 +8,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Kakhura\LaravelSiteBases\Helpers\FileSecurity;
 use Kakhura\LaravelSiteBases\Helpers\UploadHelper;
 
 class Controller extends BaseController
@@ -30,8 +32,11 @@ class Controller extends BaseController
     public function uploadFromRedactor(Request $request)
     {
         if ($request->hasFile('file')) {
+            $this->validate($request, [
+                'file' => 'required|file|image|mimes:' . implode(',', FileSecurity::allowedImageExtensions()) . '|max:20480',
+            ]);
             config(['kakhura.site-bases.images_thumbs.generate_thumb_for_images' => false]);
-            $image = UploadHelper::uploadFile($request->file, '/upload/redactor/');
+            $image = UploadHelper::uploadFile($request->file('file'), '/upload/redactor/');
             $file = [
                 'filelink' => asset(Arr::get($image, 'fileName')),
             ];
@@ -45,8 +50,8 @@ class Controller extends BaseController
      */
     public function ordering(Request $request)
     {
-        $className = $request->get('className');
-        foreach (json_decode($request->ordering) as $value) {
+        $className = $this->resolveModelClass($request->get('className'));
+        foreach ((array) json_decode($request->ordering, true) as $value) {
             $object = $className::find(Arr::get($value, 0));
             if ($object) {
                 $object->update([
@@ -62,7 +67,7 @@ class Controller extends BaseController
      */
     public function publish(Request $request): JsonResponse
     {
-        $className = $request->get('className');
+        $className = $this->resolveModelClass($request->get('className'));
         $status = array('status' => 'error');
         $object = $className::findOrFail($request->id);
         $update = $object->update([
@@ -72,5 +77,21 @@ class Controller extends BaseController
             $status['status'] = 'success';
         }
         return response()->json($status);
+    }
+
+    /**
+     * Only Eloquent models may be targeted by className, so the request
+     * cannot call static methods on arbitrary classes.
+     *
+     * @param mixed $className
+     * @return string
+     */
+    protected function resolveModelClass($className): string
+    {
+        $className = ltrim((string) $className, '\\');
+        if ($className === '' || !class_exists($className) || !is_subclass_of($className, Model::class)) {
+            abort(400, 'Invalid className.');
+        }
+        return $className;
     }
 }

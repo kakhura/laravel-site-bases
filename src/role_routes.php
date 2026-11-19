@@ -4,7 +4,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => array_merge(['web', 'auth'], config('kakhura.site-bases.use_two_type_users') ? ['admin'] : [])], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 

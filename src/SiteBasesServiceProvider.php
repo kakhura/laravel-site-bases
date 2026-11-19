@@ -3,10 +3,15 @@
 namespace Kakhura\LaravelSiteBases;
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Kakhura\LaravelSiteBases\Console\Commands\RunCommands;
 use Kakhura\LaravelSiteBases\Http\Middleware\AdminMiddleware;
+use Kakhura\LaravelSiteBases\Listeners\BlockDangerousFileManagerOperations;
+use UniSharp\LaravelFilemanager\Events\FileIsMoving;
+use UniSharp\LaravelFilemanager\Events\FileIsRenaming;
+use UniSharp\LaravelFilemanager\Events\FileIsUploading;
 
 class SiteBasesServiceProvider extends ServiceProvider
 {
@@ -28,6 +33,7 @@ class SiteBasesServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         $router->middlewareGroup('admin', [AdminMiddleware::class]);
+        $this->registerFileManagerGuards();
         $this->publishConfigs();
         $this->publishViews();
         $this->publishMigrations();
@@ -35,6 +41,19 @@ class SiteBasesServiceProvider extends ServiceProvider
             $this->loadRoutesFrom(__DIR__ . '/role_routes.php');
         } else {
             $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        }
+    }
+
+    /**
+     * Block executable / server-config file names in laravel-filemanager
+     * uploads, renames and moves.
+     */
+    protected function registerFileManagerGuards()
+    {
+        foreach ([FileIsUploading::class, FileIsRenaming::class, FileIsMoving::class] as $event) {
+            if (class_exists($event)) {
+                Event::listen($event, [BlockDangerousFileManagerOperations::class, 'handle']);
+            }
         }
     }
 

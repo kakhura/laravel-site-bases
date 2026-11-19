@@ -252,6 +252,19 @@ return [
     'max_image_width' => 2000, // in px
 
     /**
+     * Allowed extensions for uploads made through UploadHelper.
+     * Executable / server-config types (php, phar, phtml, htaccess, html, svg, js, ...)
+     * are always rejected, even if they are added here.
+     */
+    'upload_allowed_image_extensions' => ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+    'upload_allowed_file_extensions' => [
+        'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'odt', 'ods', 'rtf', 'txt', 'csv',
+        'zip', 'rar', '7z',
+        'jpg', 'jpeg', 'png', 'gif', 'webp',
+        'mp3', 'mp4', 'webm', 'mov',
+    ],
+
+    /**
      * Admin languages active tab.
      */
     'admin_editors_default_locale' => 'ka',
